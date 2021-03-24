@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage{graphicx} 
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{abbrvnat}
@@ -18,46 +18,53 @@
 
 \section{Einführung}
 \section{Theorie}
-	\subsection{Oberflächen-Plasmon-Polariton (SPP)}
+	\subsection{Oberflächen-Plasmon-Polariton (SPP)}		
+	Ein Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP) ist das quantisierte Quasiteilchen, der an das elektromagnetischen Feld gekoppelten Elektronen-Dichte-Oszillation, an einer Dielektrikums-Metall-Grenzschicht. Durch die spezielle Form dieser Geometrie, ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation, ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Diese transversalen Komponenten sind notwendig, damit eine Kopplung an das rein transversale elektromagnetische Feld des Vakuums tendenziell zu ermöglichen. Die einfachste Geometrie in der SPPs auftreten können ist ein Zwei-Schichtsystem. Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_D"$ ausgefüllt. Der Halbraum unterhalb der $xy$-Ebene mit $z<0$ sei von einem Metall mit der im allgemeinen komplexen Dielektrischen-Funktion $\epsilon(\omega)$ ausgefüllt. An der Grenzschicht zwischen diesen beiden Halbräumen können SPPs propagieren. Um nun einige Charakteristische Eigenschaften von SPPs zu erläutern, gehe ich davon aus, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv 2-dimensional. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPPs in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
+	\begin{equation}
+		\label{eq:electric_field_spp}
+		\vec{E}_n = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{spp}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)	
+	\end{equation}
+	\begin{equation}
+		\label{eq:magnetic_field_spp}
+		\vec{H}_n = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} H_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)
+	\end{equation}
+	Der Index $n$ beschreibt hierbei das Material($M$ für das Metall, $D$ für das Dielektrikum). Das $\pm$ ist $+$ für das Metall und  $-$ für das Dielektrikum. $\omega$ ist die Winkelfrequenz der Anregung. $k_{\mathrm{spp}}$ ist der im allgemeinen komplexe Wellenvektor der Anregung.  $k_{\mathrm{spp}}$ ist für beide Medien gleich. Der Realteil $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ des komplexen Wellenvektors lässt sich in die Wellenlänge $\lambda_{\mathrm{spp}} = 2\pi/ \operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} $ des SPP umrechnen. Der Imaginärteil $\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\}$ beschreibt das Dämpfungsverhalten des SPP entlang der Ausbreitungsrichtung. Es lässt sich über $\L_{\mathrm{spp}} = 1/(2\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\})$ eine Propagationslänge definieren. Nachdem das SPP eine Propagationslänge zurückgelegt hat, sind die ursprünglichen Intensitäten des SPP auf $1/\mathrm{e}$ ihres ursprünglichen Betrages zurückgegangen.
+	
+	Analog beschreibt $\operatorname{\mathbb{R}e}\{k_{z, n}\}$ den Exponentiellen-Abfall der Anregung, wenn man sich von der Grenzfläche entfernt. Hier lassen sich die Eindringtiefen $\delta_{M,D}$ definieren, die angeben nach welcher Entfernung in z-Richtung die ursprungliche Feldstärke auf $1/\mathrm{e}$ abgeklungen ist. Das SPP hat sowohl transversale, als auch longitudinale Komponenten des Elektrischen Feldes. Das magnetische Feld ist rein transversal. Daher spricht man auch von einer Transversal-Magnetischen Anregung (TM).
+	Der quantitativer Verlauf des elektrischen Feldes für ein rein reelles $k_{\mathrm{spp}}$ und ein rein imaginäres $k_{z, n}$ ist in Abb. \ref{fig:electric_field_spp} dargestellt.
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
-		\caption{Elektrisches Feld eines SPP in der xz-Ebene mit $\vec{k}_{spp} \parallel \hat{e}_x$}
+		\caption{Quantitativer Verlauf des Elektrischen Feldes eines SPPs entlang einer Metall-Dielektrikums-Grenzschicht in der  xy-Ebene mit Ausbreitungsrichtung in positiver x-Richtung}
 		\label{fig:electric_field_spp}
 	\end{figure}
-	Das Quant einer kollektiven Anregung eines Plasmas bezeichnet man als Plasmon. Ein Plasma hat unterschiedliche Anregungsmoden, die sich aus den Maxwellgleichungen und den Bewegungsgleichungen der geladenen Teilchen des Plasmas ergeben. Jede dieser Anregungsmoden wird durch spezifische Dispersionrelationen charakterisiert. Eine Dispersionrelation gibt an den Zusammenhang zwischen räumlicher und zeitlicher Verteilung der Wellenphase an.\cite{Fox.2020}\\
-	
-	Die einfachste Anregungsmode ist ein sogenanntes Volumenplasmon. Hierbei handelt es sich um eine Elektronendichtewelle. Durch die Bewegung eines Elektrons, vor dem positiven Ionen-Hintergrundes entsteht ein Netto-Elektrisches Feld, welches als Rücktreibende-Kraft auf das Elektron wirkt. Durch den rein longitudinalen Charakter dieser Rücktreibenden-Kraft ist auch die Elektronendichtewelle rein longitudinal. Daher ist es nicht möglich, ein Volumenplasmon mit Hilfe von elektromagnetischer Strahlung anzuregen, da Elektromagnetische Wellen im Vakuum rein transversal sind. Das heißt, dass sowohl das Elektrische, als auch das Magnetische Feld immer senkrecht auf der Ausbreitungsrichtung der Welle steht.\\
-	
-	Betrachtet man nun, statt einem unendlich ausgedehntem Plasma, die Grenzschicht zwischen einem Dielektrikum und einem Plasma, ergeben sich für diese aufgrund der besonderen Geometrie weitere Anregungsmoden. Eine davon ist das sogenannte Surface-Plasmon-Polariton (SPP). Hierbei handelt es sich um eine Anregung, die in ihrer räumlichen Ausdehnung eng an die Grenzschicht zwischen Plasma und Dielektrikum gebunden ist. Die elektrische und magnetische Feldstärke der Anregung fällt senkrecht zur Grenzschichtebene exponentiell ab. Man spricht von deshalb einem evaneszenten Feld. Das magnetische Feld dieser Mode ist rein Transversal. Das elektrische Feld weist im Gegensatz zu elektromagnetischer Strahlung im Vakuum sowohl transversale als auch longitudinale Komponenten auf. Durch den transversalen Charakter ist eine Kopplung zwischen SPP und elektromagnetischer Strahlung im Vakuum tendenziell möglich.
 
 	\subsubsection{Dispersion}
-	Aus den Maxwellgleichungen ohne externe Ladungen und Ströme \eqref{eq:maxwell} lässt sich mit Hilfe des Ansatzes $\vec{E}\left(\vec{r},t\right) = \vec{E}\left(\vec{r}\right) \exp\left(-i\omega t\right)$ die Helmholtz Beziehung \eqref{eq:helmholtz} herleiten.
+	Die Herleitung der Dispersionsrelation orientiert sich an den Ausführungen in \cite[pp.~261--ff]{Fox.2020} und kann dort im Detail nachvollzogen werden. Ich beschränke mich hier auf eine kurze Beschreibung des Vorgehens.
+	Damit die oben angesetzten elektromagnetischen Felder \eqref{eq:electric_field_spp}, \eqref{eq:magnetic_field_spp}  die Maxwellgleichungen \eqref{eq:maxwell} und die Randbedingungen an der Grenzschicht erfüllen, müssen die Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} gelten. (Hierbei handelt es sich um den Spezialfall nicht magnetischer Materialien.)
 	\begin{align}
 		\label{eq:maxwell}	
 		&\vec{\nabla}\cdot\vec{D} = 0		&\vec{\nabla}\cdot\vec{B} = 0 \\
 		&\vec{\nabla}\times\vec{E} = -\dfrac{\partial\vec{B}}{\partial t} 
 		&\vec{\nabla}\times\vec{H} = 	\dfrac{\partial\vec{D}}{\partial t}\nonumber
 	\end{align}
-
-	\begin{equation}
-		\label{eq:helmholtz}
-		\vec{\nabla}^2\vec{E} + k_0^2\epsilon_n\vec{E} = 0
-	\end{equation}
-	$k_0 = \dfrac{\omega}{c}$ ist hierbei die Wellenzahl einer elektromagnetischen Welle im Vakuum. Um nun aus der Helmholtz-Beziehung die explizite Dispersion eines SPP herzuleiten, ist es zunächst notwendig, die exakte Geometrie der Propagation zu definieren. Als Geometrie wählen wir zwei Halbräume, die durch die xy-Ebene von einander getrennt werden. Das SPP propagiert in dieser Ebene entlang der x-Achse. Außerdem gehen wir davon aus, dass die Anregung senkrecht zur Ausbreitungsrichtung in der xy-Ebene konstant ist. $\epsilon = \epsilon\left(z\right)$ sei ausschließlich eine Funktion von z. Das elektrische Feld der Anregung kann jetzt als $\vec{E}\left(x, y, z\right) = \vec{E}\left(z\right)\exp\left(ik_x x\right)$ geschrieben werden. $k_x = k_{spp}$ wird auch als Propagationskonstante der Anregung bezeichnet. Wenn man dieses elektrische Feld nun in die Helmholtz-Beziehung \eqref{eq:helmholtz} einsetzt ergibt sich die Wellengleichung:
-	\begin{equation}
-		\label{eq:spp_waveeq}
-		\dfrac{\partial^2\vec{E}\left(z\right)}{\partial z^2}+ \left(k_0^2\epsilon-k_{spp}^2\right)\vec{E} = 0
-	\end{equation}
-	Aus dieser Wellengleichung lässt sich, wie detailliert in \cite{Maier.2007} gezeigt, die Dispersionsrelation einer Transversal-Magnetischen Mode (TM) berechnen:
+	\begin{subequations}
+		\begin{equation}
+			\label{eq:condition_spp_1}
+			\dfrac{k_{z, M}}{\epsilon_M} + \dfrac{k_{z, D}}{\epsilon_D} = 0
+		\end{equation}		
+		\begin{equation}
+			\label{eq:condition_spp_2}
+			k_{\mathrm{spp}}^2 +k_{z, n}^2 = \epsilon_n\left(\dfrac{\omega}{c}\right)^2; \text{ für  } n=M,D
+		\end{equation}
+		\end{subequations}
+		$\epsilon_{M, D} = \epsilon_{M, D}(\omega) $ sind hierbei die Permittivitäten der Materialien in Abhängigkeit von der Kreisfrequenz. Aus Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien $ \operatorname{\mathbb{I}m}\{k_{z, n}\} >> \operatorname{\mathbb{R}e}\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung, fallen die Felder senkrecht zu Ausbreitungsrichtung exponentiell ab. Man spricht deswegen von evaneszenten Feldern. Die Anregung ist daher stark an die Grenzfläche gebunden. Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
 	\begin{equation}
 		\label{eq:dispersion_spp}
-		k_{spp}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + \epsilon_M(\omega)}}
+		\boxed{
+			k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + 	\epsilon_M(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
 	\end{equation}
-	Hierbei ist $\epsilon_D$ die Permittivität im Dielektrikum und $\epsilon_M(\omega)$ die im allgemeinen komplexe und frequenzabhängige Permittivität des Metalls.
-	
-
-	Aus den Maxwell-Gleichungen und den Randbedingungen an der Grenzschicht lässt sich wie in   die folgende Dispersionsrelation herleiten: $k(\omega) = ...$ Als Parameter wählen wir für das Plasma die Dielektrische Funktion von Gold und für das Dieelektrikum die Dieletrische Funktion von dem Glas des Substrates. Vergleicht man die so theoretisch berechnete Dispersion des SPP mit der Dispersion einer Elektromagnetischen Welle im Gold (ngold = ...), fällt auf, dass es zwischen den beiden Kurven keine Schnittpunkte gibt. Bei gleicher Anregungsfrequenz bzw. Energie haben die beiden Wellen unterschiedliche Räumlichefrequenzen. Dieser Missmatch in den Disipersionrelationen verhindert eine direkte Anregung, da zwischen Elektromagnetischer Welle und SPP beim ausbreiten auf der Probe eine zunehmende Phasendifferenz auftreten würde. Diese Problem kann durch unterschiedliche Mechanismen umgangen werden.		
+	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.	
 		\subsubsection{Anregung}
 			\paragraph{Kretschman-Konfiguration}
 			\paragraph{Defekt-Anregung}
