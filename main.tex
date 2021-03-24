@@ -34,7 +34,7 @@
 	Der quantitativer Verlauf des elektrischen Feldes für ein rein reelles $k_{\mathrm{spp}}$ und ein rein imaginäres $k_{z, n}$ ist in Abb. \ref{fig:electric_field_spp} dargestellt.
 	\begin{figure}[htbp] 
 		\centering
-		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
+		\includegraphics[width=1\textwidth]{figures/E_Feld_SPP.png}
 		\caption{Quantitativer Verlauf des Elektrischen Feldes eines SPPs entlang einer Metall-Dielektrikums-Grenzschicht in der  xy-Ebene mit Ausbreitungsrichtung in positiver x-Richtung}
 		\label{fig:electric_field_spp}
 	\end{figure}
@@ -58,18 +58,28 @@
 			k_{\mathrm{spp}}^2 +k_{z, n}^2 = \epsilon_n\left(\dfrac{\omega}{c}\right)^2; \text{ für  } n=M,D
 		\end{equation}
 		\end{subequations}
-		$\epsilon_{M, D} = \epsilon_{M, D}(\omega) $ sind hierbei die Permittivitäten der Materialien in Abhängigkeit von der Kreisfrequenz. Aus Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien $ \operatorname{\mathbb{I}m}\{k_{z, n}\} >> \operatorname{\mathbb{R}e}\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung, fallen die Felder senkrecht zu Ausbreitungsrichtung exponentiell ab. Man spricht deswegen von evaneszenten Feldern. Die Anregung ist daher stark an die Grenzfläche gebunden. Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
+		$\epsilon_{M, D} = \epsilon_{M, D}(\omega) $ sind hierbei die Permittivitäten der Materialien in Abhängigkeit von der Kreisfrequenz. Aus Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien $ \operatorname{\mathbb{I}m}\{k_{z, n}\} \gg \operatorname{\mathbb{R}e}\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung, fallen die Felder senkrecht zu Ausbreitungsrichtung exponentiell ab. Man spricht deswegen von evaneszenten Feldern. Die Anregung ist daher stark an die Grenzfläche gebunden. Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
 	\begin{equation}
 		\label{eq:dispersion_spp}
 		\boxed{
 			k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + 	\epsilon_M(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
 	\end{equation}
-	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.	
+	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.
+	
+	Im folgenden werden die Messdaten der Dielektrischen-Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold Mode qualitativ zu analysieren.  Die Publikation stellt Messdaten für unterschiedliche Oberflächenrauhigkeiten zur Verfügung. In dieser Arbeit wurden die Messdaten für aufgedampftes Gold verwendet. Abb.\ref{fig:dispersion_spp}
+	
+	\begin{figure}[htbp]
+		\label{fig:dispersion_spp}
+		\centering
+		\includegraphics[width=1\textwidth]{figures/dispersion.png}
+		\caption{Dispersionskurve der Gold-Vakuum und der Gold-Glas Mode. Do Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt gekennzeichnet}		
+	\end{figure}
+	
 		\subsubsection{Anregung}
 			\paragraph{Kretschman-Konfiguration}
 			\paragraph{Defekt-Anregung}
 		\subsubsection{Leckstrahlung}
-	\subsection{Plasmonischer-Spin-Hall-Effekt}
+	\subsection{Plasmonischer-Spin-Hall-Effekt}r
 	\subsubsection{Spin SPP, Photon}
 		\paragraph{Transversal-Spin SPP}
 		\paragraph{Longitudinal-Spin Photon}
