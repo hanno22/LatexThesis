@@ -3,9 +3,10 @@
 \usepackage[german]{babel}
 \usepackage{graphicx} 
 \usepackage{amsmath, amssymb}
-
+\usepackage[section]{placeins}
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{abbrvnat}
+\usepackage{mathtools}
 
 \title{Aufbau und Justage eines Leckstrahlmikroskopes zum Nachweis des plasmonischen Spin-Hall-Effektes}
 \author{Hanno Christiansen}
@@ -19,7 +20,7 @@
 \section{Einführung}
 \section{Theorie}
 	\subsection{Oberflächen-Plasmon-Polariton (SPP)}		
-	Ein Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP) ist das quantisierte Quasiteilchen, der an das elektromagnetischen Feld gekoppelten Elektronen-Dichte-Oszillation, an einer Dielektrikums-Metall-Grenzschicht. Durch die spezielle Form dieser Geometrie, ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation, ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Diese transversalen Komponenten sind notwendig, damit eine Kopplung an das rein transversale elektromagnetische Feld des Vakuums tendenziell zu ermöglichen. Die einfachste Geometrie in der SPPs auftreten können ist ein Zwei-Schichtsystem. Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_D"$ ausgefüllt. Der Halbraum unterhalb der $xy$-Ebene mit $z<0$ sei von einem Metall mit der im allgemeinen komplexen Dielektrischen-Funktion $\epsilon(\omega)$ ausgefüllt. An der Grenzschicht zwischen diesen beiden Halbräumen können SPPs propagieren. Um nun einige Charakteristische Eigenschaften von SPPs zu erläutern, gehe ich davon aus, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv 2-dimensional. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPPs in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
+	Ein Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP) ist das quantisierte Quasiteilchen, der an das elektromagnetischen Feld gekoppelten Elektronen-Dichte-Oszillation, an einer Dielektrikums-Metall-Grenzschicht. Durch die spezielle Form dieser Geometrie, ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation, ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Diese transversalen Komponenten sind notwendig, damit eine Kopplung an das rein transversale elektromagnetische Feld des Vakuums tendenziell zu ermöglichen. Die einfachste Geometrie in der SPPs auftreten können ist ein Zwei-Schichtsystem. Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_D$ ausgefüllt. Der Halbraum unterhalb der $xy$-Ebene mit $z<0$ sei von einem Metall mit der im allgemeinen komplexen Dielektrischen-Funktion $\epsilon(\omega)$ ausgefüllt. An der Grenzschicht zwischen diesen beiden Halbräumen können SPPs propagieren. Um nun einige Charakteristische Eigenschaften von SPPs zu erläutern, gehe ich davon aus, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv 2-dimensional. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPPs in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
 	\begin{equation}
 		\label{eq:electric_field_spp}
 		\vec{E}_n = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{spp}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)	
@@ -66,25 +67,75 @@
 	\end{equation}
 	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.
 	
-	Im folgenden werden die Messdaten der Dielektrischen-Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold Mode qualitativ zu analysieren.  Die Publikation stellt Messdaten für unterschiedliche Oberflächenrauhigkeiten zur Verfügung. In dieser Arbeit wurden die Messdaten für aufgedampftes Gold verwendet. Abb.\ref{fig:dispersion_spp}
-	
-	\begin{figure}[htbp]
+	Im folgenden werden die Messdaten der Dielektrischen-Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold Mode qualitativ zu analysieren.  Die Publikation stellt Messdaten für unterschiedliche Oberflächenrauhigkeiten zur Verfügung. In dieser Arbeit wurden die Messdaten für aufgedampftes Gold verwendet. Für die Berechnung der Dispersion wurde $\epsilon_D = n_D^2 = 1.52^2$ verwendet. In der Dispersionskurve Abb. \ref{fig:dispersion_spp} ist zu erkennen, dass die Dispersionskurve bei einer Anregungs-Energie von $E = hc/\lambda_{\mathrm{HeNe}}= 1.95\mathrm{eV}$ rechts von der Lichtlinie des jeweiligen Mediums liegt.
+	\begin{figure}[h]
 		\label{fig:dispersion_spp}
 		\centering
 		\includegraphics[width=1\textwidth]{figures/dispersion.png}
 		\caption{Dispersionskurve der Gold-Vakuum und der Gold-Glas Mode. Do Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt gekennzeichnet}		
 	\end{figure}
-	
+	Diese k-Differenz sorgt dafür, dass SPPs nicht ohne weiteres von Elektromagnetischer-Strahlung des Vakuums angeregt werden können.	
 		\subsubsection{Anregung}
+			Um trotz der k-Differenz in der Dispersionsrelation SPPs mit elektromagnetischer Strahlung anregen zu können, ist es notwendig, den k-Wert der Anregungsstrahlung zu erhöhen. Hierfür gibt es unterschiedliche Mechanismen.
 			\paragraph{Kretschman-Konfiguration}
-			\paragraph{Defekt-Anregung}
+			In der Kretschmann Konfiguration wird ausgenutzt, dass man den auf eine Ebene projizierten Anteil eines Wellenvektors durch Einfallswinkel verkleinern kann. Da der Wellenvektor allerdings vergrößert werden muss, um ein SPP mit Strahlung aus Dielektrikum anzuregen, ist es notwendig ein System mit mehr als zwei Schichten zu verwenden. Ein dünner Metallfilm wird zwischen zwei Dielektrika mit $\epsilon_{D_1} > \epsilon_{D_2}$ eingeschlossen. So ist es möglich, den Wellenvektor der Anregenden Strahlung zunächst durch Wechsel in das Dielektrikum 1 mit $\epsilon_{D_1} > \epsilon_{D_2}$ zu vergrößern, und dann durch den Einfallswinkel zu Grenzschichtebene exakt an das SPP der Mode Metall-Dielektrikum2 anzupassen. Dieses Verfahren wird bei der Kretschman-Konfiguration verwendet. Ein schematischer Aufbau der Kretschmann Konfiguration ist Abb. \ref{fig:kretschman} zu entnehmen.
+				\begin{figure}[h] 
+				\centering
+				\includegraphics[width=0.5\textwidth]{figures/kretschman.png}
+				\caption{Schematischer Aufbau der Kretschman-Konfiguration. Die Abbildung ist aus \cite{Jaruschewski.2020} entnommen}
+				\label{fig:kretschman}
+			\end{figure}
+			Die Anregungsstrahlung tritt hier zunächst in das Prisma ein. Hierdurch wird der Wellenvektor der Anregungsstrahlung um $k_{D_1}=k_0\sqrt{\epsilon_{D_1}}$ vergrößert. Das Material des Prismas wird so gewählt, dass der Wellenvektor größer als der Wellenvektor des SPPs \eqref{eq:dispersion_spp} ist. Der Einfallswinkel $Theta_E$ wird so gewählt, dass die Projektion von $k_{D_1}$ auf die Goldoberfläche gerade $k_{\mathrm{spp}}$ entspricht. Es gilt also:
+			\begin{align}
+				\label{eq:phase_condition}
+				\sin(\theta_E) &= \dfrac{\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}}{k_{D_1}}\\
+				\Rightarrow \Aboxed{\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{D_1}}}
+			\end{align}
+			Bei der Reflektion einer elektromagnetischen Welle an einem Metall, dringen in das Metall evaneszente Felder ein. \cite{Novotny.2012b}. Ist die Metallschicht dünn genug, haben diese evaneszenten Felder an unteren Grenzfläche des Metalls noch ausreichend Intensität, um dort ein SPP anzuregen. Dies ist möglich, da die k-Komponenten wie oben erläutert an einander angepasst worden sind. Die in Abb. \ref{fig:kretschman} gezeigte Geometrie nutzt für das Dielektrikum 1 ein Prisma, um die Einkopplung der elektromagnetischen Welle aus dem Vakuum in das Dielektrikum1 möglichst effektiv zu gestalten. Als Dielektrikum 2 wurde hier Luft verwendet.			
+		
+			\paragraph{Anregung an Strukturen}
+			Eine weitere Möglichkeit, die Wellenvektordifferenz zu überwinden stellen scharfe Strukturen an der Metalloberfläche da. An diesen Strukturen streut das anregende Licht, und kann somit ausreichend k gewinnen, um ein SPP anzuregen. Diese Strukturen können entweder künstlich hergestellt werden, oder es werden Defekt-Stellen auf der Probe genutzt. Da die Struktur scharf im Ortsraum ist, besitzt Sie ein breites Raumfrequenzspektrum.
+			... 
 		\subsubsection{Leckstrahlung}
-	\subsection{Plasmonischer-Spin-Hall-Effekt}r
-	\subsubsection{Spin SPP, Photon}
-		\paragraph{Transversal-Spin SPP}
-		\paragraph{Longitudinal-Spin Photon}
-	\subsubsection{Nahfeld zirkular-polarisierter Dipol}
-	\subsection{Gerichtete Anregung durch anisotropes Nahfeld}	
+			Leckstrahlung ist der inverse Effekt zur Anregung in der Kretschmann-Konfiguration. In einem Dreischichtsystem Dielektrikum1-Metall-Dielektrikum2 kann ein an der Grenzfläche Dielektrikum1-Metall propagierendes SPP, durch evaneszente Felder, durch den Metallfilm in das Dielektrikum2 abstrahlen. Dies ist nur möglich, wenn {$\epsilon_{D_2}$ > $\epsilon_{D_1}$} ist, da sonst die Phasenanpassungsbedingung \eqref{eq:phase_condition} nicht erfüllt werden kann. Diese Strahlung tritt dann unter einem Winkel $\theta_L$ aus der Probe, so dass die Phasenanpassungsbedingung gerade erfüllt ist. Diese in das Dielektrikum 2 abgestrahlte Strahlung bezeichnet man als Leckstrahlung. Für das auftreten von  Leckstrahlung muss der Metallfilm ausreichen dünn sein, damit die evaneszenten Felder des  SPP an der zweiten Grenzschicht noch ausreichend Intensität aufweisen. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem Bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie ausgenutzt, um den Wellenvektor des SPP zu bestimmen.
+	\subsection{Plasmonischer-Spin-Hall-Effekt}
+	Der Plasmonische-Spin-Hall-Effekt beschreibt, wie an einer räumlich symmetrischen Struktur angeregte SPPs, abhängig von der Polarisation der anregenden Strahlung, in unterschiedliche Richtungen propagieren. Speziell propagiert das SPP bei links-zirkular polarisierter Strahlung in eine um 180° verschiedene Richtung zu dem SPP, dass mit rechts zirkular polarisiertem Licht angeregt worden ist. 
+	\subsubsection{Raumfrequenzspektrum von Elektromagnetischen-Feldern}
+		Um den Plasmonischen-Spin-Hall-Effekt zu verstehen, ist es zunächst notwendig, die Raumfrequenzdarstellung von Elektromagnetischen Feldern zu verstehen. Die folgenden Ausführungen orientieren sich an \cite{Novotny.2012b}, wobei in dieser Arbeit nur der etwas einfacherer 2D-Fall ausgeführt wird.\\		
+		Das Elektrische Feld am Ort $\vec{r} = \begin{pmatrix} x \\ y \end{pmatrix} $ sei durch $\vec{E}({\vec{r}})$ gegeben.
+		Die Zeitabhängigkeit von $\vec{E}$ sei durch $\vec{E}({\vec{r}, t})=\operatorname{\mathbb{R}e}\{\vec{E}({\vec{r}})\exp(-i\omega t)\}$ gegeben. Dann lässt sich $\vec{E}({\vec{r}})$ durch eine Fouriertransformation in $x$-Richtung wie folgt darstellen:
+		\begin{equation}
+			\label{eq:Exz_fourier}
+			\vec{E}(x,z) = \int_{-\infty}^{\infty}\mathrm{d}{k_x}\hat{\vec{E}}(k_x,z)\exp(ik_xx)				
+		\end{equation}
+		\begin{equation}
+			\label{eq:EKxz_fourier}
+			\hat{\vec{E}}(k_x,z) = \dfrac{1}{2\pi}\int_{-\infty}^{\infty}\mathrm{d}x\vec{E}(x,z)\exp(-ik_xx)
+		\end{equation}
+		Wenn wir davon ausgehen, dass das Medium entlang der $x$-Achse homogen, isotrop, linear und quellfrei ist, muss das Elektrische Feld, die sich unter diesen Bedingungen aus den Maxwellgleichungen \eqref{eq:maxwell} ergebende Helmholtz-Gleichung $(\vec{\nabla}^2+k^2)\vec{E}({\vec{r}}) = 0$, erfüllen. Einsetzen von \eqref{eq:Exz_fourier} in die Helmholtz-Gleichung ergibt mit der Definition $k_z := \sqrt{k^2-k_x^2}$ folgenden Zusammenhang:
+		\begin{equation}
+			\label{eq:spatial_spektrum}
+		\hat{\vec{E}}(k_x,z) =\hat{\vec{E}}(k_x,z= 0) \exp(\pm ik_ z)
+		\end{equation}
+	Das Vorzeichen legt hier die Propagationsrichtung fest.
+	Einsetzen in \eqref{eq:Exz_fourier} ergibt:
+		\begin{equation}
+			\label{eq:Espatial_spektrum}
+			\vec{E}(x,z) = \int_{-\infty}^{\infty}\mathrm{d}{k_x}\hat{\vec{E}}(k_x,z= 0)\exp(i(k_xx\pm k_ z))
+		\end{equation}
+	Wenn also das Raumfrequenzspektrum für einen z-Wert bekannt ist, lassen sich die Spektren für alle anderen z-Werte gemäß \eqref{eq:spatial_spektrum} berechnen. Für einen festen Wert von $k_x$ gibt es, je nach dem ob $k_x$ größer oder kleiner als $k$ ist zwei unterschiedliche Lösungen. Wenn $k_x^2 < k^2$ ist, ist $k_z := \sqrt{k^2-k_x^2}$ eine reelle Zahl. Daher handelt es sich nach \eqref{eq:spatial_spektrum} um eine ebene Welle, die entlang der z-Achse propagiert.
+	Wenn hingegen $k_x^2 > k^2$ ist, ist $k_z := \sqrt{k^2-k_x^2}$ eine imaginäre Zahl. Dann handelt es sich bei \eqref{eq:spatial_spektrum} um eine evaneszente Welle, die entlang der z-Achse exponentiell abklingt. In dem Raumfrequenzspektrum kann man also zwischen Bereichen mit Ebenen-Wellen und  Bereichen mit Evaneszenten-Wellen unterscheiden. Dieses Konzept lässt sich ohne weiteres auch auf 3 Raumdimensionen und das Magnetische Feld erweitern.
+	\subsubsection{Raumfrequenzspektrum eines Elliptisch-Polarisierten-Dipols}
+		Wenn man das oben beschriebene Verfahren auf einen Elliptisch-Polarisierten Dipol anwendet, lässt sich das Raumfrequenzspektrum bestimmen. Hier werde ich mich wieder auf den 2-Dimensionalen Fall beschränken. Das Dipolmoment sei: $$\vec{P}= \begin{pmatrix} p_x \\ p_y \end{pmatrix}$$
+		$p_x$ und $p_y$ sind im allgemeinen komplexe Zahlen. So kann $\vec{P}$ auch Elliptische Polarisationen darstellen. Das Die y-Komponente des Magnetfeldes dieses Dipols lässt sich nun, wie in \cite{Novotny.2012b} und \cite{RodriguezFortuno.2013} gezeigt wird analog zu den obigen Ausführungen in Raumfrequenzanteile zerlegen.
+		\begin{equation}
+			H_y(x, z) = \int_{-\infty}^{\infty}\mathrm{d}k_x\hat{H_y}(k_x, z)\exp(ik_xx)
+		\end{equation}
+		mit
+		\begin{equation}
+			\boxed{\hat{H_y}(k_x, z) = \dfrac{i\omega}{8\pi^2}\left\{p_z\dfrac{k_x}{k_z} \mp p_x\right\}\exp(ik_z|z-z_{\mathrm{Dipol}}|)}
+		\end{equation}
+	\subsubsection{Gerichtete Anregung durch anisotropes Nahfeld}	
 \section{Messung und Methoden}
 \subsection{Polarimeter, Verzögerungsplatte, Lineare Dichroismus}
 	\subsubsection{Dichroismus}
