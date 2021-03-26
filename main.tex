@@ -135,6 +135,19 @@
 		\begin{equation}
 			\boxed{\hat{H_y}(k_x, z) = \dfrac{i\omega}{8\pi^2}\left\{p_z\dfrac{k_x}{k_z} \mp p_x\right\}\exp(ik_z|z-z_{\mathrm{Dipol}}|)}
 		\end{equation}
+	$z_{\mathrm{Dipol}}$ ist hierbei die Position des Dipols auf der $z-Achse$. $k_z$ lässt sich hierbei wieder über die Differenz von $k_x$ zur Gesamtwellenzahl $k$ berechnen. $k_z := \sqrt{k^2-k_x^2}$ Wenn $k_x$ schon den gesamten Anteil der Gesamtwellenzahl "aufgebraucht" wird $k_z$ imaginär und die resultierende Welle deswegen evaneszent. Wenn $k_x$ einen Anteil der Gesamtwellenzahl "übrig" lässt, bleibt $k_z$ reell und die Welle kann propagieren. Ähnlich wie bei der Leckstrahlung, ergibt sich ein durch die Phasenanpassungsbedingung ein Winkel zur $z$-Achse, unter dem die Welle mit bestimmten $k_x$ propagiert: $\theta = \arcsin(k_x/k)$. Da $k = \omega / c$  hängt das Raumfrequenzspektrum nur von dem äußeren Parameter $\omega$ bzw. $k$ ab. 
+	\paragraph{Analyse des Dipol-Raumfrequenzspektrums}
+		Die Analyse des Raumfrequenzspektrums erfolgt in dieser Arbeit rein quantitativ unter Verwendung von willkürlichen Einheiten.
+		\subparagraph{Linear polarisierte Dipol in $x$-Richtung}
+			Der Dipol sei:
+			 $$\vec{P} = \begin{pmatrix} 1 \\ 0\end{pmatrix}$$
+			Der Real und Imaginär Teil des Raumfrequenzspektrums in einer halben Wellenlänge unterhalb des Dipols lässt sich nun plotten. $k_x$ wurde hierbei in Einheiten von $k$ dargestellt. Die Einheit der Raumfrequenzspektrums-Amplitude ist willkürlich gewählt.
+		\begin{figure}[htbp] 
+			\centering
+			\includegraphics[width=\textwidth]{figures/spatial_spectrum_dipol.pdf}
+			\caption{Polarisation}
+			\label{fig:polarimeter}
+		\end{figure}
 	\subsubsection{Gerichtete Anregung durch anisotropes Nahfeld}	
 \section{Messung und Methoden}
 \subsection{Polarimeter, Verzögerungsplatte, Lineare Dichroismus}
