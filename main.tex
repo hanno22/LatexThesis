@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage[nottoc,numbib]{tocbibind} 
+\usepackage[hidelinks]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 \usepackage{graphicx} 
@@ -10,7 +12,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{cleveref}
-\usepackage[left=3.50cm, right=3.50cm, top=4.00cm, bottom=3.00cm]{geometry}
+\usepackage[left=3.50cm, right=3.50cm, top=3.00cm, bottom=3.00cm]{geometry}
 
 \title{Aufbau und Justage eines Leckstrahlmikroskopes zum Nachweis des plasmonischen Spin-Hall-Effektes}
 \author{Hanno Christiansen}
@@ -39,7 +41,7 @@
 	Der quantitativer Verlauf des elektrischen Feldes für ein rein reelles $k_{\mathrm{spp}}$ und ein rein imaginäres $k_{z, n}$ ist in Abb. \ref{fig:electric_field_spp} dargestellt.
 	\begin{figure}[htbp] 
 		\centering
-		\includegraphics[width=1\textwidth]{figures/E_Feld_SPP.png}
+		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
 		\caption{Quantitativer Verlauf des Elektrischen Feldes eines SPPs entlang einer Metall-Dielektrikums-Grenzschicht in der  xy-Ebene mit Ausbreitungsrichtung in positiver x-Richtung}
 		\label{fig:electric_field_spp}
 	\end{figure}
@@ -137,16 +139,17 @@
 	Wenn also das Raumfrequenzspektrum für einen z-Wert bekannt ist, lassen sich die Spektren für alle anderen z-Werte gemäß \eqref{eq:spatial_spektrum} berechnen. Für einen festen Wert von $k_x$ gibt es, je nach dem ob $k_x$ größer oder kleiner als $k$ ist zwei unterschiedliche Lösungen. Wenn $k_x^2 < k^2$ ist, ist $k_z := \sqrt{k^2-k_x^2}$ eine reelle Zahl. Daher handelt es sich nach \eqref{eq:spatial_spektrum} um eine ebene Welle, die entlang der z-Achse propagiert.
 	Wenn hingegen $k_x^2 > k^2$ ist, ist $k_z := \sqrt{k^2-k_x^2}$ eine imaginäre Zahl. Dann handelt es sich bei \eqref{eq:spatial_spektrum} um eine evaneszente Welle, die entlang der z-Achse exponentiell abklingt. In dem Raumfrequenzspektrum kann man also zwischen Bereichen mit Ebenen-Wellen und  Bereichen mit Evaneszenten-Wellen unterscheiden. Dieses Konzept lässt sich ohne weiteres auch auf 3 Raumdimensionen und das Magnetische Feld erweitern.
 	\subsubsection{Raumfrequenzspektrum der Elektromagnetische Strahlung eines oszillierenden Dipols}
-		Wenn man das oben beschriebene Verfahren auf einen Elliptisch-Polarisierten Dipol anwendet, lässt sich das Raumfrequenzspektrum bestimmen. Hier werde ich mich wieder auf den 2-Dimensionalen Fall beschränken. Das Dipolmoment sei: $$\vec{P}= \begin{pmatrix} p_x \\ p_y \end{pmatrix}$$
+		Wenn man das oben beschriebene Verfahren auf einen Elliptisch-Polarisierten Dipol anwendet, lässt sich das Raumfrequenzspektrum bestimmen. Hier werde ich mich wieder auf den 2-Dimensionalen Fall beschränken. Das zeitabhängige Dipolmoment sei: 
+		$$\vec{P}(t)= \operatorname{\mathbb{R}e}\left[\underbrace{\begin{pmatrix} p_x \\ p_y \end{pmatrix}}_{\vec{P}} \exp(-i\omega t)\right]$$
 		$p_x$ und $p_y$ sind im allgemeinen komplexe Zahlen. So kann $\vec{P}$ auch Elliptische Polarisationen darstellen. Das Die y-Komponente des Magnetfeldes dieses Dipols lässt sich nun, wie in \cite{Novotny.2012b} und \cite{RodriguezFortuno.2013} gezeigt wird, analog zu den obigen Ausführungen in Raumfrequenzanteile zerlegen.
 		\begin{equation}
-			H_y(x, z) = \int_{-\infty}^{\infty}\mathrm{d}k_x\hat{H_y}(k_x, z)\exp(ik _xx)
+			H_y(x, z) = \int_{-\infty}^{\infty}\mathrm{d}k_x\hat{H_y}(k_x, z)\exp(ik _xx) 
 		\end{equation}
 		mit
 		\begin{equation}
 			\boxed{\hat{H_y}(k_x, z) = \dfrac{i\omega}{8\pi^2}\left\{p_z\dfrac{k_x}{k_z} \mp p_x\right\}\exp(ik_z|z-z_{\mathrm{Dipol}}|)}
 		\end{equation}
-	$z_{\mathrm{Dipol}}$ ist hierbei die Position des Dipols auf der $z-Achse$. $k_z$ lässt sich hierbei wieder über die Differenz von $k_x$ zur Gesamtwellenzahl $k$ berechnen. $k_z := \sqrt{k^2-k_x^2}$ Wenn $k_x$ schon den gesamten Anteil der Gesamtwellenzahl "aufgebraucht" wird $k_z$ imaginär und die resultierende Welle deswegen evaneszent. Wenn $k_x$ einen Anteil der Gesamtwellenzahl "übrig" lässt, bleibt $k_z$ reell und die Welle kann propagieren. Ähnlich wie bei der Leckstrahlung, ergibt sich ein durch die Phasenanpassungsbedingung ein Winkel zur $z$-Achse, unter dem die Welle mit bestimmten $k_x$ propagiert: $\theta = \arcsin(k_x/k)$. Da $k = \omega / c$  hängt das Raumfrequenzspektrum nur von dem äußeren Parameter $\omega$ bzw. $k$ ab. 
+	$z_{\mathrm{Dipol}}$ ist hierbei die Position des Dipols auf der $z-Achse$. $k_z$ lässt sich wieder über die Differenz von $k_x$ zur Gesamtwellenzahl $k$ berechnen. $k_z := \sqrt{k^2-k_x^2}$ Wenn $k_x$ schon den gesamten Anteil der Gesamtwellenzahl "aufgebraucht" wird $k_z$ imaginär und die resultierende Welle deswegen evaneszent. Wenn $k_x$ einen Anteil der Gesamtwellenzahl "übrig" lässt, bleibt $k_z$ reell und die Welle kann propagieren. Ähnlich wie bei der Leckstrahlung, ergibt sich ein durch die Phasenanpassungsbedingung ein Winkel zur $z$-Achse, unter dem die Welle mit bestimmten $k_x$ propagiert: $\theta = \arcsin(k_x/k)$. Da $k = \omega / c$  hängt das Raumfrequenzspektrum nur von dem äußeren Parameter $\omega$ bzw. $k$ ab. 
 	\paragraph{Analyse des Dipol-Raumfrequenzspektrums}
 		Die Analyse des Raumfrequenzspektrums erfolgt in dieser Arbeit rein quantitativ unter Verwendung von willkürlichen Einheiten.
 		\subparagraph{Linear polarisierte Dipol in $x$-Richtung}
@@ -155,7 +158,7 @@
 			Der Real und Imaginär Teil des Raumfrequenzspektrums in einer halben Wellenlänge unterhalb des Dipols lässt sich nun plotten. $k_x$ wurde hierbei in Einheiten von $k$ dargestellt. Die Raumfrequenzspektrums-Amplitude wurde in dem Bereich der Darstellung auf 1 normiert. Das Raumfrequenzspektrum des in x-Richtung orientierten Dipols hat eine gerade Parität, ist also achsensymmetrisch. 
 		\begin{figure}[h] 
 			\centering
-			\includegraphics[width=\textwidth]{figures/spatial_spectrum_x.pdf}
+			\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_x.pdf}
 			\caption{Raumfrequenspektrum in der z-Ebene, eines entlang der x-Achse orientiertem linear polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
 			\label{fig:spatial_spectrum_x}
 		\end{figure}
@@ -165,7 +168,7 @@
 			Das Raumfrequenzspektrum dieses Dipols zeigt ungerade Parität, ist also punktsymmetrisch um den Ursprung.
 		\begin{figure}[h] 
 			\centering
-			\includegraphics[width=\textwidth]{figures/spatial_spectrum_z.pdf}
+			\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_z.pdf}
 			\caption{Raumfrequenspektrum in der z-Ebene, bei entlang der z-Achse orientiertem linear polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
 			\label{fig:spatial_spectrum_z}
 		\end{figure}
@@ -174,11 +177,11 @@
 			$$\vec{P} = \begin{pmatrix} 1 \\ -i\end{pmatrix}$$
 			Das Raumfrequenzspektrum aus der phasenverschobenen Überlagerung der beiden Dipole ist asymmetrisch. Im negativen x-Bereich überlagern sich die Spektren destruktiv, im positiven Bereich konstruktiv. Wenn nun sehr nah an dem Zirkular polarisierten Dipol ein Schichtsystem, dass die Anregung von SPPs unterstützt positioniert wird, kann durch den Teil des Spektrums der dem effektiven Brechungsindex der SPP-Mode entspricht ein SPP angeregt werden. Das Vorzeichen von $k_x$ entspricht hierbei der Anregungsrichtung des SPPs. Da $\hat{H}_y(k_{\mathrm{spp}}) \neq \hat{H}_y( -k_{\mathrm{spp}}) $ findet die Anregung bevorzugt in eine Richtung statt. Diese Richtung ist abhängig von dem Drehsinn des zirkular polarisierten Dipols.
 			\begin{figure}[h] 
-			\centering
-			\includegraphics[width=\textwidth]{figures/spatial_spectrum_circ.pdf}
-			\caption{Betrag des Raumfrequenspektrums in der z-Ebene, bei links und rechts zirkular polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
-			\label{fig:spatial_spectrum_circ}
-		\end{figure}
+				\centering
+				\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_circ.pdf}
+				\caption{Betrag des Raumfrequenspektrums in der z-Ebene, bei links und rechts zirkular polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
+				\label{fig:spatial_spectrum_circ}
+			\end{figure}
 		Das Nahfeld eine zirkular polarisiertem Dipols ist also anisotrop, obwohl das Fernfeld welches man durch substituieren von $k_x = k_o \sin(\theta)$ erhält, isotrop ist.
 	
 	\subsubsection{Analyse des SPP Spins}	
@@ -194,7 +197,7 @@
 	\subsubsection{Fourier-Optik}
 		\begin{figure}[htbp] 
 		\centering
-		\includegraphics[width=\textwidth]{figures/FourierLinse.pdf}
+		\includegraphics[width=0.5\textwidth]{figures/FourierLinse.pdf}
 		\caption{Eine Sammellinse erzeugt das Frauenhofersche-Beugungsbild in ihrer hinteren Brennebene(BFP). Parallele Strahlen werden in Abhängigkeit ihres Winkels zur optischen Achse auf einem Punkt in der BFP fokusiert. Die Abbildung ist an \cite{Hecht.2018} angelehnt.}
 		\label{fig:FourierLinse}
 	\end{figure}
@@ -206,53 +209,99 @@
 	Um den optischen Spin-Hall-Effekt nachweisen zu können, ist es notwendig, die Polarisation der Anregung zu kontrollieren. Hierfür wurde ein Polfilter und eine $\lambda /4$-Verzögerungsplatte verwendet. Der verwendete He-Ne Laser der Firma ThorLabs ist linear Polarisiert. Um die Polarisationsebene des Lasers präzise festzulegen wurde ein lineare Polfilter verwendet. Der Polfilter wurde auf eine Polarisation parallel zur Einfallsebene eingestellt und der Laser dann so entlang der optischen Achse gedreht, dass die gemessene Intensität hinter dem Polfilter maximal ist. 
 	\paragraph{Verzögerungsplatte}
 		Eine Verzögerungsplatte besteht aus einem Doppelbrechenden Kristall und hat deswegen eine langsame und eine schnelle Achse. Die beiden Achsen haben einen Winkel von 90 Grad zueinander und stehen senkrecht auf der optischen Achse. Wenn das Verzögerungsplättchen so dimensioniert ist, dass die Phasendifferenz, die eine EM-Welle beim Durchgang durch das Plättchen erfährt $\delta \phi = \pi /4 $ ist, spricht man von einem  $\lambda /4$-Verzögerungsplättchen. $\lambda /4$-Verzögerungsplättchen kann aus linear polarisiertem Licht zirkular polarisierte Licht erzeugen, wenn eine der beiden Kristallachsen eine Orientierung von 45° zur ursprünglichen Polarisationsachse des Lasers aufweist.
-\subsection{Optischer Aufbau}
-	In dieser Arbeit wurde der Aufbau von \textit{Jaruschewski} in einigen Details verbessert und umgerüstet, so dass der Laser auch unter nicht senkrechtem Einfall auf die Probe gerichtet werden kann. Die Verwendeten Komponenten sind detailliert in Anhang ... aufgelistet. Der Aufbau ist in Abbildung \ref{fig:aufbau_schema} schematisch dargestellt. In dieser Arbeit Als Anregungslaser wurde ein He-Ne Dauerstrich Laser der Firma Thorlabs mit einer Leistung von $P = 35\mathrm{mw}$ verwendet. ($\lambda = 633\mathrm{nm}$) Der Laser ist linear polarisiert. Um die Polarisation des Lasers gezielt von linearer Polarisation zu zirkulare Polarisation regeln zu können, wurde ein $\lambda/4$-Plättchen eingesetzt. Um den CMOS-Detektor vor Beschädigungen zu schützen, wurde außerdem ein Neutraldichtefilter verwendet, um den Laser abzuschwächen. Um die Fokussierung der Probe zu erleichtern, wurde außerdem eine LED-Hintergrundbeleuchtung verwendet. Das Licht der LED wurde mit einer Sammellinse(f=...) kolimiert, und mit einer weiteren Linse $f=50\mathrm{mm}$ auf die  Probe fokussiert. Diese Linse wurde bei Bedarf mit einer Magnethalterung grob an der richtigen Stelle vor der Probe positioniert.
-	\begin{figure}[htbp] 
+\subsection{Details des optischen Aufbaus}
+	In dieser Arbeit wurde der Aufbau von \textit{Jaruschewski} in einigen Details verbessert und umgerüstet, so dass der Laser auch unter schrägen Einfall auf die Probe gerichtet werden kann. Die Verwendeten Komponenten sind detailliert in Anhang ... aufgelistet. Der Aufbau ist in Abbildung \ref{fig:aufbau_schema} schematisch dargestellt. In dieser Arbeit wurde als Anregungslaser ein He-Ne Dauerstrich Laser der Firma Thorlabs mit einer Leistung von $P = 35\mathrm{mw}$ verwendet. ($\lambda = 633\mathrm{nm}$) Der Laser ist linear polarisiert. Um die Polarisation des Lasers gezielt von linearer Polarisation zu zirkulare Polarisation regeln zu können, wurde ein $\lambda/4$-Plättchen eingesetzt. Um den CMOS-Detektor vor Beschädigungen zu schützen, wurde außerdem ein Neutraldichtefilter verwendet, um den Laser abzuschwächen. Um die Fokussierung der Probe zu erleichtern, wurde außerdem eine LED-Hintergrundbeleuchtung verwendet. Das Licht der LED wurde mit einer Sammellinse(f=...) kolimiert, und mit einer weiteren Linse FL $f_{\mathrm{FL}}=50\mathrm{mm}$ auf die  Probe fokussiert. Diese Linse wurde bei Bedarf mit einer Magnetsäule grob an der richtigen Stelle vor der Probe positioniert.
+	\begin{figure}
 		\centering
-		\includegraphics[width=\textwidth]{figures/Aufbau_Schema.pdf}
-		\caption{Die Komponenten des Aufbaus sind: CMOS-Sensor (CMOS), Optionale Linse (OL), Linse2 (L2), BeamBlock (BB), Linse1 (L1), ImageFilter (IF), Linse2 (L2), Imersionsobjektiv (IO), Probe, Einkoppel-Linse (EL), Verzögerungsplättchen ($\lambda/4$), Polarisationsfilter (PF), Neutraldichtefilter (ND), He-Ne Laser (He-Ne). Außerdem ist auch noch eine LED Hintergrundbeleuchtung verbaut. In Rot ist schematisch der Strahlengang des Lasers eingezeichnet}
-		\label{fig:aufbau_schema}
+		\begin{subfigure}[b]{0.9\textwidth}		
+			\centering
+			\includegraphics[width=0.9\textwidth]{figures/Aufbau_Schema.pdf}
+			\caption{Schematischer Aufbau}			
+			\label{fig:aufbau_schema}
+		\end{subfigure}
+		\vfil
+		\begin{subfigure}[b]{0.9\textwidth} 
+			\centering
+			\includegraphics[width=0.9\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
+			\caption{Foto des Aufbau}
+			\label{fig:aufsicht_aufbau_anotated}
+		\end{subfigure}
+		\caption{Die Komponenten des Aufbaus sind: CMOS-Sensor (CMOS), Optionale Linse (OL), Linse2 (L2), BeamBlock (BB), Linse1 (L1), ImageFilter (IF), Linse2 (L2), Imersionsobjektiv (IO), Probe, Einkoppel-Linse (EL), Verzögerungsplättchen ($\lambda/4$), Polarisationsfilter (PF), Neutraldichtefilter (ND), He-Ne Laser (He-Ne). Außerdem ist auch noch eine LED Hintergrundbeleuchtung verbaut. In Rot ist schematisch der Strahlengang des Lasers eingezeichnet. Die Abbildung des Schematischen Aufbaus ist an die Abbildung von Jaruschewski \cite{Jaruschewski.2020} angelehnt}
+		\label{fig:Aufbau}
 	\end{figure}
-	\paragraph{Einkoppellinse}
-	Aus geometrischen Gründen war es nicht mehr möglich, den Laser mit einem Objektiv auf die Probe zu fokussieren, da sonst das Objektiv mit der Probe kollidieren würde. Stattdessen wurde eine Sammellinse als Einkoppellinse (EL) verwendet mit $f_{\mathrm{EL}}= 30\mathrm{mm}$. Die Wahl der Brennweite der Einkoppellinse ist ein Kompromiss: Je kleiner die Brennweite ist, desto kleiner lässt sich der Laser fokussieren. Wenn die Brennweite allerdings zu klein ist, kollidiert die Linsenhalterung mit der Probe. Mit kleinerer Brennweite sind also nur kleinere Einfallswinkel zur Probennormale möglich. Um trotzdem eine möglichst kleine Brennweite verwenden zu können, wurde eine sehr kompakte Linsenhalterung verwendet. Diese Halterung wurde über einen Querarm an einer xyz-Verfahreinheit montiert, so dass man die Linse in allen drei Raumrichtungen verfahren kann. Dies ist wichtig, um den Laser gezielt auf den Punkt zu fokussieren, an welchem die optische Achse die Probe schneidet. Dieser Aufbau ist in Abbildung \ref{fig:linsenhalterung} gezeigt
+	\subsubsection{Veränderungen des vorhandenen Aufbaus}
+		\paragraph{Einkoppellinse}
+		Aus geometrischen Gründen war es nicht mehr möglich, den Laser mit einem Objektiv auf die Probe zu fokussieren, da sonst das Objektiv mit der Probe kollidieren würde. Stattdessen wurde eine Sammellinse als Einkoppellinse (EL) verwendet mit $f_{\mathrm{EL}}= 30\mathrm{mm}$. Die Wahl der Brennweite der Einkoppellinse ist ein Kompromiss: Je kleiner die Brennweite ist, desto kleiner lässt sich der Laser fokussieren. Wenn die Brennweite allerdings zu klein ist, kollidiert die Linsenhalterung mit der Probe. Mit kleinerer Brennweite sind also nur kleinere Einfallswinkel zur Probennormale möglich. Um trotzdem eine möglichst kleine Brennweite verwenden zu können, wurde eine sehr kompakte Linsenhalterung verwendet. Diese Halterung wurde über einen Querarm an einer xyz-Verfahreinheit montiert, so dass man die Linse in allen drei Raumrichtungen verfahren kann. Dies ist wichtig, um den Laser gezielt auf den Punkt zu fokussieren, an welchem die optische Achse die Probe schneidet. Dieser Aufbau ist in Abbildung \ref{fig:linsenhalterung} gezeigt
+		\begin{figure}
+			\centering
+			\begin{subfigure}[b]{0.4\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/Einkoppellinse.jpg}
+				\caption{Querarm}
+				\label{fig:querarm}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.4\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/Kollision_Einkoppellinse.jpg}
+				\caption{Kollision Linse mit Probe}
+				\label{fig:kollision}
+			\end{subfigure}
+			\caption{Diese Abbildungen zeigen die Linsenhalterung welche über einen Querarm an einer xyz-Verfahreinheit montiert ist, und die Kollision zwischen Linsenhalterung und Probe}
+			\label{fig:linsenhalterung}
+		\end{figure}
+
+		\paragraph{Probenhalterung}
+			Die Probenhalterung des alten Aufbaus hatte das Problem, dass die senkrechte Ausrichtung der Probe zur Optischen Achse nur grob per Auge erfolgen konnte. Dadurch war beim Verfahren der Probe ein ständiges Nachfokussieren notwendig. Außerdem hatte die Halterung nicht ausreichend Stabilität, was die Fokussierung zusätzlich erschwert hat. Daher wurde im Rahmen dieser Arbeit eine neue Probenhalterung entwickelt. Diese Probenhalterung behebt die Schwachstellen der alten und hat außerdem einen Anschlag für die Probe, so dass es prinzipiell möglich ist, anhand der Skalen an den Mikrometerschrauben der Verfahreinheit Koordinaten abzulesen. So ist es möglich trotz Probenwechsel später wieder die gleichen Orte auf der Probe anzufahren. Die Probenhalterung wurde von der Uni-Werkstatt gefertigt. Eine Technische Zeichnung der Probenhalterung ist im Anhang zu finden.
+				\begin{figure}[htbp] 
+				\centering
+				\includegraphics[width=0.5\textwidth]{figures/Probenhalter.pdf}
+				\caption{Probenhalter mit Montierter Probe vor dem Immersionsobjektiv}
+				\label{fig:probenhalter}
+			\end{figure}
+		\paragraph{Cage-System}
+			Sämtliche Optiken hinter dem Immersionsobjektiv wurden in ein Cage-System der Firma \textit{Thorlabs} integriert (Abbildung \ref{fig:cage_system}). Das Cage-System besteht aus quadratischen Halterungen, die in ihren Eckpunkten Bohrungen habe, durch welche sich Edelstahlstäbe schieben lassen. Diese Fixierung der Halterungen an vier Punkten verhindert ein Verkippen der Linsen entlang der optischen Achse. Die Halterungen können entlang der optischen Achse auf den vier Eckstäben verschoben werden. Für die  Linsen TL, L1, L2 wurden xy-Halter verwendet, die senkrecht zur optischen Achse mit feinen Justierschrauben sehr genau verstellt werden können. Im Laufe dieser Arbeit hat sich herausgestellt, dass diese sehr feine Justierung nicht notwendig gewesen wäre. Die Tubuslinse TL des Herstellers \textit{Zeiss} ist in einem Halter mit einem $M32\times0.5$ Gewinde montiert. Eine Technische Zeichnung der Tubuslinse ist in (...) zu finden. Für dieses Gewinde stellt \textit{Thorlabs} keine Komponenten her, deswegen war ein Adapter notwendig. Eine Technische Zeichnung dieses Adapters ist in (...) zu fingen. Die optionale Linse OL wurde mit einer Magnethalterung in dem Cage-System montiert. Diese Halterung ermöglicht es, die Linse sehr einfach zu entfernen und so zwischen der Darstellung der Image-Plane und Backfocal-Plane zu wechseln. Außerdem wurde die OL in einem längerem Gewindetubus montiert, so das ein präzises Verfahren der Linse entlang der optischen Achse möglich ist. Die ist notwendig, um die BFP präzise zu fokussieren. Ist die richtige Position der OL einmal bestimmt, kann der Gewindetubus mit einem Gewindering gekontert werden. Auch der CMOS-Sensor der Firma \textit{Alllied-Vision} wurde in das Cage-System integriert. Hierfür war ein Adapter von der Kameraobjektiv-Gewindenorm \textit{C-Mount} auf die Gewindenorm \textit{SM-2} des Cage-System Herstellers \textit{Thorlabs} notwendig. Ein Technische Zeichnung des Cage-Systems ist im Anhang (...) zu finden. Der BeamBlock (BB) und der ImageFilter (IF) sind mit Magnetsäulen auf dem optischen Tisch befestigt.
+			\begin{figure}[htbp] 
+				\centering
+				\includegraphics[width=0.7\textwidth]{figures/Cage_System.pdf}
+				\caption{Komponenten im Cage-System montiert}
+				\label{fig:cage_system}
+			\end{figure}	
+\subsection{Probe}
+	Die ersten Messungen dieser Arbeit wurden mit Proben, die noch durch die Messungen von Jaruschewski \cite{Jaruschewski.2020} vorhanden waren durchgeführt. Da diese Proben jedoch auch auf der Goldseite mit Imersionsöl verdreckt waren, wurden später neue Proben verwendet, diese Proben wurden von Till Leißner in Sonderborg hergestellt. Hierfür wurden Deckgläser der Firma \textit{Carl Zeiss} mit einem Brechungsindex von $n_{\mathrm{Glas}}= 1.52$ verwendet. Die Deckgläser wurden mit einer $d_{\mathrm{Gold}} = 50\mathrm{nm}$ dicken Goldschicht bedampft. Die Deckgläser haben eine Dicke von $d_{\mathrm{Glas}} = 170 \mathrm{\mu m}$. Als Anregungsstruktur wurden Defektstellen verwendet. Die Proben wurden in kleine Edelstahlbleche (Technische Zeichnung \ref{technische Zeichnung}) eingeklebt, welche wiederum in die Probenhalterung passen. Damit die Proben auf der Goldseite nicht mit Immersionsöl verdreckt werden, wurden die sie mit einem Epoxid-Kleber in die Edelstahlbleche eingeklebt.
 	\begin{figure}
 		\centering
 		\begin{subfigure}[b]{0.4\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/Einkoppellinse.jpg}
-			\caption{Querarm}
-			\label{fig:querarm}
+			\includegraphics[width=\textwidth]{figures/Probe_Vorderseite.jpg}
+			\caption{Goldseite}
+			\label{fig:probe_vorderseite}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}[b]{0.4\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/Kollision_Einkoppellinse.jpg}
-			\caption{Kollision Linse mit Probe}
-			\label{fig:kollision}
+			\includegraphics[width=\textwidth]{figures/Probe_Rueckseite.jpg}
+			\caption{Glasseite}
+			\label{fig:probe_rueckseite}
 		\end{subfigure}
-		\caption{Diese Abbildungen zeigen die Linsenhalterung welche über einen Querarm an einer xyz-Verfahreinheit montiert ist, und die Kollision zwischen Linsenhalterung und Probe}
-		\label{fig:linsenhalterung}
+		\caption{Die Bilder zeigen die in das Edelstahlblech eingeklebte Probe. In rot ist die Verklebung markiert. Hierbei ist darauf zu achten, dass die Klebung dicht ist, so dass kein Öl von der Glasseite auf die Goldseite laufen kann.}
+		\label{fig:probe}
 	\end{figure}
+\subsection{Justage des Aufbaus}
+Die allgemeine Justage des LRM verlief, bis auf das Justieren des Lasers auf die Probe, wie von Jaruschewski \cite{Jaruschewski.2020} beschrieben. Dieses war durch den notwendigen schrägen Einfall des Lasers auf die Probe deutlich erschwert. Die Justage erfolgte mit montierter Probe. Als erste wurde die Probe mit Hilfe der Hintergrundbeleuchtung in den korrekten Abstand zum IO gebracht(Im korrekten Abstand ist das Bild der Probe scharf zu sehen). Als nächstes wurde der Laser mit zwei Spiegeln grob in dem erwünschten Winkel auf die Probe justiert. Danach wurden Einkoppellinse, $\lambda/4$-Plättchen und Polfilter in den Strahlgang gestellt. Die Feinjustierung des Lasers auf die Probe wurde nun durch das Verschieben der Einkoppellinse durchgeführt. Hierbei war es hilfreich, den Strahl durch das Verfahren der EL entlang der optischen Achse etwas zu de-fokussieren, so dass man die Randbereiche des Strahls über den CMOS-Sensor in der Image-Plane auch schon sehen kann, wenn der Strahl noch nicht exakt die optische Achse trifft. Sobald ein Teil des Strahles in der Image-Plane detektiert worden ist, wird er durch weiteres bewegen der Linse zentriert und dann sukzessive weiter fokussiert. Durch das Verkippen der Einkoppellinse zum Laser, wandert der Strahl beim Fokussieren des Lasers stark auf der Probe. Das Verkippen der Linse wird, sobald der Laser optimal fokussiert ist, behoben. Hierfür wird der Laser durch die beiden Spiegel sukzessive so einjustiert, dass der Spot auf der Probe beim de-fokussieren des Lasers nicht mehr wandert. 
+\subsection{Messung}
+Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probe-Messungen, die mit den Daten von Jaruschewski \cite{Jaruschewski.2020} und Ebel \cite{ebel.2019} verglichen worden ist, überprüft. Da für den Nachweis des Plasmonischen-Spin-Hall-Effektes keine Kenntnisse über den Betrag des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden durch die bekannte Luft-Gold Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\beta_{\lambda_{\lambda/4}} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche gesucht. Das Vorgehen hierbei war, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, sind in der BFP die charakteristischen Fringes der Leckstrahlung zu erkennen. Das Ziel war es, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nach dem ein geeigneter Defekt gefunden worden ist, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
+
+\section{Ergebnisse und Diskussion}
+	\subsection{Üperprüfung der Funktionsweise des LRM}
+		In diesem Abschnitt soll kurz überprüft werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt.
+	
 	\begin{figure}[htbp] 
 	\centering
-	\includegraphics[width=\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
-	\caption{Die Komponenten des Aufbaus sind: CMOS-Sensor (CMOS), Optionale Linse (OL), Linse2 (L2), BeamBlock (BB), Linse1 (L1), ImageFilter (IF), Linse2 (L2), Imersionsobjektiv (IO), Probe, Einkoppel-Linse (EL), Verzögerungsplättchen ($\lambda/4$), Polarisationsfilter (PF), Neutraldichtefilter (ND), He-Ne Laser (He-Ne). Außerdem ist auch noch eine LED Hintergrundbeleuchtung verbaut. In Rot ist schematisch der Strahlengang des Lasers eingezeichnet}
-	\label{fig:aufsicht_aufbau_anotated}
+	\includegraphics[width=\textwidth]{figures/polar_diff_mask4.png}
+	\caption{Die Abbildung zeigt in rot und grün die Integrationsmasken. Außerdem zeigt sie die Differenz zwischen dem Winkel 44 und 134}
+	\label{fig:polar_diff_mask4}
 	\end{figure}
-\subsection{Probe}
-\subsection{Justage und Kalibrierung}
-\section{Ergebnisse und Diskussion}
-	\subsection{Bestimmung des Polarisationszustandes}
-		\subsubsection{Modellierung Jones-Polarimeter}
-		\subsubsection{least-square-fit}
-	\subsection{Bestimmung des Kontrastverhältnisses linkes/rechtes SPP}
-		\begin{figure}[htbp] 
-		\centering
-		\includegraphics[width=\textwidth]{figures/polar_diff_mask4.png}
-		\caption{Die Abbildung zeigt in rot und grün die Integrationsmasken. Außerdem zeigt sie die Differenz zwischen dem Winkel 44 und 134}
-		\label{fig:polar_diff_mask4}
-		\end{figure}
 	\begin{figure}[htbp] 
 	\centering
 	\includegraphics[width=\textwidth]{figures/integrated_intesity4.pdf}
@@ -261,7 +310,12 @@
 \end{figure}
 	\subsection{Diskussion}
 \section{Zusammenfassung und Ausblick}
-\newpage
+
+
+\appendix
 \bibliography{bib}
+\section{Technische Zeichnungen}
+\section{Liste der verwendeten Komponenten}
+
 	
 \end{document}
