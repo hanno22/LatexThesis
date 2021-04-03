@@ -111,11 +111,18 @@
 				\caption{Schematischer Aufbau der Abstrahlung von Leckstrahlung. Die Abbildung ist aus \cite{Jaruschewski.2020} entnommen}
 				\label{fig:leakage_radiation}
 			\end{figure}
+		\subsubsection{Berechnung von charakteristischen Größen für das System Luft-Gold-Glas}
+		Alle in dieser Arbeit durchgeführten Messungen wurden am System Luft-Gold-Glas durchgeführt. Daher werden an dieser Stelle die oben Eingeführten Größen für dieses System angegeben. Die Dielektrizitätskonstante des Glases ist $\epsilon_{\mathrm{G}} = 2.327$ \cite{Zeiss.} und die von Luft ist $\epsilon_{\mathrm{L}} = 1.00059$ \cite{Hippel.1995}. Die dielektrische Funktion von Gold wurde bei einer Anregungsenergie von $E_{\mathrm{HeNe}} = h\lambda/c = 1.96\mathrm{eV} $ durch Interpolation der Messdaten aus der Publikation \cite{Olmon.2012} berechnet: $\epsilon_{\mathrm{Au}}(1.96\mathrm{eV}) = -12.04 +1.163i$ Aus diesen Daten lassen sich nun folgende Größen berechnen:
+		\begin{align}
+			n_{\mathrm{eff}} &= \sqrt{\dfrac{\epsilon_{\mathrm{L}}\epsilon_{\mathrm{Au}(\omega)}}{\epsilon_{\mathrm{L}} + 	\epsilon_{\mathrm{Au}}(\omega)}} = 	1.044 + 0.005i \\			
+			\theta_\mathrm{L} &=  \arcsin\left(\dfrac{\operatorname{\mathbb{R}e}(n_{\mathrm{eff}})}{ n_\mathrm{G}}\right) = 43.2^\circ \\
+			k_{\mathrm{spp}} &= k_0 n_{\mathrm{eff}} = (10.365 + 0.0449i)\mathrm{\mu m}^{-1} \\
+		\end{align}
 	\subsection{Plasmonischer-Spin-Hall-Effekt}
 	Der Plasmonische-Spin-Hall-Effekt beschreibt, wie an einer räumlich symmetrischen Struktur angeregte SPPs, abhängig von der Polarisation der anregenden Strahlung, in unterschiedliche Richtungen propagieren. Speziell propagiert das SPP bei links-zirkular polarisierter Strahlung in eine um 180° verschiedene Richtung zu dem SPP, dass mit rechts zirkular polarisiertem Licht angeregt worden ist. 
 	\subsubsection{Raumfrequenzspektrum von Elektromagnetischen-Feldern}
 		Um den Plasmonischen-Spin-Hall-Effekt zu verstehen, ist es zunächst notwendig, die Raumfrequenzdarstellung von Elektromagnetischen Feldern zu verstehen. Die folgenden Ausführungen orientieren sich an \cite{Novotny.2012b}, wobei in dieser Arbeit nur der etwas einfacherer 2D-Fall ausgeführt wird.\\		
-		Das Elektrische Feld am Ort $\vec{r} = \begin{pmatrix} x \\ y \end{pmatrix} $ sei durch $\vec{E}({\vec{r}})$ gegeben.
+		Das Elektrische Feld am Ort $\vec{r} = (x, y) $ sei durch $\vec{E}({\vec{r}})$ gegeben.
 		Die Zeitabhängigkeit von $\vec{E}$ sei durch $\vec{E}({\vec{r}, t})=\operatorname{\mathbb{R}e}\{\vec{E}({\vec{r}})\exp(-i\omega t)\}$ gegeben. Dann lässt sich $\vec{E}({\vec{r}})$ durch eine Fouriertransformation in $x$-Richtung wie folgt darstellen:
 		\begin{equation}
 			\label{eq:Exz_fourier}
@@ -182,8 +189,7 @@
 				\caption{Betrag des Raumfrequenspektrums in der z-Ebene, bei links und rechts zirkular polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
 				\label{fig:spatial_spectrum_circ}
 			\end{figure}
-		Das Nahfeld eine zirkular polarisiertem Dipols ist also anisotrop, obwohl das Fernfeld welches man durch substituieren von $k_x = k_o \sin(\theta)$ erhält, isotrop ist.
-	
+		Das Nahfeld eine zirkular polarisiertem Dipols ist also anisotrop, obwohl das Fernfeld welches man durch substituieren von $k_x = k_o \sin(\theta)$ erhält, isotrop ist.	
 	\subsubsection{Analyse des SPP Spins}	
 \section{Messung und Methoden}
 \subsection{Leckstrahlmikroskopie}
@@ -293,8 +299,27 @@ Die allgemeine Justage des LRM verlief, bis auf das Justieren des Lasers auf die
 Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probe-Messungen, die mit den Daten von Jaruschewski \cite{Jaruschewski.2020} und Ebel \cite{ebel.2019} verglichen worden ist, überprüft. Da für den Nachweis des Plasmonischen-Spin-Hall-Effektes keine Kenntnisse über den Betrag des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden durch die bekannte Luft-Gold Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\beta_{\lambda_{\lambda/4}} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche gesucht. Das Vorgehen hierbei war, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, sind in der BFP die charakteristischen Fringes der Leckstrahlung zu erkennen. Das Ziel war es, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nach dem ein geeigneter Defekt gefunden worden ist, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
 
 \section{Ergebnisse und Diskussion}
-	\subsection{Üperprüfung der Funktionsweise des LRM}
-		In diesem Abschnitt soll kurz überprüft werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt.
+	\subsection{Überprüfung der Funktionsweise des LRM}
+		In diesem Abschnitt soll kurz verifiziert werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 12.07 \pm 0.05\mathrm{\mu m}^{-1}$ bestimmt Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt.
+			\begin{figure}
+			\centering
+			\begin{subfigure}[b]{0.7\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/example_polar.png}
+				\caption{Intensitätsverteilung in der BFP}
+				\label{fig:example_bfp}
+			\end{subfigure}
+			%\hfill
+			\begin{subfigure}[b]{0.7\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/example_radial.pdf}
+				\caption{Radiale Intensitätsverteilung in der BFP}
+				\label{fig:radial_profile}
+			\end{subfigure}
+			\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
+				Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}
+			\label{fig:probe}
+		\end{figure}
 	
 	\begin{figure}[htbp] 
 	\centering
