@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[titlepage]{article}
 \usepackage[nottoc,numbib]{tocbibind} 
 \usepackage[hidelinks]{hyperref}
 \usepackage[utf8]{inputenc}
@@ -12,7 +12,14 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{cleveref}
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\counterwithin{table}{section}
 \usepackage[left=3.50cm, right=3.50cm, top=3.00cm, bottom=3.00cm]{geometry}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{rotating}
 
 \title{Aufbau und Justage eines Leckstrahlmikroskopes zum Nachweis des plasmonischen Spin-Hall-Effektes}
 \author{Hanno Christiansen}
@@ -22,11 +29,19 @@
 	
 \maketitle
 \tableofcontents
+\newpage
 
 \section{Einführung}
+Ein Leckstrahlmikroskop (LRM) dient der Beobachtung von Oberflächen-Plamon-Polaritonen(SPP). Ein SPP ist eine kollektive Ladungsdichteoszillation der freien Elektronen in einem Metall an der Grenzschicht zu einem Dielektrikum. Diese Elektronendichte-Welle ist stark an das elektromagnetische Feld in dem Dielektrikum gebunden und eng an der Grenzschicht lokalisiert. SPPs können wenn sie an sehr dünnen Metallfilmen angeregt werden unter bestimmten Umständen elektromagnetische Strahlung an einer zweiten Grenzschicht in ein zweites Dielektrikum abgeben. Diese Leckstrahlung kann im Fernfeld mit einem Leckstrahlmikroskop (LRM) beobachtet werden und erlaubt diverse Rückschlüsse auf die Eigenschaften des SPPs.
+
+Da die räumliche Ausdehnung von SPPs hauptsächlich durch die Geometrie ihrer Trägerstruktur und nicht durch die optische Wellenlänge bestimmt wird, ist es möglich das klassische Beugungslimit zu umgehen. Speziell können SPPs auf gezielt hergestellten Strukturen genutzt werden, um auf einer Oberfläche optische Informationen zu transportieren. Außerdem reagieren SPPs empfindlich auf die optischen Eigenschaften ihrer Trägerstruktur und können deswegen für Anwendungen in der Sensorik genutzt werden.
+
+Surface-Plasmon-Polaritonen können durch unterschiedliche Mechanismen angeregt werden. Unter anderem treten SPPs auf, wenn man einen Defekt auf einer Goldoberfläche mit einem stark fokussiertem Laser beleuchtet. Der Plasmonische-Spin-Hall-Effekt tritt auf, wenn dieser anregende Laser elliptisch polarisiert ist. Durch Nahfeldinterferenz an dem Defekt finden die SPP-Anregung bei Anregung durch einen elliptisch polariserten Laser gerichtet statt. Die effektivste Anregungsrichtung hängt hierbei von dem Drehsinn der Laserpolarisation ab. Dieser Effekt könnte dafür genutzt werden, die Propagationsrichung von SPPs in plasmonischen Bauteilen gezielt zu steuern. Durch die Polarisationabhängigkeit des Effektes sind auch Anwendungen in der Sensorik denkbar.
+
+Ziel dieser Arbeit ist es, zunächst ein vorhandenes Leckstahlmikroskop so zu modifizieren, dass die Beobachtung des Plasmonischen-Spin-Hall-Effektes prinzipiell möglich ist. Im nächsten Schritt wurde dann der Plasmonische-Spin-Hall Effekt nachgewiesen. In dem Kapitel Theorie werden die Theoretischen Grundlagen von SPPs erläutert und im nächsten Schritt wird auf die Details des Plasmonischen-Spin-Hall-Effektes eingegangen. In dem Kapitel Messung und Methoden wird das Leckstrahlmikroskop und die in dieser Arbeit durchgeführten Modifikationen detailliert erläutert. Das Kapitel Ergebnisse und Diskussion befasst sich mit der Auswertung und Interpretation der aufgezeichneten Messdaten. Im letzten Kapitel werden die Ergebnisse kurz zusammengefasst, und es wird ein Ausblick auf zukünftig mögliche Projekte gegeben.  
 \section{Theorie}
 	\subsection{Oberflächen-Plasmon-Polariton (SPP)}		
-	Ein Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP) ist das quantisierte Quasiteilchen, der an das elektromagnetischen Feld gekoppelten Elektronen-Dichte-Oszillation, an einer Dielektrikums-Metall-Grenzschicht. Durch die spezielle Form dieser Geometrie ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation, ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Diese transversalen Komponenten sind notwendig, um  damit eine Kopplung an das rein transversale elektromagnetische Feld des Vakuums tendenziell zu ermöglichen. Die einfachste Geometrie in der SPPs auftreten können ist ein Zwei-Schichtsystem. Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_D$ ausgefüllt. Der Halbraum unterhalb der $xy$-Ebene mit $z<0$ sei von einem Metall mit der im allgemeinen komplexen Dielektrischen-Funktion $\epsilon(\omega)$ ausgefüllt. An der Grenzschicht zwischen diesen beiden Halbräumen können SPPs propagieren. Um nun einige Charakteristische Eigenschaften von SPPs zu erläutern, gehe ich davon aus, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv 2-dimensional. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPPs in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
+	Ein Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP) ist das quantisierte Quasiteilchen, einer an das elektromagnetischen Feld gekoppelten Elektronen-Dichte-Oszillation an einer Dielektrikums-Metall-Grenzschicht. Durch die spezielle Form dieser Grenzschichtgeometrie ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation, ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Diese transversalen Komponenten sind notwendig, damit eine Kopplung an das rein transversale elektromagnetische Feld des Vakuums tendenziell möglich ist. Die einfachste Geometrie in der SPPs auftreten können, ist ein Zwei-Schichtsystem. Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_D$ ausgefüllt. Der Halbraum unterhalb der $xy$-Ebene mit $z<0$ sei von einem Metall mit der im allgemeinen komplexen Dielektrischen-Funktion $\epsilon(\omega)$ ausgefüllt. An der Grenzschicht zwischen diesen beiden Halbräumen können SPPs propagieren. Um nun einige Charakteristische Eigenschaften von SPPs zu erläutern, wird davon ausgegangen, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv 2-dimensional. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPPs in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
 	\begin{equation}
 		\label{eq:electric_field_spp}
 		\vec{E}_n = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{spp}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)	
@@ -35,19 +50,19 @@
 		\label{eq:magnetic_field_spp}
 		\vec{H}_n = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} H_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)
 	\end{equation}
-	Der Index $n$ beschreibt hierbei das Material($M$ für das Metall, $D$ für das Dielektrikum). Das $\pm$ ist $+$ für das Metall und  $-$ für das Dielektrikum. $\omega$ ist die Winkelfrequenz der Anregung. $k_{\mathrm{spp}}$ ist der im allgemeinen komplexe Wellenvektor der Anregung.  $k_{\mathrm{spp}}$ ist für beide Medien gleich. Der Realteil $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ des komplexen Wellenvektors lässt sich in die Wellenlänge $\lambda_{\mathrm{spp}} = 2\pi/ \operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} $ des SPP umrechnen. Der Imaginärteil $\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\}$ beschreibt das Dämpfungsverhalten des SPP entlang der Ausbreitungsrichtung. Es lässt sich über $\L_{\mathrm{spp}} = 1/(2\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\})$ eine Propagationslänge definieren. Nachdem das SPP eine Propagationslänge zurückgelegt hat, sind die ursprünglichen Intensitäten des SPP auf $1/\mathrm{e}$ ihres ursprünglichen Betrages zurückgegangen.
+	Der Index $n$ beschreibt hierbei das Material ($M$ für das Metall, $D$ für das Dielektrikum). Das $\pm$ ist $+$ für das Metall und  $-$ für das Dielektrikum. Die Winkelfrequenz der Anregung ist $\omega$ . Der im allgemeinen komplexe Wellenvektor der Anregung $k_{\mathrm{spp}}$ ist in beiden Materialien identisch. Der Realteil $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ des komplexen Wellenvektors lässt sich in die Wellenlänge $\lambda_{\mathrm{spp}} = 2\pi/ \operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} $ des SPP umrechnen. Der Imaginärteil $\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\}$ beschreibt das Dämpfungsverhalten des SPP entlang der Ausbreitungsrichtung. Der Imaginärteil lässt sich über $\L_{\mathrm{spp}} = 1/(2\operatorname{\mathbb{I}m}\{k_{\mathrm{spp}}\})$ in eine Propagationslänge umrechnen.  Hierfür gilt: Nachdem das SPP eine Propagationslänge in Ausbreitungsrichtung zurückgelegt hat, sind die ursprünglichen Intensitäten des SPP auf $1/\mathrm{e}$ ihres ursprünglichen Betrages abgeklungen.
 	
-	Analog beschreibt $\operatorname{\mathbb{R}e}\{k_{z, n}\}$ den Exponentiellen-Abfall der Anregung, wenn man sich von der Grenzfläche entfernt. Hier lassen sich die Eindringtiefen $\delta_{M,D}$ definieren, die angeben nach welcher Entfernung in z-Richtung die ursprungliche Feldstärke auf $1/\mathrm{e}$ abgeklungen ist. Das SPP hat sowohl transversale, als auch longitudinale Komponenten des Elektrischen Feldes. Das magnetische Feld ist rein transversal. Daher spricht man auch von einer Transversal-Magnetischen Anregung (TM).
+	Analog beschreibt $\operatorname{\mathbb{I}m}\{k_{z, n}\}$ das exponentielle Abklingen der Anregung senkrecht zur Grenzfläche. Hier lassen sich die Eindringtiefen $\delta_{M,D}$ definieren. Diese drücken aus nach welcher Entfernung senkrecht zur Grenzfläche die ursprüngliche Feldstärke auf $1/\mathrm{e}$ abgeklungen ist. Das SPP hat sowohl transversale, als auch longitudinale Komponenten des Elektrischen Feldes. Das magnetische Feld ist rein transversal. Daher spricht man auch von einer Transversal-Magnetischen Anregung (TM).
 	Der quantitativer Verlauf des elektrischen Feldes für ein rein reelles $k_{\mathrm{spp}}$ und ein rein imaginäres $k_{z, n}$ ist in Abb. \ref{fig:electric_field_spp} dargestellt.
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
-		\caption{Quantitativer Verlauf des Elektrischen Feldes eines SPPs entlang einer Metall-Dielektrikums-Grenzschicht in der  xy-Ebene mit Ausbreitungsrichtung in positiver x-Richtung}
+		\caption{Quantitativer Verlauf der EM-Felder eines SPPs entlang einer Metall-Dielektrikums-Grenzschicht. Das Elektrische Feld ist durch die Pfeile dargestellt. Die Schwarz-Weiß Skala der Pfeile entspricht dem Betrag der Elektrischen Feldstärke. Die $y$-Komponente des Magnetfeldes ist durch die Farb-Skala dargestellt.}
 		\label{fig:electric_field_spp}
 	\end{figure}
 
 	\subsubsection{Dispersion}
-	Die Herleitung der Dispersionsrelation orientiert sich an den Ausführungen in \cite[pp.~261--ff]{Fox.2020} und kann dort im Detail nachvollzogen werden. Ich beschränke mich hier auf eine kurze Beschreibung des Vorgehens.
+	Die Herleitung der Dispersionsrelation orientiert sich an den Ausführungen in \cite[pp.~261--ff]{Fox.2020} und kann dort im Detail nachvollzogen werden. Die Ausführungen in dieser Arbeit beschränken sich auf eine kurze Beschreibung des Vorgehens.
 	Damit die oben angesetzten elektromagnetischen Felder \eqref{eq:electric_field_spp}, \eqref{eq:magnetic_field_spp}  die Maxwellgleichungen \eqref{eq:maxwell} und die Randbedingungen an der Grenzschicht erfüllen, müssen die Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} gelten. (Hierbei handelt es sich um den Spezialfall nicht magnetischer Materialien.)
 	\begin{align}
 		\label{eq:maxwell}	
@@ -65,59 +80,70 @@
 			k_{\mathrm{spp}}^2 +k_{z, n}^2 = \epsilon_n\left(\dfrac{\omega}{c}\right)^2; \text{ für  } n=M,D
 		\end{equation}
 		\end{subequations}
-		$\epsilon_{M, D} = \epsilon_{M, D}(\omega) $ sind hierbei die Permittivitäten der Materialien in Abhängigkeit von der Kreisfrequenz. Aus Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien $ \operatorname{\mathbb{I}m}\{k_{z, n}\} \gg \operatorname{\mathbb{R}e}\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung, fallen die Felder senkrecht zu Ausbreitungsrichtung exponentiell ab. Man spricht deswegen von evaneszenten Feldern. Die Anregung ist daher stark an die Grenzfläche gebunden. Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
-	\begin{equation}
-		\label{eq:dispersion_spp}
-		\boxed{
-			k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + 	\epsilon_M(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
-	\end{equation}
-	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.
+		$\epsilon_D$, $\epsilon_M = \epsilon_M(\omega) $ sind hierbei die Permittivitäten der Materialien in Abhängigkeit der Kreisfrequenz.
+		Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
+		\begin{equation}
+			\label{eq:dispersion_spp}
+			\boxed{
+				k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + 	\epsilon_M(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
+		\end{equation}
+		Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung in Vakuum. Und $n_{\mathrm{eff}}(\omega)$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über den Zusammenhang $E = \hbar \omega$ auch in Abhängigkeit der Energie dargestellt werden.
+		
+		 Aus Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien $ \operatorname{\mathbb{I}m}\{k_{z, n}\} \gg \operatorname{\mathbb{R}e}\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung, fallen die Amplituden der Felder senkrecht zu Ausbreitungsrichtung exponentiell ab. Die Anregung ist daher stark an die Grenzfläche gebunden. 
 	
-	Im folgenden werden die Messdaten der Dielektrischen-Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold Mode qualitativ zu analysieren.  Die Publikation stellt Messdaten für unterschiedliche Oberflächenrauhigkeiten zur Verfügung. In dieser Arbeit wurden die Messdaten für aufgedampftes Gold verwendet. Für die Berechnung der Dispersion wurde $\epsilon_D = n_D^2 = 1.52^2$ verwendet. In der Dispersionskurve Abb. \ref{fig:dispersion_spp} ist zu erkennen, dass die Dispersionskurve bei einer Anregungs-Energie von $E = hc/\lambda_{\mathrm{HeNe}}= 1.95\mathrm{eV}$ rechts von der Lichtlinie des jeweiligen Mediums liegt.
+	Im folgenden werden die Messdaten der Dielektrischen-Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold und einer Glas-Gold Mode qualitativ zu analysieren.  Die Publikation stellt Messdaten für unterschiedliche Gold-Oberflächenrauhigkeiten zur Verfügung. In dieser Arbeit wurden die Messdaten für aufgedampftes Gold verwendet. Für die Berechnung der Dispersion der Gold-Glas-Mode wurde $\epsilon_D = n_D^2 = 1.52^2$ und  verwendet. In der Dispersionskurve Abb. \ref{fig:dispersion_spp} ist zu erkennen, dass die Dispersionskurve bei einer Anregungs-Energie von $E = hc/\lambda_{\mathrm{HeNe}}= 1.95\mathrm{eV}$ rechts von der Lichtlinie des jeweiligen Materials liegt. Die stark Auswölbung der Dispersionskurven bei$E > 2.4 \mathrm{eV}$ lässt sich durch Interbandabsorption erklären.
 	\begin{figure}[h]
 		\label{fig:dispersion_spp}
 		\centering
 		\includegraphics[width=1\textwidth]{figures/dispersion.png}
-		\caption{Dispersionskurve der Gold-Vakuum und der Gold-Glas Mode. Do Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt gekennzeichnet}		
+		\caption{Dispersionskurve der Gold-Vakuum und der Gold-Glas Mode. Die Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt gekennzeichnet}		
 	\end{figure}
-	Diese k-Differenz sorgt dafür, dass SPPs nicht ohne weiteres von Elektromagnetischer-Strahlung des Vakuums angeregt werden können.	
+	Die Differenz zwischen Dispersionskurve und Lichtlinie sorgt dafür, dass SPPs nicht ohne weiteres von Elektromagnetischer-Strahlung im jeweiligen Medium angeregt werden können.	
 		\subsubsection{Anregung}
 			Um trotz der k-Differenz in der Dispersionsrelation SPPs mit elektromagnetischer Strahlung anregen zu können, ist es notwendig, den k-Wert der Anregungsstrahlung zu erhöhen. Hierfür gibt es unterschiedliche Mechanismen.
 			\paragraph{Kretschman-Konfiguration}
-			In der Kretschmann Konfiguration wird ausgenutzt, dass man den auf eine Ebene projizierten Anteil eines Wellenvektors durch Einfallswinkel verkleinern kann. Da der Wellenvektor allerdings vergrößert werden muss, um ein SPP mit Strahlung aus Dielektrikum anzuregen, ist es notwendig ein System mit mehr als zwei Schichten zu verwenden. Ein dünner Metallfilm wird zwischen zwei Dielektrika mit $\epsilon_{D_1} > \epsilon_{D_2}$ eingeschlossen. So ist es möglich, den Wellenvektor der Anregenden Strahlung zunächst durch Wechsel in das Dielektrikum 1 mit $\epsilon_{D_1} > \epsilon_{D_2}$ zu vergrößern, und dann durch den Einfallswinkel zu Grenzschichtebene exakt an das SPP der Mode Metall-Dielektrikum2 anzupassen. Dieses Verfahren wird bei der Kretschman-Konfiguration verwendet. Ein schematischer Aufbau der Kretschmann Konfiguration ist Abb. \ref{fig:kretschman} zu entnehmen.
+			In der Kretschmann Konfiguration wird ausgenutzt, dass man den auf eine Ebene projizierten Anteil eines Wellenvektors durch Variieren des Einfallswinkel verkleinern kann. Da der Wellenvektor allerdings vergrößert werden muss, um ein SPP mit EM-Strahlung aus dem Dielektrikum anzuregen, ist es notwendig ein System mit mehr als zwei Schichten zu verwenden. Ein dünner Metallfilm wird zwischen zwei Dielektrika mit $\epsilon_{D_1} > \epsilon_{D_2}$ eingeschlossen. So ist es möglich, den Wellenvektor der Anregenden Strahlung zunächst durch Wechsel in das Dielektrikum 1 zu vergrößern, und dann durch den Einfallswinkel zu Grenzschichtebene exakt an das SPP der Mode Metall-Dielektrikum 2 anzupassen. Dieses Verfahren wird bei der Kretschman-Konfiguration verwendet. Ein schematischer Aufbau der Kretschmann Konfiguration ist Abb. \ref{fig:kretschman} zu entnehmen.
 				\begin{figure}[h] 
 				\centering
 				\includegraphics[width=0.5\textwidth]{figures/Kretschmann.pdf}
-				\caption{Schematischer Aufbau der Kretschman-Konfiguration. Die Abbildung ist aus \cite{Jaruschewski.2020} entnommen}
+				\caption{Schematischer Aufbau der Kretschman-Konfiguration. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt}
 				\label{fig:kretschman}
 				\end{figure}
-			Die Anregungsstrahlung tritt hier zunächst in das Prisma ein. Hierdurch wird der Wellenvektor der Anregungsstrahlung um $k_{D_1}=k_0\sqrt{\epsilon_{D_1}}$ vergrößert. Das Material des Prismas wird so gewählt, dass der Wellenvektor größer als der Wellenvektor des SPPs \eqref{eq:dispersion_spp} ist. Der Einfallswinkel $\theta_E$ wird so gewählt, dass die Projektion von $k_{D_1}$ auf die Goldoberfläche gerade $k_{\mathrm{spp}}$ entspricht. Es gilt also:
+			Die Anregungsstrahlung tritt hier zunächst in das Prisma ein. Hierdurch wird der Wellenvektor der Anregungsstrahlung auf $k_{D_1}=k_0\sqrt{\epsilon_{D_1}}$ vergrößert. Das Material des Prismas wird so gewählt, dass gilt:  $k_{D_1}> k_{\mathrm{spp}}$ ($k_{\mathrm{spp}}$ bezieht sich hierbei auf die Mode Metall-Dielektrikum 2 und ergibt sich aus \eqref{eq:dispersion_spp}) Der Einfallswinkel $\theta_E$ wird so gewählt, dass die Projektion von $k_{D_1}$ auf die Goldoberfläche exakt $k_{\mathrm{spp}}$ entspricht. Es gilt also:
 			\begin{align}
-				\label{eq:phase_condition}
+				\label{eq:phase_condition_kretschmann}
 				\sin(\theta_E) &= \dfrac{\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}}{k_{D_1}}\\
-				\Rightarrow \Aboxed{\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{D_1}}}
+				\Rightarrow \operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{D_1}}
 			\end{align}
-			Bei der Reflektion einer elektromagnetischen Welle an einem Metall, dringen in das Metall evaneszente Felder ein. \cite{Novotny.2012b}. Ist die Metallschicht dünn genug, haben diese evaneszenten Felder an unteren Grenzfläche des Metalls noch ausreichend Intensität, um dort ein SPP anzuregen. Dies ist möglich, da die k-Komponenten wie oben erläutert an einander angepasst worden sind. Die in Abb. \ref{fig:kretschman} gezeigte Geometrie nutzt für das Dielektrikum 1 ein Prisma, um die Einkopplung der elektromagnetischen Welle aus dem Vakuum in das Dielektrikum1 möglichst effektiv zu gestalten. Als Dielektrikum 2 wurde hier Luft verwendet.			
+			Damit diese Phasen-Anpassungs-Bedingung erfüllbar ist, ist es notwendig, dass gilt: $\sqrt{\epsilon_\mathrm{D_1}} > n_\mathrm{eff, spp}$
+			Bei der Reflektion einer elektromagnetischen Welle an einem Metall, dringen in das Metall evaneszente Felder ein. \cite{Novotny.2012b}. Ist die Metallschicht dünn genug, haben diese evaneszenten Felder an unteren Grenzfläche des Metalls noch ausreichend Intensität, um dort ein SPP anzuregen. Dies ist möglich, da die k-Komponenten wie oben erläutert an einander angepasst worden sind. Die in Abb. \ref{fig:phase_condition_kretschmann} gezeigte Geometrie nutzt für das Dielektrikum 1 einen Halbkreis, damit der Stahl unabhängig vom Winkel $\theta_\mathrm{E}$ senkrecht in das Dielektrikum 1 eintritt. Als Dielektrikum 2 wird häufig Vakuum oder Luft verwendet.			
 		
 			\paragraph{Anregung an Strukturen}
-			Eine weitere Möglichkeit, die Wellenvektordifferenz zu überwinden stellen scharfe Strukturen an der Metalloberfläche da. An diesen Strukturen streut das anregende Licht, und kann somit ausreichend k gewinnen, um ein SPP anzuregen. Diese Strukturen können entweder künstlich hergestellt werden, oder es werden Defekt-Stellen auf der Probe genutzt. Da die Struktur scharf im Ortsraum ist, besitzt Sie ein breites Raumfrequenzspektrum.
-			... 
+			Eine weitere Möglichkeit, die Wellenvektordifferenz zu überwinden stellen, scharfe Strukturen in oder an der Metalloberfläche da. Durch Streuprozesse ist es möglich...
 		\subsubsection{Leckstrahlung}
 		\label{sec:leakage_radiation}
-			Leckstrahlung ist der inverse Effekt zur Anregung in der Kretschmann-Konfiguration. In einem Dreischichtsystem Dielektrikum1-Metall-Dielektrikum2 kann ein an der Grenzfläche Dielektrikum1-Metall propagierendes SPP, durch evaneszente Felder, durch den Metallfilm in das Dielektrikum2 abstrahlen. Dies ist nur möglich, wenn {$\epsilon_{D_2}$ > $\epsilon_{D_1}$} ist, da sonst die Phasenanpassungsbedingung \eqref{eq:phase_condition} nicht erfüllt werden kann. Diese Strahlung tritt dann unter einem Winkel $\theta_L$ aus der Probe, so dass die Phasenanpassungsbedingung gerade erfüllt ist. Diese in das Dielektrikum 2 abgestrahlte Strahlung bezeichnet man als Leckstrahlung. Für das auftreten von  Leckstrahlung muss der Metallfilm ausreichen dünn sein, damit die evaneszenten Felder des  SPP an der zweiten Grenzschicht noch ausreichend Intensität aufweisen. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem Bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie ausgenutzt, um den Wellenvektor des SPP zu bestimmen.
+			Leckstrahlung ist der inverse Effekt zur Anregung in der Kretschmann-Konfiguration. In einem Dreischichtsystem Dielektrikum2-Metall-Dielektrikum1, kann ein an der Grenzfläche Dielektrikum2-Metall propagierendes SPP, durch evaneszente Felder, EM-Felder an der Grenzfläche Metall-Dielektrikum1 erzeugen. Diese Felder können EM-Strahlung im Dielektrikum1 unter dem Winkel $\theta_\mathrm{L}$ erzeugen. Dieser Winkel muss analog zu \eqref{eq:phase_condition} folgende Phasenanpassungsbedingung erfüllen:
+			\begin{equation}
+				\label{eq:phase_condition}
+				\boxed{\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{D_1}}}
+			\end{equation}
+			 Dies ist nur möglich, wenn {$\sqrt{\epsilon_{D_1}} > n_\mathrm{eff, spp}$} ist. Diese in das Dielektrikum 1 abgestrahlte Strahlung bezeichnet man als Leckstrahlung. Für das Auftreten von Leckstrahlung muss der Metallfilm hinreichend dünn sein, damit die evaneszenten Felder des  SPP an der zweiten Grenzschicht noch ausreichend Intensität aufweisen. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem Bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\operatorname{\mathbb{R}e}\{k_{\mathrm{spp}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie ausgenutzt, um den Wellenvektor des SPP zu bestimmen. Das Auftreten von Leckstrahlung ist also ein nützlicher Effekt, um SPPs mit optischen Instrumenten zu beobachten.
 				\begin{figure}[h] 
 				\centering
 				\includegraphics[width=0.5\textwidth]{figures/leckstrahlung.pdf}
-				\caption{Schematischer Aufbau der Abstrahlung von Leckstrahlung. Die Abbildung ist aus \cite{Jaruschewski.2020} entnommen}
+				\caption{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
 				\label{fig:leakage_radiation}
 			\end{figure}
 		\subsubsection{Berechnung von charakteristischen Größen für das System Luft-Gold-Glas}
 		Alle in dieser Arbeit durchgeführten Messungen wurden am System Luft-Gold-Glas durchgeführt. Daher werden an dieser Stelle die oben Eingeführten Größen für dieses System angegeben. Die Dielektrizitätskonstante des Glases ist $\epsilon_{\mathrm{G}} = 2.327$ \cite{Zeiss.} und die von Luft ist $\epsilon_{\mathrm{L}} = 1.00059$ \cite{Hippel.1995}. Die dielektrische Funktion von Gold wurde bei einer Anregungsenergie von $E_{\mathrm{HeNe}} = h\lambda/c = 1.96\mathrm{eV} $ durch Interpolation der Messdaten aus der Publikation \cite{Olmon.2012} berechnet: $\epsilon_{\mathrm{Au}}(1.96\mathrm{eV}) = -12.04 +1.163i$ Aus diesen Daten lassen sich nun folgende Größen berechnen:
-		\begin{align}
-			n_{\mathrm{eff}} &= \sqrt{\dfrac{\epsilon_{\mathrm{L}}\epsilon_{\mathrm{Au}(\omega)}}{\epsilon_{\mathrm{L}} + 	\epsilon_{\mathrm{Au}}(\omega)}} = 	1.044 + 0.005i \\			
-			\theta_\mathrm{L} &=  \arcsin\left(\dfrac{\operatorname{\mathbb{R}e}(n_{\mathrm{eff}})}{ n_\mathrm{G}}\right) = 43.2^\circ \\
-			k_{\mathrm{spp}} &= k_0 n_{\mathrm{eff}} = (10.365 + 0.0449i)\mathrm{\mu m}^{-1} \\
-		\end{align}
+		\begin{subequations}
+			\begin{align}
+				n_{\mathrm{eff}} &= \sqrt{\dfrac{\epsilon_{\mathrm{L}}\epsilon_{\mathrm{Au}(\omega)}}{\epsilon_{\mathrm{L}} + 	\epsilon_{\mathrm{Au}}(\omega)}} = 	1.044 + 0.005i \label{eq:theo_n_eff}\\			
+				\theta_\mathrm{L} &=  \arcsin\left(\dfrac{\operatorname{\mathbb{R}e}(n_{\mathrm{eff}})}{ n_\mathrm{G}}\right) = 43.2^\circ 
+				\label{eq:theo_theta_l}\\
+				k_{\mathrm{spp}} &= k_0 n_{\mathrm{eff}} = (10.365 + 0.0449i)\mathrm{\mu m}^{-1}\label{eq:theo_k_spp}
+			\end{align}
+		\end{subequations}
 	\subsection{Plasmonischer-Spin-Hall-Effekt}
 	Der Plasmonische-Spin-Hall-Effekt beschreibt, wie an einer räumlich symmetrischen Struktur angeregte SPPs, abhängig von der Polarisation der anregenden Strahlung, in unterschiedliche Richtungen propagieren. Speziell propagiert das SPP bei links-zirkular polarisierter Strahlung in eine um 180° verschiedene Richtung zu dem SPP, dass mit rechts zirkular polarisiertem Licht angeregt worden ist. 
 	\subsubsection{Raumfrequenzspektrum von Elektromagnetischen-Feldern}
@@ -165,7 +191,7 @@
 			Der Real und Imaginär Teil des Raumfrequenzspektrums in einer halben Wellenlänge unterhalb des Dipols lässt sich nun plotten. $k_x$ wurde hierbei in Einheiten von $k$ dargestellt. Die Raumfrequenzspektrums-Amplitude wurde in dem Bereich der Darstellung auf 1 normiert. Das Raumfrequenzspektrum des in x-Richtung orientierten Dipols hat eine gerade Parität, ist also achsensymmetrisch. 
 		\begin{figure}[h] 
 			\centering
-			\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_x.pdf}
+			\includegraphics[width=0.5\textwidth]{figures/spatial_spectrum_x.pdf}
 			\caption{Raumfrequenspektrum in der z-Ebene, eines entlang der x-Achse orientiertem linear polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
 			\label{fig:spatial_spectrum_x}
 		\end{figure}
@@ -175,7 +201,7 @@
 			Das Raumfrequenzspektrum dieses Dipols zeigt ungerade Parität, ist also punktsymmetrisch um den Ursprung.
 		\begin{figure}[h] 
 			\centering
-			\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_z.pdf}
+			\includegraphics[width=0.5\textwidth]{figures/spatial_spectrum_z.pdf}
 			\caption{Raumfrequenspektrum in der z-Ebene, bei entlang der z-Achse orientiertem linear polarisiertem Dipol. Position des Dipols bei $z_{\mathrm{dipol}} = 0.01 \lambda$}
 			\label{fig:spatial_spectrum_z}
 		\end{figure}
@@ -190,7 +216,41 @@
 				\label{fig:spatial_spectrum_circ}
 			\end{figure}
 		Das Nahfeld eine zirkular polarisiertem Dipols ist also anisotrop, obwohl das Fernfeld welches man durch substituieren von $k_x = k_o \sin(\theta)$ erhält, isotrop ist.	
-	\subsubsection{Analyse des SPP Spins}	
+	\subsubsection{Analyse des Drehmomentes von elektromagnetischer Strahlung}
+	Elektromagnetische Strahlung kann Impuls und Drehmoment transportieren. Das Drehmoment übersetzt sich nach dem Quantenmechanischen-Korrespondenzprinzip in einen Spin. Im folgenden wird daher im klassischen Bild das Drehmoment von unterschiedlichen Elektromagnetischen-Strahlungensarten analysiert.
+	\paragraph{Propagierende-Ebene-Wellen}
+		Propagierende EM-Wellen transportieren abhängig von ihrer Polarisation ein Drehmoment. Linear polarisierte EM-Wellen besitzen kein Drehmoment. Ihr Elektrischen und Magnetischer Feldvektor oszilliert jeweils nur in einer Ebene.
+		 
+		Bei elliptisch polarisierten Elektromagnetischen Wellen hingegen rotiert der Elektrische-Feld-Vektor an einem festen Ort mit dem fortschreiten der Zeit. Das gleiche gilt auch für den magnetischen Feldvektor. Diese Felder können daher eine Referenzteilchen in Rotation versetzten und transportieren dementsprechend auch einen Drehimpuls. Da die Rotation nur in Ebenen senkrecht zur Ausbreitungsrichtung stattfindet, ist der Drehimpuls parallel bzw. antiparallel zur Ausbreitungsrichtung der EM-Welle. Daher haben elliptisch polarisierte propagierende Elektromagnetische Felder einen Longitudinalen Spin.
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\linewidth]{figures/spin/prop_spin}
+			\caption{Der Elektrische Feldvektor einer propagierenden zirkular polarisierten Welle beschreibt bei festgehaltener Zeit eine Helix Bahn entlang der Ausbreitungsrichtung. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also eine Kreisbahn senkrecht zur Ausbreitungsrichtung.}
+			\label{fig:prop_spin}
+		\end{figure}
+		
+	\paragraph{Evaneszente-Wellen}	
+	Evaneszente Elektromagnetische Felder weisen hingegen unabhängig von ihrer Polarisation einen Spin in Transversaler Richtung auf. Wenn man bei einer evaneszenten Elektromagnetischen Welle den zeitlichen Verlauf des elektrischen Feldvektors $\vec{E}(t)$ an einem festen Ort beobachtet, stellt man fest, dass $\vec{E}(t)$ in der $zx$-Ebene schwingt. Der Elektrische Feldvektor rotiert hier also in einer Ebene parallel zur Ausbreitungsrichtung. Das Drehmoment steht hier also senkrecht auf der Ausbreitungsrichtung. \cite{Bliokh.2014}
+	
+		
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{figures/spin/ev_spin}
+		\caption{Der Elektrische Feldvektor einer evaneszenten Welle beschreibt bei festgehaltener Zeit eine Zykloide in der $xz$-Ebene. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also eine Kreisbahn.}
+		\label{fig:ev_spin}
+	\end{figure}
+	\paragraph{Spin-Erhaltung beim Plasmonischen-Spin-Effekt}
+		Durch den streifenden Einfall des zirkularpolarisierten Lasers ist hat der Gesamtspin des Photons vor der Wechselwirkung mit dem Nanopartikel ein $x$-Komponente. Je nach dem, ob das resultierende SPP in $+y$-Richtung oder in $-y$-Richtung propagiert, hat das SPP einen Gesamtspin in  $+x$ oder $-x$ Richtung. Die Propagationsrichtung wird sich nun so ergeben, dass der Gesamtspin bei der Interaktion mit dem Nanopartikel erhalten bleibt. Da eine Umkehr des Drehsinns der Polarisation der anregenden Strahlung auch zu einer Umkehr des Spins der anregenden Strahlung führt, führen umgekehrte Drehsinne zu unterschiedlichen Propagationsrichtungen des SPPs.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=1.0\linewidth]{figures/spin_hall_schema.pdf}
+			\caption{Spin-Erhaltung beim Plasmonischen-Spin-Hall Effekt}
+			\label{fig:spin_hall_schema}
+		\end{figure}
+
+
+ 	
 \section{Messung und Methoden}
 \subsection{Leckstrahlmikroskopie}
 	In dieser Arbeit wurde ein Leckstahlmikroskop verwendet, um den plasmonischen Spin-Hall Effekt experimentell nachzuweisen. Ein LRM hat gegenüber anderen Methoden zur Untersuchung Plasmonischer Systeme den Vorteil, dass es rein optisch arbeitet und deswegen nicht auf aufwendige Vakuum-Technik angewiesen ist. Ein Leckstahlmikroskop nutzt aus, dass SPPs in einem Mehrschichtsystem wie in \Cref{sec:leakage_radiation} erläutert, Leckstrahlung unter einem spezifischen Winkel in ein Substrat abstrahlen können. Als Probe wurde in dieser Arbeit ein auf ein Glassubstrat aufgedampfter Goldfilm verwendet. Das Schichtsystem ist also Luft-Gold-Glas.
@@ -270,7 +330,7 @@
 			\begin{figure}[htbp] 
 				\centering
 				\includegraphics[width=0.7\textwidth]{figures/Cage_System.pdf}
-				\caption{Komponenten im Cage-System montiert}
+				\caption{Tubuslinse, 4f-System, optionale Linse und CMOS im Cage-System}
 				\label{fig:cage_system}
 			\end{figure}	
 \subsection{Probe}
@@ -296,51 +356,158 @@
 \subsection{Justage des Aufbaus}
 Die allgemeine Justage des LRM verlief, bis auf das Justieren des Lasers auf die Probe, wie von Jaruschewski \cite{Jaruschewski.2020} beschrieben. Dieses war durch den notwendigen schrägen Einfall des Lasers auf die Probe deutlich erschwert. Die Justage erfolgte mit montierter Probe. Als erste wurde die Probe mit Hilfe der Hintergrundbeleuchtung in den korrekten Abstand zum IO gebracht(Im korrekten Abstand ist das Bild der Probe scharf zu sehen). Als nächstes wurde der Laser mit zwei Spiegeln grob in dem erwünschten Winkel auf die Probe justiert. Danach wurden Einkoppellinse, $\lambda/4$-Plättchen und Polfilter in den Strahlgang gestellt. Die Feinjustierung des Lasers auf die Probe wurde nun durch das Verschieben der Einkoppellinse durchgeführt. Hierbei war es hilfreich, den Strahl durch das Verfahren der EL entlang der optischen Achse etwas zu de-fokussieren, so dass man die Randbereiche des Strahls über den CMOS-Sensor in der Image-Plane auch schon sehen kann, wenn der Strahl noch nicht exakt die optische Achse trifft. Sobald ein Teil des Strahles in der Image-Plane detektiert worden ist, wird er durch weiteres bewegen der Linse zentriert und dann sukzessive weiter fokussiert. Durch das Verkippen der Einkoppellinse zum Laser, wandert der Strahl beim Fokussieren des Lasers stark auf der Probe. Das Verkippen der Linse wird, sobald der Laser optimal fokussiert ist, behoben. Hierfür wird der Laser durch die beiden Spiegel sukzessive so einjustiert, dass der Spot auf der Probe beim de-fokussieren des Lasers nicht mehr wandert. 
 \subsection{Messung}
-Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probe-Messungen, die mit den Daten von Jaruschewski \cite{Jaruschewski.2020} und Ebel \cite{ebel.2019} verglichen worden ist, überprüft. Da für den Nachweis des Plasmonischen-Spin-Hall-Effektes keine Kenntnisse über den Betrag des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden durch die bekannte Luft-Gold Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\beta_{\lambda_{\lambda/4}} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche gesucht. Das Vorgehen hierbei war, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, sind in der BFP die charakteristischen Fringes der Leckstrahlung zu erkennen. Das Ziel war es, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nach dem ein geeigneter Defekt gefunden worden ist, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
+Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probe-Messungen, die mit den Daten von Jaruschewski \cite{Jaruschewski.2020} und Ebel \cite{ebel.2019} verglichen worden ist, überprüft. Da für den Nachweis des Plasmonischen-Spin-Hall-Effektes keine Kenntnisse über den Betrag des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden durch die bekannte Luft-Gold Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche gesucht. Das Vorgehen hierbei war, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, sind in der BFP die charakteristischen Fringes der Leckstrahlung zu erkennen. Das Ziel war es, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nach dem ein geeigneter Defekt gefunden worden ist, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
 
 \section{Ergebnisse und Diskussion}
 	\subsection{Überprüfung der Funktionsweise des LRM}
-		In diesem Abschnitt soll kurz verifiziert werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 12.07 \pm 0.05\mathrm{\mu m}^{-1}$ bestimmt Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt.
+		In diesem Abschnitt soll kurz verifiziert werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 12.07 \pm 0.05\mathrm{\mu m}^{-1}$ bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt. Hierfür wurde für jeden Radius das Integral:
+		$$ I\left(|\vec{k}_{\bot}|\right) = \int_{0}^{2 \pi} \frac{I\left(|\vec{k}_{\bot}|, \theta\right)}{ 2 \pi r}\mathrm{d}\theta$$
+		ausgewertet. Das Maximum dieser radialen Intensitätsverteilung entspricht $k_{\mathrm{spp}} = 10.35\mathrm{\mu m}^{-1}$.
+		 Dieser Wert stimmt bis auf $0.2\%$ mit dem Wert aus der theoretischen Berechnung \eqref{eq:theo_k_spp} überein. Allerdings ist hier zu bemerken, dass die Luft-Gold-Glas Mode auch für die Kalibrierung genutzt worden ist. Die Messdaten sind in Abbildung \ref{fig:example_bfp} und die radiale Intensitätsverteilung ist in Abbildung \ref{fig:radial_profile} dargestellt. Die Einfallsrichtung des Lasers war entlang der $0^\circ$-Linie. Es fällt auf, dass die Anregung in Richtung der Einfallsebene deutlich stärker ausgeprägt ist. 
 			\begin{figure}
-			\centering
-			\begin{subfigure}[b]{0.7\textwidth}
+				\label{fig:example_measure}
 				\centering
-				\includegraphics[width=\textwidth]{figures/example_polar.png}
-				\caption{Intensitätsverteilung in der BFP}
-				\label{fig:example_bfp}
-			\end{subfigure}
-			%\hfill
-			\begin{subfigure}[b]{0.7\textwidth}
-				\centering
-				\includegraphics[width=\textwidth]{figures/example_radial.pdf}
-				\caption{Radiale Intensitätsverteilung in der BFP}
-				\label{fig:radial_profile}
-			\end{subfigure}
-			\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
-				Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}
-			\label{fig:probe}
-		\end{figure}
+				\begin{subfigure}[b]{0.5\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{figures/example_polar.png}
+					\caption{Intensitätsverteilung in der BFP}
+					\label{fig:example_bfp}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[b]{0.49\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{figures/example_radial.pdf}
+					\caption{Radiale Intensitätsverteilung in der BFP}
+					\label{fig:radial_profile}
+				\end{subfigure}
+				\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
+					Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}			
+			\end{figure}
+	\subsection{Nachweis des Plasmonischen Spin-Hall-Effektes}
+	Zum Nachweis des Plasmonischen Spin-Hall-Effektes wurde das plasmonische k-Spektrum an einem Punktdefekt in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens gemessen. Die Messung wurde an einem Punktdefekt durchgeführt. Bei der Auswahl des Defektes wurde auf eine möglichst isotrope Anregung und eine möglichst Defekt freie Umgebung geachtet. Das Ortsbild wurde in der Imageplane 1 mit einer Blende auf auf einen einzelnen Defekt gefiltert. Es wurde die BFP für in Unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Außerdem wurde mit einer Schrittweite von $20^\circ$ das Ortsbild der Anregung aufgenommen.
 	
-	\begin{figure}[htbp] 
-	\centering
-	\includegraphics[width=\textwidth]{figures/polar_diff_mask4.png}
-	\caption{Die Abbildung zeigt in rot und grün die Integrationsmasken. Außerdem zeigt sie die Differenz zwischen dem Winkel 44 und 134}
-	\label{fig:polar_diff_mask4}
+	Die so entstandenen Bilder der BFP wurden mit einem Python-Script ausgewertet. Hierfür wurde das kartesische Pixel-Bild zunächst in Polarkoordinaten Transformiert. Hierbei fand eine Interpolation der Daten auf ein äquidistantes Gitter in Polarkoordinaten statt. In der BFP wurden nun senkrecht zur Einfallsebene des Lasers zwei Integrationsbereiche ausgewählt. Im nächsten Schritt wurde für jede Orientierung des $\lambda/4$-Plättchens das Kontrastverhältnis der beiden Integrationsbereiche berechnet. Diese Kontrastverhältnisse zeigen die Abhängigkeit der Propagations-Richtung des SPPs von der Polarisation des Anregenden-Lasers. Diese Daten sind in Abbildung \ref{fig:diff_back} - \ref{fig:intensity_front} für unterschiedliche Integrationsbereiche dargestellt.
+	\begin{figure}
+		\label{fig:spin_hall_measure}
+		\centering
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/diff_back.png}
+			\caption{Differenz, Integrationsmaske $120^\circ-170^\circ$}
+			\label{fig:diff_back}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_back.pdf}
+			\caption{Kontrast zwischen oberem und unterem SPP}
+			\label{fig:intensity_back}
+		\end{subfigure}
+	
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/diff_mid.png}
+			\caption{Differenz BFP, Integrationsmaske $45^\circ-135^\circ$}
+			\label{fig:diff_mid}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_mid.pdf}
+			\caption{Kontrast zwischen oberem und unterem SPP}
+			\label{fig:intensity_mid}
+		\end{subfigure}
+	
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/diff_forw.png}
+			\caption{Differenz BFP, Integrationsmaske $5^\circ-30^\circ$}
+			\label{fig:diff_front}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_forw.pdf}
+			\caption{Kontrast zwischen oberem und unterem SPP}
+			\label{fig:intensity_front}
+		\end{subfigure}
+		\caption{Die Differenz BFP-Abbildungen zeigen jeweils die relative Differenz in der Intensitäten in der BFP zwischen $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$ also die Fälle von links bzw. rechts zirkular Polarisierter Anregung. Außerdem sind in der BFP in schwarz jeweils die Integrationsmasken dargestellt. Der Rand der Abbildung entspricht$k_0\mathrm{NA}$. Die Abbildungen auf der linken Seite zeigen die Abhängigkeit des Kontrastes zwischen der Intensität in der oberen und der unteren Integrationsmaske in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens. Die vertikalen Linien in dem Diagramm an den Positionen $\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$ entsprechen einer Anregung mit zirkular polarisiertem Licht (alternierend links bzw. rechts zirkular).}	
 	\end{figure}
-	\begin{figure}[htbp] 
-	\centering
-	\includegraphics[width=\textwidth]{figures/integrated_intesity4.pdf}
-	\caption{Kontrastverhältnis}
-	\label{fig:integrated_intesity4}
-\end{figure}
 	\subsection{Diskussion}
+	Abbildung \ref{fig:intensity_back} zeigt den erwarteten Effekt des Kontrastverhältnisses der beiden SPPs in Abhängigkeit der Polarisation der anregenden Strahlung. Bei zirkularer Polarisation ist jeweils die maximale Asymmetrie in Bezug auf die Einfallsebene zu erkennen. Diese Asymmetrie wechselt beim Wechsel des Drehsinns der zirkularen Polarisation wie erwartet ihre Orientierung. Das maximal beobachtet Kontrastverhältnis ist hierbei $\eta = 0.62:0.38$
+	
+	Abbildung \ref{fig:intensity_front} zeigt nicht den erwarteten Effekt. Hier tritt die maximale Asymmetrie jeweils bei elliptischer Polarisation auf und verschwindet bei zirkularer Polarisation. Bei linearer Polarisation verschwindet die Asymmetrie ebenfalls. Insgesamt zeigt der Verlauf die doppelte Frequenz der erwarteten Asymmetrie Modulation. Daher ist das Signal auch Symmetrisch bezüglich des Drehsinns der Polarisation. Für diese Phänomen wurde im Rahmen dieser Arbeit keine endgültige Erklärung gefunden. Eine Mögliche Erklärung ist die unbekannte Detailstruktur des Defektes. In den Theoretischen Überlegungen war immer von einem idealen Dipol ausgegangen worden. Wenn die Multipolentwicklunng des polarisiertem Defektes noch höhere von null verschiedene Terme aufweist, könnten weitere unbekannte Effekte auftreten. Außerdem wurde in den Simulation von einem ideal streifenden Einfall ausgegangen. In dem realen Experiment konnte durch Geometrische Begrenzungen nur ein Einfallswinkel von $60°$ zur Oberflächennormale realisiert werden. Auch diese andere Orientierung des Dipol könnte einen Effekt haben.
+	
 \section{Zusammenfassung und Ausblick}
 
 
 \appendix
 \bibliography{bib}
+\section{Programmierung}
+\section{Polarimeter}
+\newpage
 \section{Technische Zeichnungen}
+\begin{sidewaysfigure}[h!]
+	\includegraphics[width=\textwidth]{figures/Technische_Zeichnung_Probenhalter.pdf}
+	\caption{Technische Zeichnung Probenhalter}
+	\label{fig:tz_probenhalter}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}[h!]
+	\includegraphics[width=\textwidth]{figures/4f_system.pdf}
+	\caption{Technische Zeichnung Cage System}
+	\label{fig:tz_cage_system}
+\end{sidewaysfigure}
+\newpage
 \section{Liste der verwendeten Komponenten}
+\begin{table}[h!]
+	\centering	
+	\label{tab:components}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Bauteil}         & \textbf{Typ}                   & \textbf{Hersteller}                    \\
+		\hline
+		\hline
+		Helium-Neon-Laser        & HNL210L-EC                     & \textit{Thorlabs}                      \\
+		ND Filter                & NDL-25C-2                      & \textit{Thorlabs}                      \\
+		$\lambda/4$-Plättchen    & WPMQ05M-633                    & \textit{Thorlabs}                      \\
+	    Polarisationsfilter      & -        					  & \textit{Newport}                       \\
+		Hintergrund LED          & -          					  & -                  					   \\
+		Blenden                  & -          					  & -                  					   \\
+		Spiegel                  & -          					  & -                  					   \\
+		Kollimatorlinse          & Lens Asphere Ach 25x40Vis 0 TS & \textit{Edmund Optics}                 \\
+		Immersionsobjektiv       & 100-fach/1.25 N-Achroplan      & \textit{Carl Zeiss}                    \\
+		Immersionsöl             & 518N, n=1.518                  & \textit{Carl Zeiss}                    \\
+		Tubuslinse               & 452149-0000-000                & \textit{Carl Zeiss}                    \\
+		2x Linsen                & LA1417-A-ML, f = 150 mm        & \textit{Thorlabs}                      \\
+		1x Linsen                & LA1417-A-ML, f = 75 mm         & \textit{Thorlabs}                      \\
+		2x Lineartisch           & 2000551						  &\textit{Thorlabs} 					   \\
+		Kristallhalter           & LP-1A (XYZ) Series             & \textit{Newport}                       \\
+		Objektiv-Adapter         & LPMH-1                         & \textit{Newport}                       \\
+		3-Achsen-Bühne           & TSD                            & \textit{OptoSigma}                     \\
+		2-Achsen-Bühne           & TSD                            & \textit{OptoSigma}                     \\
+		Filter-Halter            & FH2                            & \textit{Thorlabs}                      \\
+		Einkoppellinse           & LA-1805                        & \textit{Thorlabs}                      \\
+		Linsenhalter             & M-LH-1A                        & \textit{Newport}                       \\
+		Cage Plate               & LCP08/M                        & \textit{Thorlabs}                      \\
+		Linsen Tubus Verbinder   & CMT2                           & \textit{Thorlabs}                      \\
+		SM2, CMount Adapter      & SM2A54                         & \textit{Thorlabs}                      \\
+		Justierbarer Linsentubus & SM2V05                         & \textit{Thorlabs}                      \\
+		Magnet Cage-Plate        & LCP90F                         & \textit{Thorlabs}                      \\
+		3x xy-Linsenhalter       & CXY2                           & \textit{Thorlabs}                      \\
+		3x Cage-System-Halter    & LCP01B                         & \textit{Thorlabs}                      \\
+		4x Cage-System-Stange    & ER8                            & \textit{Thorlabs}                      \\
+		4x Cage-System-Stange    & ER24                           & \textit{Thorlabs}                      \\
+		4x Stangenverbinder      & ERSCB                          & \textit{Thorlabs}                      \\
+		CageSystem Justier Hilfe & LCPA1                          & \textit{Thorlabs}                      \\		
+		Probenhalter		     & Eigendesign                    & Werkstatt                              \\
+		Probenblech              & Eigendesign                    & Werkstatt                              \\
+		BeamBlock                & Eigendesign                    & Werkstatt                              \\
+		Tubuslinsenhalter        & Eigendesign                    & Werkstatt                              \\
+		\hline          
+	\end{tabular}
+	\caption{Liste der verwendeten Komponenten}
+\end{table}
 
 	
 \end{document}
