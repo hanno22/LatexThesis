@@ -133,8 +133,14 @@ Ziel dieser Arbeit ist es, zunächst ein vorhandenes Leckstahlmikroskop so zu mo
 				\boxed{\Re\{k_{\mathrm{spp}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{D_1}}}
 			\end{equation}
 			Damit die Wellenvektorkomponenten des SPPs und der Leckstrahlung übereinstimmen.
-			 Dies ist nur möglich, wenn {$\sqrt{\epsilon_{D_1}} > \Re\{n_\mathrm{eff, SPP}\}$} ist. Diese in das Dielektrikum 1 abgestrahlte Strahlung bezeichnet man als Leckstrahlung. Für das Auftreten von Leckstrahlung muss der Metallfilm hinreichend dünn sein, damit die evaneszenten Felder des  SPP an der zweiten Grenzschicht noch ausreichend Intensität aufweisen, um in das Dielektrikum auszukoppeln. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem Bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\Re\{k_{\mathrm{SPP}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie ausgenutzt, um den Wellenvektor des SPP zu bestimmen. Das Auftreten von Leckstrahlung ist also ein nützlicher Effekt, um SPPs mit optischen Instrumenten zu beobachten.
-				\begin{figure}[h] 
+			 Dies ist nur möglich, wenn {$\sqrt{\epsilon_{D_1}} > \Re\{n_\mathrm{eff, SPP}\}$} ist. Diese in das Dielektrikum 1 abgestrahlte Strahlung bezeichnet man als Leckstrahlung. Für das Auftreten von Leckstrahlung muss der Metallfilm hinreichend dünn sein, damit die evaneszenten Felder des  SPP an der zweiten Grenzschicht noch ausreichend Intensität aufweisen, um in das Dielektrikum auszukoppeln. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem Bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\Re\{k_{\mathrm{SPP}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie ausgenutzt, um den Wellenvektor des SPP zu bestimmen.
+			Die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann  wie in \cite{Burke.1986} gezeigt wird, durch Fouriertransformation verallgemeinert werden. So erhält man den Ausdruck \eqref{eq:ext_phase_condition} für die Winkelabhängige Abstrahlung von Leckstrahlung einer SPP-Mode mit bekanntem $k_{\mathrm{SPP}} \in \mathbb{C}$
+			\begin{equation}
+		 		\label{eq:ext_phase_condition}
+		 		I(\Theta) = \dfrac{\text{const.}}{\left(k_{\perp}(\Theta) - \Re\{k_{\mathrm{SPP}}\}\right)^2 + (\Im\{k_{\mathrm{SPP}}\})^2}
+	 		\end{equation}
+ 			Hierbei ist $k_{\perp}(\Theta) = k_{D_2}\sin(\Theta)$ der Wellenvektor-Anteil senkrecht zur optischen Achse. Die Winkelabhängigkeit der Leckstrahlung ist also ein Lorentz-Profil mit Maximum bei $\Theta = \Theta_\mathrm{L}$. Die Profilbreite wird durch den Imaginärteil von $k_{\mathrm{SPP}}$ (also die Dämpfung der Mode) bestimmt. Die Beobachtung von Leckstrahlung mit optischen Instrumenten ist durch diese Zusammenhänge ein nützliches Werkzeug, um Rückschlüsse auf die Eigenschaften des SPPs zu ziehen.
+			\begin{figure}[h] 
 				\centering
 				\includegraphics[width=0.5\textwidth]{figures/leckstrahlung.pdf}
 				\caption{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
@@ -385,29 +391,42 @@ Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probe-Messungen, di
 
 \section{Ergebnisse und Diskussion}
 	\subsection{Überprüfung der Funktionsweise des LRM}
-		In diesem Abschnitt soll kurz verifiziert werden, ob die Messdaten des LRM tatsächlich Plasmonischer Natur sind. Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 12.07 \pm 0.05\mathrm{\mu m}^{-1}$ bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt. Hierfür wurde für jeden Radius das Integral:
+		In diesem Abschnitt soll kurz verifiziert werden, ob die Messdaten des LRM tatsächlich plasmonischer Natur sind.
+		\subsubsection{Verunreinigte Proben}
+			Die ersten Probemessungen wurden an Proben durchgeführt, die noch aus vorangegangenen Arbeiten übrig geblieben waren. Diese Proben waren auch auf der Goldseite mit Immersionsöl verdreckt. Diese Kontamination sorgte dafür, das die Anregung im k-Raum ein deutlich breiteres Spektrum aufweist. Dies ist durch Dämpfungseffekte auf der Probe zu erklären. Eine der Proben wurden mit Ethanol gereinigt. Daraufhin wurde die Messung wiederholt. Die Kontamination konnte so weitestgehend entfernt werden und die Anregung zeigt ein deutlich schmaleres Spektrum. Allerdings wurde die Probe durch die Reinigung mechanisch so stark beschädigt, dass die Defektdichte zu hoch war, um einen Defekt mit einer Umgebung ohne Fehlstellen zu finden. Insbesondere hat die Reinigung zu vielen Kratzten auf der Goldoberfläche geführt, die scharfe Beugungskanten in der BFP  erzeugen. Für den weiteren Verlauf der Arbeit wurden daher neue Proben hergestellt. Diese Proben wurden statt mit Leitsilber mit Epoxidkleber in die Probenbleche Eingeklebt, so dass keine erneute Kontamination mit Immersionsöl auftreten kann. ToDo: Messdaten verunreinigte Probe!
+		\subsubsection{Bestimmung von  $k_{\mathrm{spp}}$ an neuer Probe}
+		Dafür wurden die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung der BFP durch die NA nur vom Imersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung der BFP zu ermöglichen. In dieser Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in\cite{Jaruschewski.2020} verwendet. Daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der Numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \mathrm{nm}} = 12.07 \pm 0.05\mathrm{\mu m}^{-1}$ bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt. Hierfür wurde für jeden Radius das Integral:
 		$$ I\left(|\vec{k}_{\bot}|\right) = \int_{0}^{2 \pi} I\left(|\vec{k}_{\bot}|, \theta\right)\mathrm{d}\theta$$
 		ausgewertet. Das Maximum dieser radialen Intensitätsverteilung entspricht $k_{\mathrm{spp}} = 10.35\mathrm{\mu m}^{-1}$.
 		 Dieser Wert stimmt bis auf $0.2\%$ mit dem Wert aus der theoretischen Berechnung \eqref{eq:theo_k_spp} überein. Allerdings ist hier zu bemerken, dass die Luft-Gold-Glas Mode auch für die Kalibrierung genutzt worden ist. Die Messdaten sind in Abbildung \ref{fig:example_bfp} und die radiale Intensitätsverteilung ist in Abbildung \ref{fig:radial_profile} dargestellt. Die Einfallsrichtung des Lasers war entlang der $0^\circ$-Linie. Es fällt auf, dass die Anregung in Richtung der Einfallsebene deutlich stärker ausgeprägt ist. 
-			\begin{figure}
-				\label{fig:example_measure}
-				\centering
-				\begin{subfigure}[b]{0.5\textwidth}
+				\begin{figure}
+					\label{fig:example_measure}
 					\centering
-					\includegraphics[width=\textwidth]{figures/example_polar.png}
-					\caption{Intensitätsverteilung in der BFP}
-					\label{fig:example_bfp}
-				\end{subfigure}
-				\hfill
-				\begin{subfigure}[b]{0.49\textwidth}
-					\centering
-					\includegraphics[width=\textwidth]{figures/example_radial.pdf}
-					\caption{Radiale Intensitätsverteilung in der BFP}
-					\label{fig:radial_profile}
-				\end{subfigure}
-				\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
-					Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}			
-			\end{figure}
+					\begin{subfigure}[b]{0.5\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{figures/example_polar.png}
+						\caption{Intensitätsverteilung in der BFP}
+						\label{fig:example_bfp}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[b]{0.49\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{figures/example_radial.pdf}
+						\caption{Radiale Intensitätsverteilung in der BFP}
+						\label{fig:radial_profile}
+					\end{subfigure}
+					\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
+						Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}			
+				\end{figure}
+		Aus der radialen Intensitätsverteilung der BFP lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung der BFP nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über ein Anpassen eines Lorentzprofiles mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Dieser Fit hat $\Im\{k_\mathrm{SPP}\} = 0.16 \mathrm{\mu m}^{-1}$ ergeben. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären. Durch Abbildungsfehler in dem LRM kommt es zu einer Verbreiterung des Profiles in der BFP \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPPs. Außerdem ist die genaue Qualität der Probe unbekannt und weitere Defekte und größere Oberflächenrauheiten können zu einer stärkeren Dämpfung des SPPs führen. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19 \mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht nur um $19\%$ von dem in dieser Arbeit gemessenen Wert ab. Da die Profilbreite im vgl. zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat, oder die Qualität der optischen Abbildung verbessert werden konnte. (In \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet)
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\linewidth]{figures/lorenz_profile}
+			\caption{Lorentz-Fit an radiale Intensitätsverteilung.}
+			\label{fig:lorenz_profile}
+		\end{figure}
+		
+	
 	\subsection{Nachweis des Plasmonischen Spin-Hall-Effektes}
 	Zum Nachweis des Plasmonischen Spin-Hall-Effektes wurde das plasmonische k-Spektrum an einem Punktdefekt in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens gemessen. Die Messung wurde an einem Punktdefekt durchgeführt. Bei der Auswahl des Defektes wurde auf eine möglichst isotrope Anregung und eine möglichst Defekt freie Umgebung geachtet. Das Ortsbild wurde in der Imageplane 1 mit einer Blende auf auf einen einzelnen Defekt gefiltert. Es wurde die BFP für in Unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Außerdem wurde mit einer Schrittweite von $20^\circ$ das Ortsbild der Anregung aufgenommen.
 	
