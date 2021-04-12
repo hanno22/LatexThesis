@@ -35,6 +35,8 @@
 	\maketitle
 	\tableofcontents
 	\newpage
+	\listoffigures 
+	\newpage
 	
 	\section{Einführung}
 	Ein Leckstrahlmikroskop (LRM) dient der Beobachtung von Oberflächen-Plasmon-Polariton (engl. Surface-Plasmon-Polariton SPP). Ein SPP ist eine kollektive Ladungsdichteoszillation der freien Elektronen in einem Metall an der Grenzschicht zu einem Dielektrikum. Diese Elektronendichte-Welle ist stark an das elektromagnetische Feld des Dielektrikums gebunden und eng an der Grenzschicht lokalisiert. SPP können, wenn sie an sehr dünnen Metallfilmen angeregt werden, unter bestimmten Umständen elektromagnetische Strahlung an einer zweiten Grenzschicht in ein weiteres Dielektrikum abgeben. Diese Strahlung wird als Leckstrahlung bezeichnet und kann im Fernfeld mit einem Leckstrahlmikroskop (LRM) beobachtet werden. Aus der Leckstrahlung können verschiedene Rückschlüsse auf die Eigenschaften des SPP gezogen werden.\cite{Drezet.2008}
@@ -67,7 +69,7 @@
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
-		\caption{Quantitativer Verlauf der EM-Felder eines SPP entlang einer Metall-Dielektrikums-Grenzschicht. Das elektrische Feld ist durch die Pfeile dargestellt. Die Schwarzweiß-Skala der Pfeile entspricht dem Betrag der elektrischen Feldstärke. Die $y$-Komponente des Magnetfeldes ist durch die Farbskala dargestellt.}
+		\caption[Elektrisches Feld SPP]{Quantitativer Verlauf der EM-Felder eines SPP entlang einer Metall-Dielektrikums-Grenzschicht. Das elektrische Feld ist durch die Pfeile dargestellt. Die Schwarzweiß-Skala der Pfeile entspricht dem Betrag der elektrischen Feldstärke. Die $y$-Komponente des Magnetfeldes ist durch die Farbskala dargestellt.}
 		\label{fig:electric_field_spp}
 	\end{figure}
 	
@@ -106,7 +108,7 @@
 		\label{fig:dispersion_spp}
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/dispersion.png}
-		\caption{Dispersionskurve der Gold-Vakuum- und der Gold-Glas-Mode. Die Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt dargestellt}		
+		\caption[Dispersion SPP]{Dispersionskurve der Gold-Vakuum- und der Gold-Glas-Mode. Die Lichtlinien im jeweiligen Medium sind zur Orientierung gestrichelt dargestellt}		
 	\end{figure}
 	Die Differenz zwischen Dispersionskurve und Lichtlinie sorgt dafür, dass SPP nicht ohne weiteres von elektromagnetischer Strahlung im jeweiligen Medium angeregt werden können.	
 	\subsubsection{Anregung}
@@ -116,7 +118,7 @@
 	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/Kretschmann.pdf}
-		\caption{Schematischer Aufbau der Kretschmann-Konfiguration. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt}
+		\caption[Kretschmann-Konfiguration]{Schematischer Aufbau der Kretschmann-Konfiguration. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt}
 		\label{fig:kretschman}
 	\end{figure}
 	Die Anregungsstrahlung tritt hier zunächst in das Medium mit $\epsilon_{D_1}$ ein. Hierdurch wird der Wellenvektor der Anregungsstrahlung auf $k_{D_1}=k_0\sqrt{\epsilon_{D_1}}$ vergrößert. Das Material des Prismas wird so gewählt, dass gilt:  $k_{D_1}> k_{\mathrm{SPP}}$ ($k_{\mathrm{SPP}}$ bezieht sich hierbei auf die Mode Metall-Dielektrikum 2 und ergibt sich aus \eqref{eq:dispersion_spp}) Der Einfallswinkel $\theta_E$ wird so gewählt, dass die Projektion von $k_{D_1}$ auf die Goldoberfläche exakt $k_{\mathrm{SPP}}$ entspricht. Es gilt also:
@@ -148,7 +150,7 @@
 	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/leckstrahlung.pdf}
-		\caption{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
+		\caption[Leckstrahlung Drei-Schichtsystem]{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
 		\label{fig:leakage_radiation}
 	\end{figure}
 	\subsubsection{Berechnung von charakteristischen Größen für das System Luft-Gold-Glas}
@@ -229,7 +231,7 @@
 			\caption{Orientierung in z-Richtung}
 			\label{fig:spatial_spectrum_z}
 		\end{subfigure}		
-		\caption{Das Raumfrequenzspektrum eines linear polarisierten Dipols zeigt je nach  dessen Orientierung unterschiedliche Parität. In rot ist jeweils der Realteil, in blau der Imaginärteil und in schwarz der Betrag der jeweiligen Raumfrequenzamplitude dargestellt.}		
+		\caption[Raumfrequenzspektrum linear polarisierter Dipol]{Das Raumfrequenzspektrum eines linear polarisierten Dipols zeigt je nach  dessen Orientierung unterschiedliche Parität. In rot ist jeweils der Realteil, in blau der Imaginärteil und in schwarz der Betrag der jeweiligen Raumfrequenzamplitude dargestellt.}		
 	\end{figure}
 	\subparagraph{Zirkular polarisierte Dipol}
 	Der Dipol sei:
@@ -241,7 +243,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_circ.pdf}
-		\caption{Raumfrequenzspektrum eines zirkular polarisierten Dipols für links und rechts zirkulare Polarisation}
+		\caption[Raumfrequenzspektrum zirkular polarisierter Dipol]{Raumfrequenzspektrum eines zirkular polarisierten Dipols für links und rechts zirkulare Polarisation}
 		\label{fig:spatial_spectrum_circ}
 	\end{figure}	
 	
@@ -257,7 +259,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\linewidth]{figures/spin/prop_spin}
-		\caption{Der Elektrische Feldvektor einer propagierenden zirkular polarisierten Welle beschreibt bei festgehaltener Zeit eine Helix Bahn entlang der Ausbreitungsrichtung. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also bei fortlaufender Zeit eine Kreisbahn senkrecht zur Ausbreitungsrichtung. Die Abbildung ist aus \cite{Bliokh.2014} übernommen.}
+		\caption[Spin propagierende EM-Welle]{Der Elektrische Feldvektor einer propagierenden zirkular polarisierten Welle beschreibt bei festgehaltener Zeit eine Helix Bahn entlang der Ausbreitungsrichtung. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also bei fortlaufender Zeit eine Kreisbahn senkrecht zur Ausbreitungsrichtung. Die Abbildung ist aus \cite{Bliokh.2014} übernommen.}
 		\label{fig:prop_spin}
 	\end{figure}
 	
@@ -267,7 +269,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\linewidth]{figures/spin/ev_spin}
-		\caption{Der Elektrische Feldvektor einer evaneszenten Welle beschreibt bei festgehaltener Zeit eine Zykloide in der $xz$-Ebene. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also eine Kreisbahn.}
+		\caption[Spin evaneszente EM-Welle]{Der Elektrische Feldvektor einer evaneszenten Welle beschreibt bei festgehaltener Zeit eine Zykloide in der $xz$-Ebene. An einem festgehaltenen Ort beschreibt der Elektrische Feldvektor also eine Kreisbahn.}
 		\label{fig:ev_spin}
 	\end{figure}
 
@@ -276,7 +278,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=1.0\linewidth]{figures/spin_hall_schema.pdf}
-		\caption{Spin-Erhaltung beim Plasmonischen-Spin-Hall Effekt. In Blau ist jeweils der Spin des Plasmons und der anregenden Strahlung gekennzeichnet.}
+		\caption[Spin-Erhaltung PSHE]{Spin-Erhaltung beim Plasmonischen-Spin-Hall Effekt. In Blau ist jeweils der Spin des Plasmons und der anregenden Strahlung gekennzeichnet.}
 		\label{fig:spin_hall_schema}
 	\end{figure}
 	
@@ -296,7 +298,7 @@
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/FourierLinse.pdf}
-		\caption{Eine Sammellinse erzeugt das Fraunhofersche-Beugungsbild in ihrer hinteren Brennebene(BFP). Parallele Strahlen werden in Abhängigkeit ihres Winkels zur optischen Achse auf einem Punkt in der BFP fokussiert. Die Abbildung ist an eine Abbildung aus \cite{Hecht.2018} angelehnt.}
+		\caption[Fourieroptik]{Eine Sammellinse erzeugt das Fraunhofersche-Beugungsbild in ihrer hinteren Brennebene(BFP). Parallele Strahlen werden in Abhängigkeit ihres Winkels zur optischen Achse auf einem Punkt in der BFP fokussiert. Die Abbildung ist an eine Abbildung aus \cite{Hecht.2018} angelehnt.}
 		\label{fig:FourierLinse}
 	\end{figure}
 	Da hinter der Probe nicht nur die Leckstrahlung, sondern auch die Strahlung des direkt transmittierten Strahls zu beobachten ist, ist es notwendig die Leckstrahlung zu selektieren. Die Leckstrahlung tritt dank der notwendigen Phasenanpassung nur unter einem charakteristischen Winkel zur optischen Achse \eqref{eq:phase_condition} aus der Probe aus. Daher ist es möglich, die Leckstrahlung durch ihren Emissionswinkel zu identifizieren. Hierfür ist die Fourier-Optik nützlich. Eine Sammellinse besitzt die Eigenschaft, in  der hinteren Brennebene (eng. Back Focal Plane BFP) ein Winkel aufgelöstes Bild von der Strahlung die sie erreicht, zu erzeugen\cite{Hecht.1996}. Die Position eines Lichtstrahles in der BFP ist also nur von dem Winkel des Strahls zur optischen Achse, nicht aber von der absoluten Position des Strahles vor der Linse abhängig. So ist es möglich gezielt bestimmte Emissionswinkel in der BFP aus dem Bild herauszufiltern. Dieses winkelaufgelöste Bild kann auch als eine räumliche Fouriertransformation der Feldstärkeverteilung an der beobachteten Struktur aufgefasst werden. 
@@ -313,7 +315,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{figures/Polarisation_lambda}
-		\caption{Die Abbildung zeigt die Polarisation abhängig von der relativen Orientierung zwischen $\lambda/4$-Plättchen und Polfilter hinter dem $\lambda/4$-Plättchen.}
+		\caption[Polarisation $\lambda/4$-Plättchen]{Die Abbildung zeigt die Polarisation abhängig von der relativen Orientierung zwischen $\lambda/4$-Plättchen und Polfilter hinter dem $\lambda/4$-Plättchen.}
 		\label{fig:polarisationlambda}
 	\end{figure}
 	
@@ -334,7 +336,7 @@
 			\caption{Foto des Aufbau}
 			\label{fig:aufsicht_aufbau_anotated}
 		\end{subfigure}
-		\caption{Die Komponenten des Aufbaus sind: CMOS-Sensor (CMOS), Optionale Linse (OL), Linse2 (L2), BeamBlock (BB), Linse1 (L1), ImageFilter (IF), Linse2 (L2), Immersionsobjektiv (IO), Probe, Einkoppel-Linse (EL), Verzögerungsplättchen ($\lambda/4$), Polarisationsfilter (PF), Neutraldichtefilter (ND), He-Ne Laser (He-Ne). Außerdem ist auch noch eine LED Hintergrundbeleuchtung verbaut. In Rot ist schematisch der Strahlengang des Lasers eingezeichnet. Die Abbildung des Schematischen Aufbaus ist an die Abbildung von Jaruschewski \cite{Jaruschewski.2020} angelehnt}
+		\caption[Versuchsaufbau]{Die Komponenten des Aufbaus sind: CMOS-Sensor (CMOS), Optionale Linse (OL), Linse2 (L2), BeamBlock (BB), Linse1 (L1), ImageFilter (IF), Linse2 (L2), Immersionsobjektiv (IO), Probe, Einkoppel-Linse (EL), Verzögerungsplättchen ($\lambda/4$), Polarisationsfilter (PF), Neutraldichtefilter (ND), He-Ne Laser (He-Ne). Außerdem ist auch noch eine LED Hintergrundbeleuchtung verbaut. In Rot ist schematisch der Strahlengang des Lasers eingezeichnet. Die Abbildung des Schematischen Aufbaus ist an die Abbildung von Jaruschewski \cite{Jaruschewski.2020} angelehnt}
 		\label{fig:Aufbau}
 	\end{figure}
 	\subsubsection{Optische Komponenten und ihre Funktion}
@@ -374,7 +376,7 @@
 			\caption{Kollision Linse mit Probe}
 			\label{fig:kollision}
 		\end{subfigure}
-		\caption{Diese Abbildungen zeigen die Linsenhalterung welche über einen Querarm an einer xyz-Verfahreinheit montiert ist, und die Kollision zwischen Linsenhalterung und Probe}
+		\caption[Einkoppellinse-Halterung]{Diese Abbildungen zeigen die Linsenhalterung welche über einen Querarm an einer xyz-Verfahreinheit montiert ist, und die Kollision zwischen Linsenhalterung und Probe}
 		\label{fig:linsenhalterung}
 	\end{figure}
 	
@@ -383,7 +385,7 @@
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/Probenhalter.pdf}
-		\caption{Probenhalter mit Montierter Probe vor dem Immersionsobjektiv}
+		\caption[Probenhalterung]{Probenhalter mit Montierter Probe vor dem Immersionsobjektiv}
 		\label{fig:probenhalter}
 	\end{figure}
 	\paragraph{Cage-System}
@@ -391,7 +393,7 @@
 	\begin{figure}[htbp] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/Cage_System.pdf}
-		\caption{Tubuslinse, 4f-System, optionale Linse und CMOS im Cage-System}
+		\caption[Cage-System]{Tubuslinse, 4f-System, optionale Linse und CMOS im Cage-System}
 		\label{fig:cage_system}
 	\end{figure}	
 	\subsection{Probe}
@@ -411,7 +413,7 @@
 			\caption{Glasseite}
 			\label{fig:probe_rueckseite}
 		\end{subfigure}
-		\caption{Die Bilder zeigen die in das Edelstahlblech eingeklebte Probe. In rot ist die Verklebung markiert. Hierbei ist darauf zu achten, dass die Klebung dicht ist, so dass kein Öl von der Glasseite auf die Goldseite laufen kann.}
+		\caption[Eingeklebte Probe]{Die Bilder zeigen die in das Edelstahlblech eingeklebte Probe. In rot ist die Verklebung markiert. Hierbei ist darauf zu achten, dass die Klebung dicht ist, so dass kein Öl von der Glasseite auf die Goldseite laufen kann.}
 		\label{fig:probe}
 	\end{figure}
 	\subsection{Justage des Aufbaus}
@@ -451,7 +453,7 @@
 			\caption{Intensitätsverteilung in der BFP}
 			\label{fig:example_bfp}		
 		\end{subfigure}
-		\caption{ Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
+		\caption[Messwerte bei linearer Polarisation]{Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
 			Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35 \mathrm{\mu m ^{-1}}$.}			
 	\end{figure}
 	Aus der radialen Intensitätsverteilung der BFP lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung der BFP nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über ein Anpassen eines Lorentzprofiles mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Dieser Fit hat $\Im\{k_\mathrm{SPP}\} = 0.16 \mathrm{\mu m}^{-1}$ ergeben. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären. Durch Abbildungsfehler in dem LRM kommt es zu einer Verbreiterung des Profiles in der BFP \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPP. Außerdem ist die genaue Qualität der Probe unbekannt und weitere Defekte und größere Oberflächenrauheiten können zu einer stärkeren Dämpfung des SPP führen. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19 \mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht nur um $19\%$ von dem in dieser Arbeit gemessenen Wert ab. Da die Profilbreite im vgl. zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat, oder die Qualität der optischen Abbildung verbessert werden konnte. (In \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet)
@@ -506,7 +508,7 @@
 			\caption{Kontrast zwischen oberem und unterem SPP}
 			\label{fig:intensity_front}
 		\end{subfigure}
-		\caption{Die Differenz BFP-Abbildungen zeigen jeweils die relative Differenz in der Intensitäten in der BFP zwischen $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$ also die Fälle von links bzw. rechts zirkular Polarisierter Anregung. Außerdem sind in der BFP in schwarz jeweils die Integrationsmasken dargestellt. Der Rand der Abbildung entspricht$k_0\mathrm{NA}$. Die Abbildungen auf der linken Seite zeigen die Abhängigkeit des Kontrastes zwischen der Intensität in der oberen und der unteren Integrationsmaske in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens. Die vertikalen Linien in dem Diagramm an den Positionen $\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$ entsprechen einer Anregung mit zirkular polarisiertem Licht (alternierend links bzw. rechts zirkular).}	
+		\caption[PSHE Messung]{Die Differenz BFP-Abbildungen zeigen jeweils die relative Differenz in der Intensitäten in der BFP zwischen $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$ also die Fälle von links bzw. rechts zirkular Polarisierter Anregung. Außerdem sind in der BFP in schwarz jeweils die Integrationsmasken dargestellt. Der Rand der Abbildung entspricht$k_0\mathrm{NA}$. Die Abbildungen auf der linken Seite zeigen die Abhängigkeit des Kontrastes zwischen der Intensität in der oberen und der unteren Integrationsmaske in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens. Die vertikalen Linien in dem Diagramm an den Positionen $\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$ entsprechen einer Anregung mit zirkular polarisiertem Licht (alternierend links bzw. rechts zirkular).}	
 	\end{figure}
 	\subsection{Diskussion}
 	In den Messdaten ist sind für unterschiedliche Ausbreitungsrichtungen relativ zum Einfallsebene des Lasers qualitativ unterschiedliche Verhaltensweisen zu beobachten.
@@ -539,7 +541,7 @@
 			\caption{Intensitätsverteilung}
 			\label{fig:RF_measure_int}
 		\end{subfigure}
-		\caption{Die Abbildung zeigt die Messungen von \cite{RodriguezFortuno.2013}, die an einer Gitterstruktur durchgeführt worden sind.}			
+		\caption[Vergleichsmessung von \cite{RodriguezFortuno.2013}]{Die Abbildung zeigt die Messungen von \cite{RodriguezFortuno.2013}, die an einer Gitterstruktur durchgeführt worden sind.}			
 	\end{figure}
 	
 	\paragraph{Vergleich mit Spin-Hall-Effekt}
@@ -574,7 +576,7 @@
 		\caption{Intensitätsverteilung}
 		\label{fig:dirt_polar}
 		\end{subfigure}
-		\caption{Die Abbildung zeigt die BFP bei der Messung an einer mit Öl verdreckten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an nicht kontaminierten Proben.}			
+		\caption[Messung kontaminierte Probe]{Die Abbildung zeigt die BFP bei der Messung an einer mit Öl verdreckten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an nicht kontaminierten Proben.}			
 	\end{figure}
 		
 	\section{Polarimeter}
