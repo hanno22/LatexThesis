@@ -1,0 +1,163 @@
+% !TeX root = vortrag
+\documentclass[aspectratio=1610]{beamer}
+\usetheme{default}
+\usecolortheme{dove}
+\usepackage[utf8]{inputenc}
+\renewcommand{\Re}{\operatorname{\mathbb{R}e}}
+\renewcommand{\Im}{\operatorname{\mathbb{I}m}}
+
+%Information to be included in the title page:
+\title{Aufbau und Justage eines Leckstrahlmikroskopes zum Nachweis des plasmonischen Spin-Hall-Effektes}
+\subtitle{Bachelorarbeit}
+\author{Hanno Christiansen}
+\institute{Christian-Albrechts-Universität zu Kiel}
+\date{2021}
+
+
+
+\begin{document}
+	
+	\frame{\titlepage}
+	
+	\begin{frame}
+		\frametitle{Gliederung}
+		\tableofcontents
+	\end{frame}
+
+	\section{Theorie}
+		\subsection{Surface Plasmon Polariton (SPP)}	
+		\begin{frame}
+			\frametitle{Surface Plasmon Polariton (SPP)}	
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
+			\end{figure}	
+			
+		\end{frame}
+	
+		\begin{frame}
+			\frametitle{Orientierung der Felder}
+				\begin{subequations}
+				\begin{equation}
+					\vec{E}_n = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{spp}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)	
+				\end{equation}
+				\begin{equation}
+					\vec{H}_n = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} H_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)
+				\end{equation}
+			\end{subequations}
+		\end{frame}
+	
+		\begin{frame}
+			\frametitle{Dispersion SPP}
+			\begin{equation}
+				\boxed{k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_D\epsilon_M(\omega)}{\epsilon_D + 	\epsilon_M(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
+			\end{equation}	
+		\end{frame}	
+		
+		\begin{frame}
+		\frametitle{Dispersion SPP}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\textwidth]{figures/dispersion.png}
+		\end{figure}
+		\end{frame}
+	
+		\begin{frame}
+		\frametitle{Kretschmann-Konfiguration}
+		\begin{figure}[h] 
+			\centering
+			\includegraphics[width=0.7\textwidth]{figures/Kretschmann.pdf}
+			\caption[Kretschmann-Konfiguration]{Schematischer Aufbau der Kretschmann-Konfiguration. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt}
+		\end{figure}
+		\begin{align}
+			\sin(\theta_E) &= \dfrac{\Re\{k_{\mathrm{spp}}\}}{k_{D_1}}\\
+			\Rightarrow \Re\{k_{\mathrm{SPP}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{D_1}}
+		\end{align}
+		\end{frame}
+	
+		\begin{frame}
+			\frametitle{Leckstrahlung}
+			\begin{figure}[h] 
+				\centering
+				\includegraphics[width=0.7\textwidth]{figures/leckstrahlung.pdf}
+				\caption[Leckstrahlung Drei-Schichtsystem]{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
+			\end{figure}
+			\begin{equation}
+				\boxed{\Re\{k_{\mathrm{spp}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{D_1}}}
+			\end{equation}
+		\end{frame}	
+		
+	
+	
+
+		\subsection{Plasmonischer Spin-Hall-Effekt (PSHE)}
+			\begin{frame}
+				\frametitle{Spin von elektromagnetischer Strahlung}
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.7\linewidth]{figures/spin/prop_spin}
+				\end{figure}
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=0.7\linewidth]{figures/spin/ev_spin}
+				\end{figure}				
+			\end{frame}
+		
+		\begin{frame}
+			\frametitle{Spinerhaltung}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=1.0\linewidth]{figures/spin_hall_schema.pdf}
+				\caption[Spin-Erhaltung PSHE]{Spin-Erhaltung beim plasmonischen Spin-Hall-Effekt. In blau ist jeweils der Spin des Plasmons und der anregenden Strahlung gekennzeichnet.}
+			\end{figure}
+		\end{frame}
+	
+		\begin{frame}
+			\frametitle{Raumfrequenzdarstellung Elektromagnetischer Strahlung}
+			\begin{equation}
+				\vec{E}(x,z) = 	\int_{-\infty}^{\infty}\mathrm{d}{k_x}\hat{\vec{E}}(k_x,z)\exp(ik_xx)			
+			\end{equation}
+			\begin{equation}
+				\hat{\vec{E}}(k_x,z) = 	\dfrac{1}{2\pi}\int_{-\infty}^{\infty}\mathrm{d}x\vec{E}(x,z)\exp(-ik_xx)
+			\end{equation}
+				Medium entlang der $x$-Achse homogen, isotrop, linear und quellfrei:
+		 	\begin{equation}
+			 	\hat{\vec{E}}(k_x,z) =\hat{\vec{E}}(k_x,z= 0) \exp(\pm ik_ z)
+			 \end{equation}
+		 		mit:
+		 	\begin{equation}
+		 		k_z := \sqrt{k^2-k_x^2}
+		 	\end{equation}		
+		\end{frame}
+	
+		\begin{frame}
+			\frametitle{Raumfrequenzspektrum zirkular polarisierter Dipol}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_circ.pdf}
+				\caption[Raumfrequenzspektrum zirkular polarisierter Dipol]{Raumfrequenzspektrum eines zirkular polarisierten Dipols für links und rechts zirkulare Polarisation}
+			\end{figure}		
+		\end{frame}
+	\section{Messung und Methoden}
+	\begin{frame}
+		\frametitle{Leckstrahlmikroskopie}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\textwidth]{figures/Aufbau_Schema.pdf}
+			\caption{Schematischer Aufbau}			
+		\end{figure}		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Leckstrahlmikroskopie}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
+			\caption{Aufsicht des Aufbau}			
+		\end{figure}		
+	\end{frame}
+	
+	
+
+	
+\end{document}
