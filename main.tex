@@ -309,11 +309,92 @@
 	
 	\paragraph{4f-Aufbau}
 	In dieser Arbeit wird für diese optische Filterung ein $4f$-Aufbau verwendet. Ein $4f$-Aufbau besteht aus zwei Linsen mit der Brennweite $f$, die im Abstand $2f$ zueinander angeordnet werden. Die beiden Linsen werden so positioniert, dass sich im Abstand $f$ von der ersten Linse das Zwischenbild des Immersionsobjektivs befindet. Zwischen den beiden Linsen entsteht nun ein winkelaufgelöstes Fourierbild; Dieses wird durch die numerische Apertur des Immersionsbildes scharf begrenzt.  In diesem winkelaufgelösten Fourierbild kann nun gezielt ein Teil des Fourierspektrums (d.h. der Strahlung, die unter einem bestimmten Winkel zur optischen Achse aus der Probe ausgetreten ist) herausgefiltert werden. Die zweite Linse erzeugt nun aus diesem gefilterten Fourierspektrum wieder das Ortsbild. Dieses besteht nun nur noch aus den ausgewählten Fourierkomponenten. Der $4f$-Aufbau ist schematisch in Abbildung \ref{fig:aufbau_schema} erläutert. In dieser Arbeit wurde so der direkt transmittierte Strahl aus der optischen Abbildung eliminiert.
+	\subsection{Bestimmung der Polarisation des Anregungslasers}
+	\label{sec:polarimeter}
+	Für die Kontrolle der Polarisation des Anregungslasers ist es von entscheidender Bedeutung, dass der ursprüngliche Polarisationszustand bekannt ist. Außerdem zeigt die folgende Messung, dass die vom Hersteller angegebene Orientierung des $\lambda/4$-Plättchens und des Polfilters grob stimmen. Die Messungen sind außerdem ein starkes Indiz dafür, dass sowohl das $\lambda/4$-Plättchen als auch der Polarisationsfilter ordnungsgemäß funktionieren. Die folgenden Ausführungen sind für das Verständnis der weiteren Arbeit nicht zwingend erforderlich, schließen aber einige wichtige Fehlerquellen aus. Außerdem zeigt die folgende Messung, dass der Polfilter der in dem Hauptaufbau vor dem $\lambda / 4$-Plättchen verwendet worden ist, um die Polarisation vor dem $\lambda / 4$-Plättchen zu definieren, notwendig ist. Der Quellcode für die in diesem Abschnitt durchgeführte Simulation ist unter \url{https://github.com/hanno22/SpinHallEffectThesis/blob/master/models} in den Dateien \textit{JonesFormalism.py} und \textit{Lambda4OrientationDataSet.py} zu finden (Die Funktionalität ist dort jeweils in Klassen gegliedert).
+	\subsubsection{Jones-Formalismus}
+	Der Jones-Formalismus ist ein Formalismus, der es ermöglicht, die Polarisation von elektromagnetischer Strahlung mathematisch zu beschreiben. Die folgenden Ausführungen orientieren sich an \cite{Hecht.2018} Das elektrische Feld einer monochromatischen ebenen Welle lässt sich durch folgenden Ausdruck beschreiben:
+	\begin{equation}
+		\vec{E}(z, t) = \underbrace{\begin{pmatrix}E_x \\ E_y\end{pmatrix}}_{\vec{J}} \exp(i(kz-\omega t))
+	\end{equation}
+	Hierbei ist $\vec{J} := \begin{pmatrix}E_x \\ E_y\end{pmatrix}$ der aus den beiden komplexen Zahlen $E_x, E_y$ bestehende Jones-Vektor. Der Jones-Vektor beschreibt also die Amplitude und das Phasenverhältnis der beiden Feldkomponenten und charakterisiert den Polarisationszustand der EM-Welle somit vollständig. Der Jones-Vektor wird also durch die vier reellen Parameter $\Re\{E_x\}, \Im\{E_x\}, \Re\{E_y\}, \Im\{E_y\}$ vollständig bestimmt. Es gibt neben diesen Parametersatz auch noch weitere Kombination von vier Parametern, die den Polarisationzustand vollständig beschreiben. (Basiswechsel des Jones-Vektors)Beispielsweise die Parameter...
+	Ein beliebiges optisches Element, dass den Polarisationzustand einer EM-Welle beinflusst lässt sich nun durch eine komplexe $2 \times 2$-Jones-Matrix $\boldsymbol{M}$ beschreiben. Wenn die EM-Welle vor dem optischen Element den durch den Jones-Vektor $\vec{J}$ beschriebenen Polarisationszustand hat, hat sie nach dem Durchgang durch das optischen Element den Polarisationszustand:
+	\begin{equation}
+		\vec{J}^\prime = \boldsymbol{M} \vec{J}  =  
+		\begin{pmatrix}
+			M_{11} & M_{12} \\
+			M_{21} & M_{22}
+		\end{pmatrix}
+		\begin{pmatrix}
+			J_x \\
+			J_y
+		\end{pmatrix} = 
+		\begin{pmatrix}
+			M_{11} J_x + M_{12} J_y \\
+			M_{21} J_x + M_{22} J_y
+		\end{pmatrix}		
+	\end{equation}
+	Unterschiedliche optische Elemente lassen sich nun durch verschiedene Jones-Matrizen beschreiben. So ist die Jones-Matrix eines in $x$-Richtung orientierten Polfilters beispielsweise:
+	\begin{equation}
+		\boldsymbol{M}_{\mathrm{PF}} = \begin{pmatrix}
+			1 & 0 \\
+			0 & 0
+		\end{pmatrix}
+	\end{equation}
+	oder eines $\lambda / 4$-Plättchens mit schneller Achse entlang der $x$-Richtung orientiert:	
+	\begin{equation}
+		\boldsymbol{M}_{\mathrm{\lambda / 4}} = \dfrac{1}{\sqrt{2}}\begin{pmatrix}
+			1-i & 0 \\
+			0 & 1+i
+		\end{pmatrix}
+	\end{equation}
+	Die Drehung eines optischen Elements lässt sich durch das Anwenden einer Rotationsmatrix auf die Jones-Matrix ausdrücken:
+	\begin{equation}
+		\boldsymbol{M}(\Phi) = \boldsymbol{R}(\Phi)\boldsymbol{M}\boldsymbol{R}(-\Phi)
+	\end{equation}
+	mit der Rotationsmatrix:
+	\begin{equation}
+		\boldsymbol{R}(\Phi) = \begin{pmatrix}
+			\cos\Phi & - \sin\Phi \\
+			\sin\Phi & \cos\Phi
+		\end{pmatrix}
+	\end{equation}
+	\paragraph{Bestimmung der Polarisation des Anregungslasers mit Hilfe eines Jones-Polarimeter}
+	Ein Polarimeter ist eine Apparatur, die eine vollständigen Bestimmung der Polarisation von einer EM-Welle ermöglicht. Eine Realisierung eines Polarimeters ist ein Jones-Polarimeter. Dieses besteht in Strahlreihenfolge aus einem $\lambda / 4$ Plättchen, einem Polfilter und einem Leistungsmessgerät (Abbildung \ref{fig:polarimeter}). Um nun den Jones-Vektor $\vec{J}$ von einer monochromatischen ebenen Welle mit Hilfe des Jones-Polarimeters zu bestimmen, wird die Leistung in Abhängigkeit von der Orientierung $\alpha_{\lambda/4}$ des $\lambda / 4$-Plättchens gemessen: $P = P(\alpha_{\lambda/4})$. Die Form dieses Leistungsverlaufes hängt nun nur von dem ursprünglichen Polarisationszustand der EM-Strahlung ab. Um nun aus $P(\alpha_{\lambda/4})$ die Komponenten des Jones-Vektor $\vec{J}$ zu rekonstruieren, wurde das Experiment mit einem \textit{Python}-Skript simuliert. Der Polarisationszustand hinter dem Polarimeter $\vec{J}^\prime$ lässt sich mit Hilfe des Jones-Formalismus durch folgenden Ausdruck berechnen:
+	\begin{equation}
+		\vec{J}^\prime = \boldsymbol{M}_\mathrm{PF} \boldsymbol{R}(\alpha_{\lambda/4})\boldsymbol{M}_{\lambda / 4}\ \boldsymbol{R}(-\alpha_{\lambda/4})\vec{J}
+	\end{equation}
+	Die Intensität und damit auch die Leistung bei konstantem Strahlquerschnitt, die an dem Leistungsmessgerät ankommt ist hierbei proportional zum Betragsquadrat des Jones-Vektors:
+	\begin{equation}
+		P(\vec{J}^\prime) \propto \left|\vec{J}^\prime\right|^2
+	\end{equation}
+	Die theoretisch erwartete Leistung $P$, die an dem Leistungsmessgerät erwartet wird, ergibt sich also in Abhängigkeit von $\alpha_{\lambda/4}$ und $\vec{J}$ zu:
+	\begin{equation}
+		P(\alpha_{\lambda/4}, \vec{J}) = \left|\boldsymbol{M}_\mathrm{PF} \boldsymbol{R}(\alpha_{\lambda/4})\boldsymbol{M}_{\lambda / 4}\ \boldsymbol{R}(-\alpha_{\lambda/4})\vec{J}\right|^2 \cdot \mathrm{const.}
+		\label{eq:simulation_polarimeter}
+	\end{equation}
+	Diese Funktion kann nun mit den Komponenten von $\vec{J}$ als Parameter mit Hilfe der Methode der kleinsten quadratischen Abweichung (engl. \textit{least square fit}) an die Messdaten angepasst werden. Die resultierenden Fit-Parameter sind dann die Komponenten des ursprünglichen Jones-Vektors $\vec{J}$. Dieser Fit an die Messdaten und die resultierende Polarisations-Ellipse ist in Abbildung \ref{fig:graphpolarimeter} dargestellt. In der Abbildung ist zu erkennen, dass die Messdaten sehr gut mit der Simulation übereinstimmen. Dies ist ein starkes Indiz für die korrekte Funktionsweise der Komponenten. Allerdings zeigt die Messung auch, dass der Laser nicht rein linear Polarisiert ist. Hierfür ist die Elliptizität $\epsilon$ der Polarisation ein gutes Maß:
+	\begin{equation}
+		\epsilon = \dfrac{a}{b}
+	\end{equation}
+	Hierbei ist $a$ die große Halbachse der Polarisationsellipse und $b$ die kleine Halbachse der Polarisationsellipse. Die Elliptizität des Lasers wurde in dieser Arbeit auf $\epsilon = 0.1 $ bestimmt. Durch diese Abweichungen des Lasers von einer rein linearen Polarisation, war es notwendig die Polarisation des Lasers vor dem $\lambda /4$-Plättchen im Hauptaufbau durch einen Polfilter festzulegen.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{figures/Polarimeter}
+		\caption[Jones-Polarimeter]{Die Abbildung zeigt den schematischen Aufbau eines Jones-Polarimeter. Die Komponenten in Strahlreihenfolge sind: Helium-Neon-Laser (\textbf{He-Ne}), $\lambda/4$-Plättchen ($\boldsymbol{\lambda / 4}$), Polfilter (\textbf{PF}), Leistungsmessgerät(\textbf{LM}). Das $\lambda/4$-Plättchen ist kann um die optische Achse rotiert werden.}
+		\label{fig:polarimeter}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{figures/graph_polarimeter}
+		\caption[Polarimeter Simulation]{Diese Abbildung zeigt die Messdaten einer Messung mit dem Jones-Polarimeter. Der untere Teil der Abbildung zeigt die gemessene Leistung $P(\alpha_{\lambda /4}$. Die blauen Kreuze sind hierbei jeweils Messpunkte. Die oragne gestrichelte Linie zeigt die mit einem \textit{least square fit} an die Messdaten angepasste Simulation des Polarimeter Aufbaus. Der obere Teil der Abbildung zeigt die im unteren Teil verwendeten Fit-Parameter für den Jones-Vector $\vec{J}$. Hierbei wurde die Polarisationsellipse und die große Halbachse $a$ und die kleine Halbachse $b$ eingezeichnet. Die Feldstärken sind dabei in willkürlichen Einheiten dargestellt, da für die exakte Feldstärken Bestimmung nicht die Leistung, sondern die Intensität nach dem Durchgang durch das Polarimeter gemessen werden müsste.}
+		\label{fig:graphpolarimeter}
+	\end{figure}
 	\subsection{Einstellung der Polarisation des Lasers}
 	\label{sec:cntr_pol}
-	Um den optischen Spin-Hall-Effekt nachweisen zu können, ist es notwendig, die Polarisation des Anregungslasers zu kontrollieren. Hierfür wurden ein Polfilter und eine $\lambda /4$-Verzögerungsplatte verwendet. Der in dieser Arbeit verwendete He-Ne-Laser der Firma \textit{Thorlabs} ist linear polarisiert. 
+	Um den optischen Spin-Hall-Effekt nachweisen zu können, ist es notwendig, die Polarisation des Anregungslasers zu kontrollieren. Hierfür wurden ein Polfilter und eine $\lambda /4$-Verzögerungsplatte verwendet. Der in dieser Arbeit verwendete He-Ne-Laser der Firma \textit{Thorlabs} ist ungefähr linear polarisiert (Eine detaillierte Analyse der Polarisation des Laser ist in Abschnitt \ref{sec:polarimeter} zu finden). 
 	\paragraph{Polarisationsfilter}	
-	Um die Polarisationsebene des Lasers präzise festzulegen, wurde ein linearer Polfilter verwendet. Ein beliebiger Polarisationszustand lässt sich immer durch eine Überlagerung von zwei senkrecht aufeinander stehenden linearen Polarisationen darstellen. Ein Polfilter transmittiert nun nur Licht, welches entlang einer festgelegten Achse linear polarisiert ist. Die anderen Polarisationsrichtungen werden absorbiert oder reflektiert. Ein Polfilter kann also aus einer beliebigen Polarisation linear polarisiertes Licht erzeugen. Der  Polfilter wurde nach dem letzten Spiegel des optischen Aufbaus positioniert, da ein Spiegel im Allgemeinen unterschiedliche Reflektivitäten für EM-Strahlung aufweist, je nachdem, ob diese Strahlung senkrecht oder vielmehr parallel zur Einfallsebene des Strahls auf den Spiegel polarisiert ist. Der Filter wurde auf eine Polarisation parallel zur Einfallsebene eingestellt und der Laser dann so entlang der optischen Achse gedreht, dass die gemessene Intensität hinter dem Polfilter maximal ist. So entsteht hinter dem Polfilter unabhängig  von der exakten ursprünglichen Polarisation des Lasers $p$-polarisiertes Licht.
+	Um den Polarisationszustand des Lasers präzise festzulegen, wurde ein linearer Polfilter verwendet. Ein beliebiger Polarisationszustand lässt sich immer durch eine Überlagerung von zwei senkrecht aufeinander stehenden linearen Polarisationen darstellen. Ein Polfilter transmittiert nun nur Licht, welches entlang einer festgelegten Achse linear polarisiert ist. Die anderen Polarisationsrichtungen werden absorbiert oder reflektiert. Ein Polfilter kann also aus einer beliebigen Polarisation linear polarisiertes Licht erzeugen. Der  Polfilter wurde nach dem letzten Spiegel des optischen Aufbaus positioniert, da ein Spiegel im Allgemeinen unterschiedliche Reflektivitäten für EM-Strahlung aufweist, je nachdem, ob diese Strahlung senkrecht oder vielmehr parallel zur Einfallsebene des Strahls auf den Spiegel polarisiert ist. Der Filter wurde auf eine Polarisation parallel zur Einfallsebene eingestellt und der Laser dann so entlang der optischen Achse gedreht, dass die gemessene Intensität hinter dem Polfilter maximal ist. So entsteht hinter dem Polfilter unabhängig  von der exakten ursprünglichen Polarisation des Lasers $p$-polarisiertes Licht.
 	\paragraph{Verzögerungsplättchen}
 	Mit einem Verzögerungsplättchen lässt sich die Polarisation einer einfallenden Welle verändern. Eine EM-Welle lässt sich immer als Überlagerung von zwei linear senkrecht zueinander polarisierten Wellen beschreiben. Diese beiden senkrecht aufeinander stehenden Polarisationen sind im Allgemeinen zueinander phasenverschoben. Das Funktionsprinzip eines Verzögerungsplättchens besteht darin, die relative Phasenverschiebung zwischen diesen beiden Polarisationen zu verändern. So kann man mit einem geschickt gewählten Verzögerungsplättchen aus jeder beliebigen Ausgangspolarisation in einen beliebigen anderen Polarisationszustand wechseln. Ein Verzögerungsplättchen weist immer eine schnelle und eine langsame Achse auf. Diese beiden Achsen stehen senkrecht aufeinander. Die Phasenverschiebung zwischen zwei EM-Wellen, von denen die eine entlang der langsamen Achse und die andere entlang der schnellen Achse polarisiert ist, stellt eine charakteristische Größe ($\Delta\Phi$) des jeweiligen Verzögerungsplättchens dar. Physikalisch  werden Verzögerungsplättchen durch doppelbrechende Kristalle realisiert. Die jeweilige Phasendifferenz ist hierbei von der Dicke des doppelbrechenden Kristalls und von den Brechungsindizes der langsamen und der schnellen Kristallachse abhängig. Wenn diese Größen so dimensioniert sind, dass die Phasendifferenz zwischen den beiden Polarisationen, die eine EM-Welle beim Durchgang durch das Plättchen erfährt, $\Delta \Phi = \pi /4 $ ist, spricht man von einem  $\lambda /4$-Verzögerungsplättchen. Diese Phasendifferenz ist immer an eine bestimmte Wellenlänge angepasst.  Ein $\lambda /4$-Verzögerungsplättchen kann aus linear polarisiertem Licht zirkular polarisiertes Licht erzeugen, wenn eine der beiden Kristallachsen eine Orientierung von 45° zur ursprünglichen Polarisationsachse des Lasers aufweist \cite{Hecht.2018}. Diese Eigenschaft wurde in dieser Arbeit ausgenutzt. In Abbildung \ref{fig:polarisationlambda} ist die Polarisation hinter dem Verzögerungsplättchen in Abhängigkeit der relativen Orientierung vom Polfilter zum $\lambda /4$-Verzögerungsplättchen dargestellt. 
 	\begin{figure}
@@ -422,88 +503,6 @@
 	\end{figure}
 	\subsection{Justage des Aufbaus}
 	Die allgemeine Justage des LRM verlief - bis auf die Justage des Lasers auf die Probe - wie von \textit{Jaruschewski} \cite{Jaruschewski.2020} beschrieben. Dieses war durch den notwendigen schrägen Einfall des Lasers auf die Probe deutlich erschwert. Die Justage erfolgte mit montierter Probe. Zunächst wurde die Probe mit Hilfe der Hintergrundbeleuchtung in den korrekten Abstand zum IO gebracht (im korrekten Abstand ist das Bild der Probe scharf zu sehen). Als nächstes wurde der Laser mit zwei Spiegeln grob in dem erwünschten Winkel auf die Probe justiert. Danach wurden Einkoppellinse, $\lambda/4$-Plättchen und Polfilter in den Strahlgang gestellt. Die Feinjustierung des Lasers auf die Probe wurde nun durch das Verschieben der Einkoppellinse durchgeführt. Hierbei ist es hilfreich, den Strahl durch das Verfahren der EL entlang der optischen Achse etwas zu de-fokussieren, so dass man die Randbereiche des Strahls über den CMOS-Sensor in der Image-Plane auch schon sehen kann, wenn der Strahl noch nicht exakt die optische Achse trifft. Sobald ein Teil des Strahls in der Image-Plane detektiert worden ist, wird er durch weiteres Bewegen der Linse zentriert und dann schrittweise weiter fokussiert. Durch das Verkippen der Einkoppellinse zum Laser wandert der Strahl beim Fokussieren des Lasers auf der Probe aus. Das Verkippen der Linse wird behoben, sobald der Laser optimal fokussiert ist. Hierfür wird der Laser durch die beiden Spiegel sukzessive so einjustiert, dass der Spot auf der Probe beim Defokussieren des Lasers nicht mehr wandert.
-	\subsection{Bestimmung der Polarisation des Anregungslasers}
-	Für die Kontrolle der Polarisation des Anregungslasers ist es von entscheidender Bedeutung, dass der ursprüngliche Polarisationszustand bekannt ist. Außerdem zeigen die folgenden Messungen, dass die vom Hersteller angegebene Orientierung des $\lambda/4$-Plättchens und des Polfilters grob stimmen. Die Messungen sind außerdem ein starkes Indiz dafür, dass sowohl das $\lambda/4$-Plättchen als auch der Polarisationsfilter ordnungsgemäß funktionieren. Die folgenden Ausführungen sind also für das Verständnis der weiteren Arbeit nicht zwingend erforderlich, schließen aber einige wichtige Fehlerquellen aus. Außerdem zeigt die folgende Messung, dass der Polfilter der in dem Hauptaufbau vor dem $\lambda / 4$-Plättchen verwendet wurden ist, um die Polarisation vor dem $\lambda / 4$-Plättchen zu definieren, notwendig ist. 
-	\subsubsection{Jones-Formalismus}
-	Der Jones-Formalismus ist ein Formalismus, der es ermöglicht, die Polarisation von elektromagnetischer Strahlung mathematisch zu beschreiben. Das elektrische Feld einer monochromatischen ebenen Welle lässt sich durch folgenden Ausdruck beschreiben:
-	\begin{equation}
-		\vec{E}(z, t) = \underbrace{\begin{pmatrix}E_x \\ E_y\end{pmatrix}}_{\vec{J}} \exp(i(kz-\omega t))
-	\end{equation}
-	Hierbei ist $\vec{J} := \begin{pmatrix}E_x \\ E_y\end{pmatrix}$ der aus den beiden komplexen Zahlen $E_x, E_y$ bestehende Jones-Vektor. Der Jones-Vektor beschreibt also die Amplitude und das Phasenverhältnis der beiden Feldkomponenten und charakterisiert den Polarisationszustand der EM-Welle somit vollständig. Der Jones-Vektor wird also durch die vier reellen Parameter $\Re\{E_x\}, \Im\{E_x\}, \Re\{E_y\}, \Im\{E_y\}$ vollständig bestimmt. Es gibt neben diesen Parametersatz auch noch weitere Kombination von vier Parametern, die den Polarisationzustand vollständig beschreiben. (Basiswechsel des Jones-Vektors)Beispielsweise die Parameter...
-	Ein beliebiges optisches Element, dass den Polarisationzustand einer EM-Welle beinflusst lässt sich nun durch eine komplexe $2 \times 2$-Jones-Matrix $\boldsymbol{M}$ beschreiben. Wenn die EM-Welle vor dem optischen Element den durch den Jones-Vektor $\vec{J}$ beschriebenen Polarisationszustand hat, hat sie nach dem Durchgang durch das optischen Element den Polarisationszustand:
-	\begin{equation}
-		\vec{J}^\prime = \boldsymbol{M} \vec{J}  =  
-		\begin{pmatrix}
-			M_{11} & M_{12} \\
-			M_{21} & M_{22}
-		\end{pmatrix}
-		\begin{pmatrix}
-			J_x \\
-			J_y
-		\end{pmatrix} = 
-		\begin{pmatrix}
-			M_{11} J_x + M_{12} J_y \\
-			M_{21} J_x + M_{22} J_y
-		\end{pmatrix}		
-	\end{equation}
-	Unterschiedliche optische Elemente lassen sich nun durch verschiedene Jones-Matrizen beschreiben. So ist die Jones-Matrix eines in $x$-Richtung orientierten Polfilters beispielsweise:
-	\begin{equation}
-		\boldsymbol{M}_{\mathrm{PF}} = \begin{pmatrix}
-		1 & 0 \\
-		0 & 0
-	\end{pmatrix}
-	\end{equation}
-	oder eines $\lambda / 4$-Plättchens mit schneller Achse entlang der $x$-Richtung orientiert:	
-	\begin{equation}
-		\boldsymbol{M}_{\mathrm{\lambda / 4}} = \dfrac{1}{\sqrt{2}}\begin{pmatrix}
-			1-i & 0 \\
-			0 & 1+i
-		\end{pmatrix}
-	\end{equation}
-	Die Drehung eines optischen Elements lässt sich durch das Anwenden einer Rotationsmatrix auf die Jones-Matrix ausdrücken:
-	\begin{equation}
-		\boldsymbol{M}(\Phi) = \boldsymbol{R}(\Phi)\boldsymbol{M}\boldsymbol{R}(-\Phi)
-	\end{equation}
-	mit der Rotationsmatrix:
-	\begin{equation}
-		\boldsymbol{R}(\Phi) = \begin{pmatrix}
-			\cos\Phi & - \sin\Phi \\
-			\sin\Phi & \cos\Phi
-		\end{pmatrix}
-	\end{equation}
-	\paragraph{Bestimmung der Polarisation des Anregungslasers mit Hilfe eines Jones-Polarimeter}
-	Ein Polarimeter ist eine Apparatur, die eine vollständigen Bestimmung der Polarisation von einer EM-Welle ermöglicht. Eine Realisierung eines Polarimeters ist ein Jones-Polarimeter. Dieses besteht in Strahlreihenfolge aus einem $\lambda / 4$ Plättchen, einem Polfilter und einem Leistungsmessgerät (Abbildung \ref{fig:polarimeter}). Um nun den Jones-Vektor $\vec{J}$ von einer monochromatischen ebenen Welle mit Hilfe des Jones-Polarimeters zu bestimmen, wird die Leistung in Abhängigkeit von der Orientierung $\alpha_{\lambda/4}$ des $\lambda / 4$-Plättchens gemessen: $P = P(\alpha_{\lambda/4})$. Die Form dieses Leistungsverlaufes hängt nun nur von dem ursprünglichen Polarisationszustand der EM-Strahlung ab. Um nun aus $P(\alpha_{\lambda/4})$ die Komponenten des Jones-Vektor $\vec{J}$ zu rekonstruieren, wurde das Experiment mit einem \textit{Python}-Skript simuliert. Hierfür wurde der oben Beschriebene Jones-Formalismus genutzt. Der Polarisationszustand hinter dem Polarimeter $\vec{J}^\prime$ lässt sich durch folgenden Ausdruck berechnen:
-	\begin{equation}
-		\vec{J}^\prime = \boldsymbol{M}_\mathrm{PF} \boldsymbol{R}(\alpha_{\lambda/4})\boldsymbol{M}_{\lambda / 4}\ \boldsymbol{R}(-\alpha_{\lambda/4})\vec{J}
-	\end{equation}
-	Die Intensität und damit auch die Leistung bei konstantem Strahlquerschnitt, die an dem Leistungsmessgerät ankommt ist hierbei proportional zum Betragsquadrat des Jones-Vektors:
-	\begin{equation}
-		P(\vec{J}^\prime) \propto \left|\vec{J}^\prime\right|^2
-	\end{equation}
-	Die theoretisch erwartete Leistung $P$, die an dem Leistungsmessgerät erwartet wird, ergibt sich also in Abhängigkeit von $\alpha_{\lambda/4}$ und $\vec{J}$ zu:
-	\begin{equation}
-		P(\alpha_{\lambda/4}, \vec{J}) = \left|\boldsymbol{M}_\mathrm{PF} \boldsymbol{R}(\alpha_{\lambda/4})\boldsymbol{M}_{\lambda / 4}\ \boldsymbol{R}(-\alpha_{\lambda/4})\vec{J}\right|^2 \cdot \mathrm{const.}
-		\label{eq:simulation_polarimeter}
-	\end{equation}
-	Diese Funktion kann nun mit den Komponenten von $\vec{J}$ als Parameter mit Hilfe der Methode der kleinsten quadratischen Abweichung (engl. \textit{least square fit}) an die Messdaten angepasst werden. Die resultierenden Fit-Parameter sind dann die Komponenten des ursprünglichen Jones-Vektors $\vec{J}$. Dieser Fit an die Messdaten und die resultierende Polarisations-Ellipse ist in Abbildung \ref{fig:graphpolarimeter} dargestellt. In der Abbildung ist zu erkennen, dass die Messdaten sehr gut mit der Simulation übereinstimmen. Dies ist ein starkes Indiz für die korrekte Funktionsweise der Komponenten. Allerdings zeigt die Messung auch, dass der Laser nicht rein linear Polarisiert ist. Hierfür ist die Elliptizität $\epsilon$ der Polarisation ein gutes Maß:
-	\begin{equation}
-		\epsilon = \arctan\left(\dfrac{a}{b}\right)
-	\end{equation}
-	Hierbei ist $a$ die große Halbachse der Polarisationsellipse und $b$ die kleine Halbachse der Polarisationsellipse. Die Elliptizität des Lasers wurde in dieser Arbeit auf $\epsilon = 0.1 $ bestimmt. Durch diese Abweichungen des Lasers von einer rein linearen Polarisation, war es notwendig die Polarisation des Lasers vor dem $\lambda /4$-Plättchen im Hauptaufbau durch einen Polfilter festzulegen.
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.5\linewidth]{figures/Polarimeter}
-		\caption[Jones-Polarimeter]{Die Abbildung zeigt den schematischen Aufbau eines Jones-Polarimeter. Die Komponenten in Strahlreihenfolge sind: Helium-Neon-Laser (\textbf{He-Ne}), $\lambda/4$-Plättchen ($\boldsymbol{\lambda / 4}$), Polfilter (\textbf{PF}), Leistungsmessgerät(\textbf{LM}). Das $\lambda/4$-Plättchen ist kann um die optische Achse rotiert werden.}
-		\label{fig:polarimeter}
-	\end{figure}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.7\linewidth]{figures/graph_polarimeter}
-		\caption[Polarimeter Simulation]{Diese Abbildung zeigt die Messdaten einer Messung mit dem Jones-Polarimeter. Der untere Teil der Abbildung zeigt die gemessene Leistung $P(\alpha_{\lambda /4}$. Die blauen Kreuze sind hierbei jeweils Messpunkte. Die oragne gestrichelte Linie zeigt die mit einem \textit{least square fit} an die Messdaten angepasste Simulation des Polarimeter Aufbaus. Der obere Teil der Abbildung zeigt die im unteren Teil verwendeten Fit-Parameter für den Jones-Vector $\vec{J}$. Hierbei wurde die Polarisationsellipse und die große Halbachse $a$ und die kleine Halbachse $b$ eingezeichnet. Die Feldstärken sind dabei in willkürlichen Einheiten dargestellt, da für die exakte Feldstärken Bestimmung nicht die Leistung, sondern die Intensität nach dem Durchgang durch das Polarimeter gemessen werden müsste.}
-		\label{fig:graphpolarimeter}
-	\end{figure}
-
-		
 	
 		
 	\subsection{Messung}
