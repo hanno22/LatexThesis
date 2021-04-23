@@ -13,6 +13,13 @@
 \institute{Christian-Albrechts-Universität zu Kiel}
 \date{2021}
 
+\addtobeamertemplate{navigation symbols}{}{%
+	\usebeamerfont{footline}%
+	\usebeamercolor[fg]{footline}%
+	\hspace{1em}%
+	\insertframenumber/\inserttotalframenumber
+}
+
 
 
 \begin{document}
@@ -28,11 +35,9 @@
 		\subsection{Surface Plasmon Polariton (SPP)}	
 		\begin{frame}
 			\frametitle{Surface Plasmon Polariton (SPP)}	
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
-			\end{figure}	
-			
+				\begin{center}
+					\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}	
+				\end{center}			
 		\end{frame}
 	
 		\begin{frame}
@@ -56,19 +61,16 @@
 		
 		\begin{frame}
 		\frametitle{Dispersion SPP}
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.7\textwidth]{figures/dispersion.png}
-		\end{figure}
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{figures/dispersion.png}
+			\end{center}
 		\end{frame}
 	
 		\begin{frame}
 		\frametitle{Kretschmann-Konfiguration}
-		\begin{figure}[h] 
-			\centering
-			\includegraphics[width=0.7\textwidth]{figures/Kretschmann.pdf}
-			\caption[Kretschmann-Konfiguration]{Schematischer Aufbau der Kretschmann-Konfiguration. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt}
-		\end{figure}
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{figures/Kretschmann.pdf}
+			\end{center}
 		\begin{align}
 			\sin(\theta_E) &= \dfrac{\Re\{k_{\mathrm{spp}}\}}{k_{D_1}}\\
 			\Rightarrow \Re\{k_{\mathrm{SPP}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{D_1}}
@@ -77,11 +79,9 @@
 	
 		\begin{frame}
 			\frametitle{Leckstrahlung}
-			\begin{figure}[h] 
-				\centering
-				\includegraphics[width=0.7\textwidth]{figures/leckstrahlung.pdf}
-				\caption[Leckstrahlung Drei-Schichtsystem]{Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem}
-			\end{figure}
+				\begin{center}
+					\includegraphics[width=0.7\textwidth]{figures/leckstrahlung.pdf}
+				\end{center}
 			\begin{equation}
 				\boxed{\Re\{k_{\mathrm{spp}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{D_1}}}
 			\end{equation}
@@ -104,12 +104,8 @@
 			\end{frame}
 		
 		\begin{frame}
-			\frametitle{Spinerhaltung}
-			\begin{figure}[h]
-				\centering
+			\frametitle{Drehimpulserhaltung beim PSHE}
 				\includegraphics[width=1.0\linewidth]{figures/spin_hall_schema.pdf}
-				\caption[Spin-Erhaltung PSHE]{Spin-Erhaltung beim plasmonischen Spin-Hall-Effekt. In blau ist jeweils der Spin des Plasmons und der anregenden Strahlung gekennzeichnet.}
-			\end{figure}
 		\end{frame}
 	
 		\begin{frame}
@@ -132,30 +128,98 @@
 	
 		\begin{frame}
 			\frametitle{Raumfrequenzspektrum zirkular polarisierter Dipol}
-			\begin{figure}[h]
-				\centering
-				\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_circ.pdf}
-				\caption[Raumfrequenzspektrum zirkular polarisierter Dipol]{Raumfrequenzspektrum eines zirkular polarisierten Dipols für links und rechts zirkulare Polarisation}
-			\end{figure}		
+			\begin{center}
+				\includegraphics[width=0.7\textwidth]{figures/spatial_spectrum_circ.pdf}	
+			\end{center}				
 		\end{frame}
-	\section{Messung und Methoden}
+	\section{Experimenteller Aufbau}
 	\begin{frame}
-		\frametitle{Leckstrahlmikroskopie}
-		\begin{figure}
-			\centering
-			\includegraphics[width=0.7\textwidth]{figures/Aufbau_Schema.pdf}
-			\caption{Schematischer Aufbau}			
-		\end{figure}		
+		\frametitle{Aufbau}
+		\begin{center}
+				\includegraphics[width=0.7\textwidth]{figures/Aufbau_Schema.pdf}	
+		\end{center}
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Leckstrahlmikroskopie}
-		\begin{figure}
-			\centering
-			\includegraphics[width=\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
-			\caption{Aufsicht des Aufbau}			
-		\end{figure}		
+		\frametitle{Experimenteller Aufbau}
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
+	\end{center}
+		
 	\end{frame}
+	\begin{frame}
+	\frametitle{Kontrolle der Polarisation des Anregungslasers}
+		\begin{columns}
+			\begin{column}{0.5\textwidth}
+				\includegraphics[width=\textwidth]{figures/polarisation_sheme.pdf}
+			\end{column}
+			\begin{column}{0.5\textwidth}  %%<--- here
+				\includegraphics[width=\textwidth]{figures/Polarisation_lambda.pdf}
+			\end{column}
+		\end{columns}	
+	\end{frame}
+	\section{Messung und Ergebnisse}
+		\subsection{Kontrollmessung}
+			\begin{frame}
+				\frametitle{Kontrollmessung an Punktdefekt}
+				\begin{columns}
+					\begin{column}{0.5\textwidth}
+							\includegraphics[width=\textwidth]{figures/example_polar.png}
+					\end{column}
+					\begin{column}{0.5\textwidth}  %%<--- here
+						\includegraphics[width=\textwidth]{figures/example_focal_plane.png}
+					\end{column}
+				\end{columns}
+			\end{frame}
+			
+			\begin{frame}
+				\frametitle{Auswertung der BFP}
+				\begin{columns}
+					\begin{column}{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/example_radial.pdf}
+					\end{column}
+					\begin{column}{0.5\textwidth}  %%<--- here
+						\includegraphics[width=\textwidth]{figures/lorenz_profile.pdf}
+					\end{column}
+				\end{columns}
+			\end{frame}
+		\subsection{Experimenteller Nachweis des PSHE}
+			\begin{frame}
+				\frametitle{Rückwärtsrichtung}
+				\begin{columns}
+					\begin{column}{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/spin_hall/diff_back.png}
+					\end{column}
+					\begin{column}{0.5\textwidth}  %%<--- here
+						\includegraphics[width=\textwidth]{figures/spin_hall/intensity_back.pdf}
+					\end{column}
+				\end{columns}
+			\end{frame}
+			\begin{frame}
+				\frametitle{Vorwärtsrichtung}
+				\begin{columns}
+					\begin{column}{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/spin_hall/diff_forw.png}
+					\end{column}
+					\begin{column}{0.5\textwidth}  %%<--- here
+						\includegraphics[width=\textwidth]{figures/spin_hall/intensity_forw.pdf}
+					\end{column}
+				\end{columns}
+			\end{frame}
+			\begin{frame}
+				\frametitle{Senkrecht zur Einfallsebene}
+				\begin{columns}
+					\begin{column}{0.5\textwidth}
+						\includegraphics[width=\textwidth]{figures/spin_hall/diff_mid.png}
+					\end{column}
+					\begin{column}{0.5\textwidth}  %%<--- here
+						\includegraphics[width=\textwidth]{figures/spin_hall/intensity_mid.pdf}
+					\end{column}
+				\end{columns}
+			\end{frame}
+		
+	
+		
 	
 	
 
