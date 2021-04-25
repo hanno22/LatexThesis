@@ -373,7 +373,7 @@
 		P(\alpha_{\lambda/4}, \vec{J}) = \left|\boldsymbol{M}_\mathrm{PF} \boldsymbol{R}(\alpha_{\lambda/4})\boldsymbol{M}_{\lambda / 4}\ \boldsymbol{R}(-\alpha_{\lambda/4})\vec{J}\right|^2 \cdot \mathrm{const.}
 		\label{eq:simulation_polarimeter}
 	\end{equation}
-	Diese Funktion kann nun mit den Komponenten von $\vec{J}$ als Parameter mit Hilfe der Methode der kleinsten quadratischen Abweichung (engl. \textit{least square fit}) an die Messdaten angepasst werden. Die resultierenden Fit-Parameter sind dann die Komponenten des ursprünglichen Jones-Vektors $\vec{J}$. Dieser Fit an die Messdaten und die resultierende Polarisations-Ellipse ist in Abbildung \ref{fig:graphpolarimeter} dargestellt. In der Abbildung ist zu erkennen, dass die Messdaten sehr gut mit der Simulation übereinstimmen. Dies ist ein starkes Indiz für die korrekte Funktionsweise der Komponenten. Allerdings zeigt die Messung auch, dass der Laser nicht rein linear Polarisiert ist. Hierfür ist die Elliptizität $\epsilon$ der Polarisation ein gutes Maß:
+	Diese Funktion kann nun mit den Komponenten von $\vec{J}$ als Parameter mit Hilfe der Methode der kleinsten quadratischen Abweichung (engl. \textit{least square fit}) an die Messdaten angepasst werden. Die resultierenden Fit-Parameter sind dann die Komponenten des ursprünglichen Jones-Vektors $\vec{J}$. Dieser Fit an die Messdaten und die resultierende Polarisations-Ellipse ist in Abbildung \ref{fig:graphpolarimeter} dargestellt. In der Abbildung ist zu erkennen, dass die Messdaten sehr gut mit der Simulation übereinstimmen. Dies ist ein starkes Indiz für die korrekte Funktionsweise der Komponenten. Allerdings zeigt die Messung auch, dass der Laser nicht rein linear Polarisiert ist. Für die Abweichung von der lineare Polarisation ist die Elliptizität $\epsilon$ der Polarisation ein Maß:
 	\begin{equation}
 		\epsilon = \dfrac{a}{b}
 	\end{equation}
@@ -552,7 +552,71 @@
 	
 	
 	\subsection{Nachweis des PSHE}
-	Zum Nachweis des PSHE wurde die BFP bei der Anregung an einem Punktdefekt auf dem Goldfilm in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens aufgenommen. Bei der Auswahl des Defektes wurde auf eine möglichst isotrope Anregung und eine möglichst defektfreie Umgebung geachtet. Das Ortsbild wurde in der Imageplane 1 mit einer Blende auf einen einzelnen Defekt gefiltert. Es wurde die BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Außerdem wurde mit einer Schrittweite von $20^\circ$ das Ortsbild der Anregung aufgenommen.
+	Zum Nachweis des PSHE wurde die BFP und die FP bei der Anregung an einem Punktdefekt auf dem Goldfilm in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens aufgenommen. Das Ortsbild wurde in der ersten Bildebene zwischen Tubuslinse und $4f$-Aufbau mit der Blende (IB) auf einen einzelnen Defekt gefiltert. Der direkt Transmittierte Strahl wurde mit dem Beam-Block in der BFP1 gefiltert. Die BFP wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Das Ortsbild der Anregung wurde mit einer Schrittweite von $20^\circ$ aufgezeichnet.
+	
+	Zunächst wurden die Anregung im Ortsbild betrachtet. Die Rohdaten dieser Messung sind in Abbildung \ref{fig:spin_hall_measure_fp} dargestellt. 
+	\begin{figure}		
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/fp/fp_45.png}
+			\caption{$\alpha_{\lambda/4} = 45^\circ$}
+			\label{fig:fp_45}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/fp/fp_135.png}
+			\caption{$\alpha_{\lambda/4} = 135^\circ$}
+			\label{fig:fp_135}
+		\end{subfigure}
+		\caption{Die Abbildung zeigt die Anregung im Ortsraum an einem Punktdefekt. Der direkt transmittierte Strahl wurde dabei mit dem BB aus der Abbildung gefiltert. Abbildung \subref{fig:fp_45}} ist mit einer Orientierung der $\lambda / 4$-Platte von $\alpha_{\lambda/4} = 45^\circ$ aufgenommen und Abbildung  \subref{fig:fp_135} mit $\alpha_{\lambda/4} = 135^\circ$. Diese Orientierungen sorgen für eine links- bzw. rechts-zirkulare Polarisation des Anregungslasers. Der Laser fällt hierbei entlang der $x$-Achse aus $-x$-Richtung (ToDo!! Richtung in Polarkoordinaten beschreiben) auf den Punktdefekt ein. Das Anregungszentrum liegt im Ursprung des Koordinatensystems. Negative $x$-Werte entsprechen also einer Rückwärtspropagation und positiver Werte von $x$ entsprechen einer Vorwärtspropagation des SPP bezüglich der Einfallsrichtung des Anregungslasers.
+		\label{fig:spin_hall_measure_fp}
+	\end{figure}
+	In den Rohdaten ist in Rückwärtsrichtung bezüglich der Einfallsrichtung des Anregungslasers bereits eine leichte Asymmetrie zu beobachten: Die Intensität der Anregung ist in Abbildung \ref{fig:fp_45} zwischen $90^\circ$ und $180^\circ$ größer, als zwischen $180^\circ$ und $270^\circ$. Bei Wechsel des Drehsinns der Polarisation des Anregungslaser (Abbildung \ref{fig:fp_135}) invertiert diese Asymmetrie ihr Vorzeichen. In Vorwärtsrichtung ist bemerkenswerterweise eine Asymmetrie zu beobachten, die zur Asymmetrie in Rückwärtsrichtung entgegengesetzt ist: In Abbildung \ref{fig:fp_45} ist zwischen die gemessene Intensität zwischen $0^\circ$ und $90^\circ$ größer als zwischen $270^\circ$ und $0^\circ$. Auch diese Asymmetrie invertiert bei Wechsel des Drehsinns der Polarisation ihr Vorzeichen. Um dieses Verhalten detaillierte zu untersuchen, wurde zunächst ein Differenzbild zwischen den Intensitäten, die bei links- bzw. rechts-zirkular Polarisierter Anregungsstrahlung gemessen worden errechnet. Hierfür wurde für jeden Bildpunkt die relative Differenz $D_ij$ zwischen der Intensität mit links- bzw. rechts-zirkular Polarisierter Anregungsstrahlung ($I_{\mathrm{lcp}, ij}$, $I_{\mathrm{rcp}, ij}$)errechnet. Die $x$-, $y$-Indizes des jeweiligen Pixels werden hierbei durch $i,j$ angegeben.
+	\begin{equation}
+		D_{ij} =\dfrac{I_{\mathrm{lcp}, ij} - I_{\mathrm{rcp}, ij}}{I_{\mathrm{lcp}, ij} + I_{\mathrm{rcp}, ij}}
+		\label{eq:diff_measure}
+	\end{equation}
+	Das so entstanden Differenzbild ist in Abbildung \ref{fig:diff_fp_45_135} dargestellt. Um nun die Asymmetrie der Anregung in Abhängigkeit der Polarisation der Anregung darzustellen, wurden in dem Ortsraum zwei Bereiche ausgewählt, in denen die Intensität jeweils integriert wurde. Diese Integration  wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens durchgeführt. Das Ergebnis dieser Integration ist in Abbildung \ref{fig:int_fp_45_135} für zwei in Rückwärtsrichtung orientierte Integrationsbereiche dargestellt.
+	\begin{figure}		
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/fp/fp_back.png}
+			\caption{Relative Intensitäts Differenz}
+			\label{fig:diff_fp_45_135}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/fp/fp_back_int.pdf}
+			\caption{Integrierte  Intensität in Abhängigkeit der Polarisation}
+			\label{fig:int_fp_45_135}
+		\end{subfigure}
+		\caption{Abbildung \subref{fig:diff_fp_45_135} zeigt die nach \eqref{eq:diff_measure} berechnete Differenz der Intensitäten im Ortsraum bei links- bzw. rechts-zirkular Polarisierte Anregungsstrahlung. Abbildung \ref{fig:int_fp_45_135} zeigt die über die in \subref{fig:diff_fp_45_135} markierten Bereiche integrierte Intensität in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens.}
+		\label{fig:spin_hall_measure_diff_fp}
+	\end{figure}
+
+\begin{figure}		
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_45_135.pdf}
+		\caption{bla}
+		\label{fig:angular_int_fp}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_diff_45_135.pdf}
+		\caption{bla}
+		\label{fig:angular_int_diff_fp}
+	\end{subfigure}
+	\caption{bla}
+	\label{fig:angular_dist_fp}
+\end{figure}
+	
+	
+	
+	
 	
 	Die so entstandenen Bilder der BFP wurden mit einem Python-Script ausgewertet. Hierfür wurde das kartesische Pixel-Bild zunächst in Polarkoordinaten transformiert. Hierbei fand eine Interpolation der Daten auf ein äquidistantes Gitter in Polarkoordinaten statt. In der BFP wurden nun senkrecht zur Einfallsebene des Lasers zwei Integrationsbereiche ausgewählt. Im nächsten Schritt wurde für jede Orientierung des $\lambda/4$-Plättchens das Kontrastverhältnis der beiden Integrationsbereiche berechnet. Diese Kontrastverhältnisse zeigen die Abhängigkeit der Propagationsrichtung des SPP von der Polarisation des anregenden Lasers. Diese Daten sind in Abbildung \ref{fig:diff_back} - \ref{fig:intensity_front} für unterschiedliche Integrationsbereiche dargestellt.
 	\begin{figure}
