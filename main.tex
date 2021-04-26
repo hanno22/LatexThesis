@@ -21,6 +21,9 @@
 \usepackage{rotating}
 \renewcommand{\Re}{\operatorname{\mathbb{R}e}}
 \renewcommand{\Im}{\operatorname{\mathbb{I}m}}
+
+%\renewcommand{\subsection}{\FloatBarrier\subsection}
+%\renewcommand{\subsubsection}{\FloatBarrier\subsubsection}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 
@@ -506,8 +509,9 @@
 	
 		
 	\subsection{Messung}
-	Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probemessungen überprüft, die mit den Daten von \textit{Jaruschewski} \cite{Jaruschewski.2020} und \textit{Ebel} \cite{ebel.2019} verglichen worden sind. Da für den Nachweis des PSHE keine Kenntnis des Betrages des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden durch die bekannte Luft-Gold-Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche ausgewählt. Das Vorgehen hierbei bestand darin, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, ist in der BFP die charakteristische Leckstrahlung zu erkennen. Das Ziel war, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nachdem ein geeigneter Defekt ausgewählt war, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
+	Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probemessungen überprüft, die mit den Daten von \textit{Jaruschewski} \cite{Jaruschewski.2020} und \textit{Ebel} \cite{ebel.2019} verglichen worden sind. Da für den Nachweis des PSHE keine Kenntnis des Betrages des Wellenvektors notwendig ist, wurde auf eine Kalibrierung der BFP verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ wurden anhand der bekannten Luft-Gold-Mode berechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche ausgewählt. Das Vorgehen hierbei bestand darin, die Probe zu verfahren und dabei das Bild der BFP zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, ist in der BFP die charakteristische Leckstrahlung zu erkennen. Das Ziel war, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nachdem ein geeigneter Defekt ausgewählt war, wurden Bilder der FP und der BFP für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
 	\subsection{Verarbeitung der Messdaten}
+	\label{sec:polar_calculation}
 	Die Messdaten wurden in der Programmiersprache Python mit den Bibliotheken \textit{Numpy}, \textit{OpenCV}, \textit{Scipy} und \textit{Matplotlib} verarbeitet. Die mit dem CMOS-Sensor aufgenommen Bilder wurden im Windows Bitmap Format (BMP) mit einer Bittiefe von  $b = 8$ gespeichert. Die Auflösung der verwendeten Sensors beträgt $2592 \times 1944$. Der verwendete CMOS-Sensor liefert auch eine Farbinformation. Jeder Bildpunkt der BMP-Datei besteht aus einem Rot, einem Grün und einem Blau Wert zwischen $0$ und $2^b - 1= 255$. Ein CMOS Sensor ist nicht Wellenlängen sensitiv. Die Farbinformation wird durch eine Filtermatrix vor dem CMOS Sensor gewonnen. Die unterschiedlichen Farbdaten könnten genutzt werden, um Informationen über das Spektrum der detektierten Strahlung zu erlangen, dass war in dieser Arbeit allerdings nicht von Interesse, da die Leckstrahlung monochromatisch ist (mit der gleichen Wellenlänge, wie die anregende Strahlung). Deswegen wurde aus den RGB-Werten das arithmetische Mittel berechnet. Die Aufnahmen der IP wurden dann mit Hilfe der Bibliothek \textit{Matplotlib} dargestellt. Die Intensität wurde so skaliert, dass der maximale Werte 1 entspricht. Die Aufnahme der BFP wurden zunächst von den kartesischen Pixel-Koordinaten in Polarkoordinaten transformiert, da dies die weitere Auswertung stark vereinfacht. Als Ursprung wurde dabei der Mittelpunkt der Kreisförmigen Begrenzung der BFP durch die numerische Apertur gewählt. Um aus den äquidistanten Pixel-Koordinaten ein äquidistantes Gitter in Polarkoordinaten zu erzeugen, mussten die Daten interpoliert werden. Diese Interpolation wurde mit der Funktion \textit{linearPolar()} im Modus \textit{INTER\_CUBIC} aus der Bibliothek \textit{openCV} ausgeführt. Die so gewonnenen Daten in Polarkoordinaten konnten nun mit Hilfe der \textit{matplotlib} dargestellt werden. Für die weitere Auswertung musste unter anderem ein radiales Profil berechnet werden, in Polarkoordinaten wird diese Integration zu einer einfachen Summe über eine Achse. Für die Analyse des Spin-Hall Effektes mussten Intensitäten in bestimmten Masken integriert werden. Auch diese Integration hat sich durch die Verwendung von Polarkoordinaten stark vereinfacht. Der gesamte in dieser Arbeit geschriebene Quellcode wird unter \url{https://github.com/hanno22/SpinHallEffectThesis} zur Verfügung gestellt.
 	\newpage
 	
@@ -547,124 +551,228 @@
 		\caption[Messwerte bei linearer Polarisation]{Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
 			Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung der BFP durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35\,\mathrm{\mu m ^{-1}}$.}			
 	\end{figure}
-	Aus der radialen Intensitätsverteilung der BFP lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung der BFP nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über ein Anpassen eines Lorentzprofils mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Dieser Fit hat $\Im\{k_\mathrm{SPP}\} = 0.16\,\mathrm{\mu m}^{-1}$ ergeben. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären: Erstens kommt es durch Abbildungsfehler in dem LRM zu einer Verbreiterung des Profils in der BFP \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPP. Zweitens ist die genaue Qualität der Probe unbekannt und weitere Defekte und größere Oberflächenrauigkeiten können zu einer stärkeren Dämpfung des SPP führen. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19\,\mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht um $19\%$ von dem in der vorliegenden Arbeit gemessenen Wert ab. Da die Profilbreite im Vergleich zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat oder die Qualität der optischen Abbildung verbessert werden konnte (in \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet). Hierbei ist anzumerken, dass der Lorentz-Fit äußerst empfindlich auf die Wahl des Fit-Bereichs reagiert. Außerdem ist wie in Abbildung \ref{fig:lorenz_profile} dargestellt der Fit nur eine grobe Näherung und stimmt nicht besonders gut mit den Messdaten überein. (...)
- 	
-	
+	(ToDo: Auch Ortsraum Bild zeigen.)
+	Aus der radialen Intensitätsverteilung der BFP lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung der BFP nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über ein Anpassen eines Lorentzprofils mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Dieser Fit hat $\Im\{k_\mathrm{SPP}\} = 0.16\,\mathrm{\mu m}^{-1}$ ergeben. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären: Erstens kommt es durch Abbildungsfehler in dem LRM zu einer Verbreiterung des Profils in der BFP \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPP. Zweitens ist die genaue Qualität der Probe unbekannt und weitere Defekte und größere Oberflächenrauigkeiten können zu einer stärkeren Dämpfung des SPP führen. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19\,\mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht um $19\%$ von dem in der vorliegenden Arbeit gemessenen Wert ab. Da die Profilbreite im Vergleich zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat oder die Qualität der optischen Abbildung verbessert werden konnte (in \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet). Hierbei ist anzumerken, dass der Lorentz-Fit äußerst empfindlich auf die Wahl des Fit-Bereichs reagiert. Außerdem ist wie in Abbildung \ref{fig:lorenz_profile} dargestellt der Fit nur eine grobe Näherung und stimmt nicht besonders gut mit den Messdaten überein.	
 	
 	\subsection{Nachweis des PSHE}
-	Zum Nachweis des PSHE wurde die BFP und die FP bei der Anregung an einem Punktdefekt auf dem Goldfilm in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens aufgenommen. Das Ortsbild wurde in der ersten Bildebene zwischen Tubuslinse und $4f$-Aufbau mit der Blende (IB) auf einen einzelnen Defekt gefiltert. Der direkt Transmittierte Strahl wurde mit dem Beam-Block in der BFP1 gefiltert. Die BFP wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Das Ortsbild der Anregung wurde mit einer Schrittweite von $20^\circ$ aufgezeichnet.
+	Zum Nachweis des PSHE wurde mit Hilfe des Leckstrahlmikroskopes die Anregung eines SPPs an einem Punktdefekt in Abhängigkeit der Orientierung des $\lambda /4$-Plättchens untersucht. Es wurde für unterschiedliche Orientierungen des $\lambda /4$-Plättchens jeweils eine Intensitätsmessung der Leckstrahlung im Ortsraum und im Impulsraum durchgeführt. Die gemessene Intensitätsverteilung im Ortsraum werde durch $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und die gemessene Intensitätsverteilung im Impulsraum durch $I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4})$ beschrieben (die Umrechnung der kartesischen Pixeldaten in Polarkoordinaten wird in Abschnitt \ref{sec:polar_calculation} näher erläutert). Hierbei ist $r$ der radiale Abstand zum Anregungszentrum, $|\vec{k}_\perp|$ der Betrag des Wellenvektor senkrecht zu optischen Achse und $\alpha_{\lambda/4}$ die Orientierung des $\lambda/4$-Plättchens. Der Azimutalwinkel $\phi$ beschreibt in der Ortsraumdarstellung den Winkel zu einem Ort und in der Impulsdarstellung eine Richtung des Wellenvektors. Da Koordinatensystem des Ortsraumes so gewählt worden ist, dass das Anregungszentrum im Ursprung liegt, entspricht der Winkel zu einem Punkt im Ortsraum auch gerade dem Winkel des Wellenvektors, der diesen Punkt im Ortsraum erreichen kann. $\phi = 0$ liegt hierbei in der Einfallsebene in Richtung der anregenden Strahlung. Das Ortsbild wurde in der ersten Bildebene zwischen Tubuslinse und $4f$-Aufbau mit der Blende (IB) auf einen einzelnen Defekt gefiltert. Der direkt Transmittierte Strahl wurde mit dem Beam-Block in der BFP1 gefiltert. Die BFP wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens von $0^\circ-360^\circ$ mit einer Schrittweite von $2^\circ$ aufgenommen. Das Ortsbild der Anregung wurde mit einer Schrittweite von $20^\circ$ aufgezeichnet.
 	
-	Zunächst wurden die Anregung im Ortsbild betrachtet. Die Rohdaten dieser Messung sind in Abbildung \ref{fig:spin_hall_measure_fp} dargestellt. 
-	\begin{figure}		
-		\begin{subfigure}[b]{0.5\textwidth}
+	\subsubsection{Rohdaten}
+	Zunächst wurden die Rohdaten bei links- und rechts-zirkularer polarisierte Anregungsstrahlung untersucht, also $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und $I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4})$ für $\alpha_{\lambda /4} \in \{45^\circ, 135^\circ\}$. Diese Daten sind in Abbildung \ref{fig:measure_pshe_raw} dargestellt. 
+	\begin{figure}
+		\begin{subfigure}[b]{0.49\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/fp/fp_45.png}
-			\caption{$\alpha_{\lambda/4} = 45^\circ$}
-			\label{fig:fp_45}
+			\caption{$I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ)$}
+			\label{fig:raw_fp_45}
 		\end{subfigure}
-		\hfill
+		\begin{subfigure}[b]{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_45.png}
+			\caption{$I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4}= 45^\circ)$}
+			\label{fig:raw_bfp_45}
+		\end{subfigure}		
+		\hfill		
 		\begin{subfigure}[b]{0.49\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/fp/fp_135.png}
-			\caption{$\alpha_{\lambda/4} = 135^\circ$}
-			\label{fig:fp_135}
+			\caption{$I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)$}
+			\label{fig:raw_fp_135}
 		\end{subfigure}
-		\caption{Die Abbildung zeigt die Anregung im Ortsraum an einem Punktdefekt. Der direkt transmittierte Strahl wurde dabei mit dem BB aus der Abbildung gefiltert. Abbildung \subref{fig:fp_45}} ist mit einer Orientierung der $\lambda / 4$-Platte von $\alpha_{\lambda/4} = 45^\circ$ aufgenommen und Abbildung  \subref{fig:fp_135} mit $\alpha_{\lambda/4} = 135^\circ$. Diese Orientierungen sorgen für eine links- bzw. rechts-zirkulare Polarisation des Anregungslasers. Der Laser fällt hierbei entlang der $x$-Achse aus $-x$-Richtung (ToDo!! Richtung in Polarkoordinaten beschreiben) auf den Punktdefekt ein. Das Anregungszentrum liegt im Ursprung des Koordinatensystems. Negative $x$-Werte entsprechen also einer Rückwärtspropagation und positiver Werte von $x$ entsprechen einer Vorwärtspropagation des SPP bezüglich der Einfallsrichtung des Anregungslasers.
-		\label{fig:spin_hall_measure_fp}
-	\end{figure}
-	In den Rohdaten ist in Rückwärtsrichtung bezüglich der Einfallsrichtung des Anregungslasers bereits eine leichte Asymmetrie zu beobachten: Die Intensität der Anregung ist in Abbildung \ref{fig:fp_45} zwischen $90^\circ$ und $180^\circ$ größer, als zwischen $180^\circ$ und $270^\circ$. Bei Wechsel des Drehsinns der Polarisation des Anregungslaser (Abbildung \ref{fig:fp_135}) invertiert diese Asymmetrie ihr Vorzeichen. In Vorwärtsrichtung ist bemerkenswerterweise eine Asymmetrie zu beobachten, die zur Asymmetrie in Rückwärtsrichtung entgegengesetzt ist: In Abbildung \ref{fig:fp_45} ist zwischen die gemessene Intensität zwischen $0^\circ$ und $90^\circ$ größer als zwischen $270^\circ$ und $0^\circ$. Auch diese Asymmetrie invertiert bei Wechsel des Drehsinns der Polarisation ihr Vorzeichen. Um dieses Verhalten detaillierte zu untersuchen, wurde zunächst ein Differenzbild zwischen den Intensitäten, die bei links- bzw. rechts-zirkular Polarisierter Anregungsstrahlung gemessen worden errechnet. Hierfür wurde für jeden Bildpunkt die relative Differenz $D_ij$ zwischen der Intensität mit links- bzw. rechts-zirkular Polarisierter Anregungsstrahlung ($I_{\mathrm{lcp}, ij}$, $I_{\mathrm{rcp}, ij}$)errechnet. Die $x$-, $y$-Indizes des jeweiligen Pixels werden hierbei durch $i,j$ angegeben.
-	\begin{equation}
-		D_{ij} =\dfrac{I_{\mathrm{lcp}, ij} - I_{\mathrm{rcp}, ij}}{I_{\mathrm{lcp}, ij} + I_{\mathrm{rcp}, ij}}
-		\label{eq:diff_measure}
-	\end{equation}
-	Das so entstanden Differenzbild ist in Abbildung \ref{fig:diff_fp_45_135} dargestellt. Um nun die Asymmetrie der Anregung in Abhängigkeit der Polarisation der Anregung darzustellen, wurden in dem Ortsraum zwei Bereiche ausgewählt, in denen die Intensität jeweils integriert wurde. Diese Integration  wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens durchgeführt. Das Ergebnis dieser Integration ist in Abbildung \ref{fig:int_fp_45_135} für zwei in Rückwärtsrichtung orientierte Integrationsbereiche dargestellt.
-	\begin{figure}		
 		\begin{subfigure}[b]{0.5\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/fp/fp_back.png}
-			\caption{Relative Intensitäts Differenz}
-			\label{fig:diff_fp_45_135}
+			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_135.png}
+			\caption{$I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4}= 135^circ)$}
+			\label{fig:raw_bfp_135}
 		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/fp/fp_back_int.pdf}
-			\caption{Integrierte  Intensität in Abhängigkeit der Polarisation}
-			\label{fig:int_fp_45_135}
-		\end{subfigure}
-		\caption{Abbildung \subref{fig:diff_fp_45_135} zeigt die nach \eqref{eq:diff_measure} berechnete Differenz der Intensitäten im Ortsraum bei links- bzw. rechts-zirkular Polarisierte Anregungsstrahlung. Abbildung \ref{fig:int_fp_45_135} zeigt die über die in \subref{fig:diff_fp_45_135} markierten Bereiche integrierte Intensität in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens.}
-		\label{fig:spin_hall_measure_diff_fp}
+		\caption[Rohdaten PSHE]{Die Abbildung zeigt Rohdaten der Leckstrahlung eines SPPs im Ortsraum (\subref{fig:raw_fp_45}, \subref{fig:raw_fp_135}) und im Impulsraum (\subref{fig:raw_bfp_45}, \subref{fig:raw_bfp_135}). Der direkt transmittierte Strahl wurde dabei mit dem BB aus der Abbildung gefiltert. Die Messungen \subref{fig:raw_fp_45}, \subref{fig:raw_bfp_45} sind dabei mit einer Orientierung der $\lambda / 4$-Platte von $\alpha_{\lambda/4} = 45^\circ$ aufgenommen und \subref{fig:raw_fp_45}, \subref{fig:raw_bfp_45} mit $\alpha_{\lambda/4} = 135^\circ$. Diese Orientierungen sorgen für eine links- bzw. rechts-zirkulare Polarisation des Anregungslasers.}
+		\label{fig:measure_pshe_raw}			
 	\end{figure}
-
-\begin{figure}		
-	\begin{subfigure}[b]{0.5\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_45_135.pdf}
-		\caption{bla}
-		\label{fig:angular_int_fp}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.49\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_diff_45_135.pdf}
-		\caption{bla}
-		\label{fig:angular_int_diff_fp}
-	\end{subfigure}
-	\caption{bla}
-	\label{fig:angular_dist_fp}
-\end{figure}
-	
-	
-	
-	
-	
-	Die so entstandenen Bilder der BFP wurden mit einem Python-Script ausgewertet. Hierfür wurde das kartesische Pixel-Bild zunächst in Polarkoordinaten transformiert. Hierbei fand eine Interpolation der Daten auf ein äquidistantes Gitter in Polarkoordinaten statt. In der BFP wurden nun senkrecht zur Einfallsebene des Lasers zwei Integrationsbereiche ausgewählt. Im nächsten Schritt wurde für jede Orientierung des $\lambda/4$-Plättchens das Kontrastverhältnis der beiden Integrationsbereiche berechnet. Diese Kontrastverhältnisse zeigen die Abhängigkeit der Propagationsrichtung des SPP von der Polarisation des anregenden Lasers. Diese Daten sind in Abbildung \ref{fig:diff_back} - \ref{fig:intensity_front} für unterschiedliche Integrationsbereiche dargestellt.
-	\begin{figure}
-		\label{fig:spin_hall_measure}
-		\centering
-		\begin{subfigure}[b]{0.5\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/diff_back.png}
-			\caption{Differenz, Integrationsmaske $120^\circ-170^\circ$}
-			\label{fig:diff_back}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_back.pdf}
-			\caption{Kontrast zwischen oberem und unterem SPP}
-			\label{fig:intensity_back}
-		\end{subfigure}
+	\paragraph{Ortsraum}
+	In den Rohdaten ist im Ortsbild in Rückwärtsrichtung bezüglich der Einfallsrichtung des Anregungslasers bereits eine leichte Asymmetrie zu beobachten: Die Intensität der Anregung ist in Abbildung \ref{fig:raw_fp_45} zwischen $90^\circ$ und $180^\circ$ größer, als zwischen $180^\circ$ und $270^\circ$. Bei Wechsel des Drehsinns der Polarisation des Anregungslaser (Abbildung \ref{fig:raw_fp_135}) invertiert diese Asymmetrie ihr Vorzeichen. In Vorwärtsrichtung ist bemerkenswerterweise eine Asymmetrie zu beobachten, die zur Asymmetrie in Rückwärtsrichtung entgegengesetzt ist: In Abbildung \ref{fig:raw_fp_45} ist zwischen die gemessene Intensität zwischen $0^\circ$ und $90^\circ$ größer als zwischen $270^\circ$ und $0^\circ$. Auch diese Asymmetrie invertiert bei Wechsel des Drehsinns der Polarisation ihr Vorzeichen.
+	\paragraph{Impulsraum} 
+	In den Rohdaten des Impulsraumes ist in Rückwärtsrichtung ein äquivalentes Verhalten zu dem Verhalten der Anregung im Ortsraum zu erkennen. In Vorwärtsrichtung ist in den Rohdaten des Impulsraumes hingegen keine deutliche Asymmetrie zu beobachten.
+	\FloatBarrier
+	\subsubsection{Differenz- und Integrationsdaten}
+		Um die Asymmetrie bei Anregung mit zirkular polarisierte Strahlung im Detail zu untersuchen, wurde ein Differenzbild zwischen den Intensitäten, die bei links- und rechts-zirkular polarisierter Anregungsstrahlung gemessen worden sind errechnet. Diese Differenzdaten wurden sowohl für die Messungen im Ortsraum, als auch für die Messung im Impulsraum berechnet.			
+		\paragraph{Ortsraum}
+		Im Ortsraum lässt sich die relative Intensitätsdifferenz zwischen der Leckstrahlung die durch die Anregung mit links und rechts polarisierter Strahlung entsteht durch folgenden Ausdruck berechnen:
+		\begin{equation}
+			D_r\left(|\vec{r}|, \Phi\right) := \dfrac{I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ) - I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)}{I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ) + I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)}
+		\end{equation} 
+		 Diese relative Intensitätsdifferenz im Ortsraum ist in Abbildung \ref{fig:diff_fp_45_135} dargestellt. In dieser Darstellung ist zu erkennen, dass die relative Intensitätsdifferenz in radialer Richtung eine Modulation mit der gleichen Raumfrequenz wie die Rohdaten zeigt. Auf konzentrischen Kreisen mit geringer Intensität im Ursprungssignal treten im Differenzbild negative Werte auf und auf konzentrischen Kreisen mit hoher Intensität im Ursprungssignal treten positive Werte im Differenzbild auf. Die Modulation der Differenz in azimutaler Richtung entsteht nur durch ein Verringern einer der beiden oben beschriebenen Differenzen, nicht jedoch durch einen Vorzeichenwechsel. Für dieses Verhalten konnte im Rahmen dieser Arbeit keine endgültige Erklärung gefunden werden. Die radiale Modulation der Intensität im Ortsbild der Leckstrahlung entsteht durch unterschiedliche Effekt, die nur durch umfangreiche Simulationen untersucht werden können. Zum einen entsteht ein räumlich modulierte Signal durch die scharfe Begrenzung der Raumfrequenzen durch die Numerische Apertur. Diese Signal Modulation wird von einer Modulation, die direkt durch das SPP entsteht überlagert.  In \cite{Hohenau.2011} wird die Bildentstehung in einem LRM mit linear polarisiertem Licht sehr detailliert erläutert und simuliert. (...)
+		 
+		 Um die Asymmetrie der Anregung bezüglich der Einfallsebene des Lasers in Abhängigkeit der Polarisation des Lasers zu charakterisieren, wurden zwei Bereiche im Ortsraum ausgewählt, über die die Intensität integriert wurde. Diese Integrationsbereiche wurden symmetrisch bezüglich der horizontalen Einfallsebene des Lasers gewählt:		 
+		 \begin{align}
+		 	P_{r, \mathrm{Oben}}(\alpha_{\lambda/4}) &:= \int_{0}^{r_\mathrm{max}}r \, \mathrm{d}r \int_{\phi_\mathrm{min}}^{\phi_\mathrm{max}} \mathrm{d}\phi I_r(r, \phi, \alpha_{\lambda /4}) \\
+		 	P_{r, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= \int_{0}^{r_\mathrm{max}}r \, \mathrm{d}r \int_{360^\circ -\phi_\mathrm{max}}^{360^\circ - \phi_\mathrm{min}} \mathrm{d}\phi I_r(r, \phi, \alpha_{\lambda/4})		 	
+		 \end{align}
+	 
+		 \begin{align}
+		 	\label{eq:relative_power}
+		 	P_{r, \mathrm{relativ}, \mathrm{Oben}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{r, \mathrm{Oben}}(\alpha_{\lambda/4})}{P_{r, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{r, \mathrm{Unten}}(\alpha_{\lambda/4})} \\
+		 	P_{r, \mathrm{relativ}, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{r, \mathrm{Unten}}(\alpha_{\lambda/4})}{P_{r, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{r, \mathrm{Unten}}(\alpha_{\lambda/4})}	 	
+		 \end{align}
+	 	Hierbei ist $r_\mathrm{max} = ...\mathrm{\mu m}$ die Begrenzung der Integrationsbereiche in radialer Richtung. Dieser Wert wurde gewählt, da für $|\vec{r}| > ...\mathrm{\mu m}$ nur noch geringe Intensitäten gemessen worden sind. Die Winkel $\phi_\mathrm{min} < \phi_\mathrm{max}$ legen die beiden Integrationsbereiche in azimutaler Richtung fest. Diese über eine Fläche integrierte Intensität ist eine Leistung. Die Integration wurde für alle Orientierungen des $\lambda/4$-Plättchens durchgeführt. Die Leistungen des oberen und unteren SPP wurde mit der Beziehung \eqref{eq:relative_power} auf die Summe der beiden Leistungen normiert. Das Ergebnis dieser Auswertung ist in den Abbildung \ref{fig:int_fp_45_135}, \subref{fig:int_fp_45_135_mid}, \subref{fig:int_fp_45_135_front} für unterschiedliche Kombinationen von $\phi_\mathrm{min}$und$\phi_\mathrm{max}$ dargestellt. Die Integrationsbereiche sind dabei jeweils in  \ref{fig:diff_fp_45_135}, \subref{fig:diff_fp_45_135_mid}, \subref{fig:diff_fp_45_135_front} markiert.
+		  
+		  (Diskussion) Dieser beobachtete Verlauf der Intensitäten zwischen oberen und unteren SPP in Rückwärtsrichtung zeigt bei zirkularer Polarisation ($\alpha_{\lambda /4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$) jeweils die mit dem Drehsinn der Polarisation wechselnde Asymmetrie.
+		\begin{figure}		
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_back.png}
+				\caption{Relative Intensitäts Differenz}
+				\label{fig:diff_fp_45_135}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_back_int.pdf}
+				\caption{Integrierte  Intensität}
+				\label{fig:int_fp_45_135}
+			\end{subfigure}
+			
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_mid.png}
+				\caption{Relative Intensitäts Differenz}
+				\label{fig:diff_fp_45_135_mid}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_mid_int.pdf}
+				\caption{Integrierte  Intensität}
+				\label{fig:int_fp_45_135_mid}
+			\end{subfigure}
+			
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_forw.png}
+				\caption{Relative Intensitäts Differenz}
+				\label{fig:diff_fp_45_135_front}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/fp/fp_forw_int.pdf}
+				\caption{Integrierte  Intensität}
+				\label{fig:int_fp_45_135_front}
+			\end{subfigure}
+			\caption{Die Abbildung \subref{fig:diff_fp_45_135}, \subref{fig:diff_fp_45_135_mid}, \subref{fig:diff_fp_45_135_front} zeigt die nach \eqref{eq:diff_measure} berechnete Differenz der Intensitäten im Ortsraum zwischen links- bzw. rechts-zirkular Polarisierte Anregungsstrahlung. Diese Abbildungen unterscheiden sich nur in den markierten Integrationsbereichen. Die Abbildung \ref{fig:int_fp_45_135}, \ref{fig:int_fp_45_135_mid}, \ref{fig:int_fp_45_135_front} zeigen jeweils die mit \eqref{eq:relative_power} über die zugehörigen markierten Bereiche integrierte Intensität normiert auf die Summe der Intensitäten beider Bereiche in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens. }
+			\label{fig:spin_hall_measure_diff_fp}
+		\end{figure}
+		\paragraph{Impulsraum}
+		Die oben ausgeführte Auswertung kann analog auch auf die Messdaten des Impulsraumes angewendet werden:
+		\begin{align}
+			P_{k, \mathrm{Oben}}(\alpha_{\lambda/4}) &:= \int_{k_\mathrm{min}}^{k_\mathrm{max}}k \, \mathrm{d}k \int_{\phi_\mathrm{min}}^{\phi_\mathrm{max}} \mathrm{d}\phi I_k(k, \phi, \alpha_{\lambda /4}) \\
+			P_{k, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= \int_{k_\mathrm{min}}^{k_\mathrm{max}}k \, \mathrm{d}k \int_{360^\circ -\phi_\mathrm{max}}^{360^\circ - \phi_\mathrm{min}} \mathrm{d}\phi I_k(k, \phi, \alpha_{\lambda/4})		 	
+		\end{align}
 		
-		\begin{subfigure}[b]{0.5\textwidth}
+		\begin{align}
+			\label{eq:relative_power_momentum}
+			P_{k, \mathrm{relative}, \mathrm{Oben}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{k, \mathrm{Oben}}(\alpha_{\lambda/4})}{P_{k, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{k, \mathrm{Unten}}(\alpha_{\lambda/4})} \\
+			P_{k, \mathrm{relative}, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{k, \mathrm{Unten}}(\alpha_{\lambda/4})}{P_{k, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{k, \mathrm{Unten}}(\alpha_{\lambda/4})}	 	
+		\end{align}
+		Da im Impulsraum von der Leckstrahlung nur ein scharfer Kreisring mit Radius $k = k_\mathrm{SPP}$ erwartet wird, wurde bei der Integration noch zusätzlich eine untere Integrationsgrenze $k_min$ in radialer Richtung eingeführt. Das Differenzbild und die Auswertung der Integrationsbereiche sind in Abbildung \ref{fig:spin_hall_measure} dargestellt.		
+		\begin{figure}
+			\label{fig:spin_hall_measure}
 			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/diff_mid.png}
-			\caption{Differenz BFP, Integrationsmaske $45^\circ-135^\circ$}
-			\label{fig:diff_mid}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_mid.pdf}
-			\caption{Kontrast zwischen oberem und unterem SPP}
-			\label{fig:intensity_mid}
-		\end{subfigure}
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/diff_back.png}
+				\caption{Differenz, Integrationsmaske $120^\circ-170^\circ$}
+				\label{fig:diff_back}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_back.pdf}
+				\caption{Kontrast zwischen oberem und unterem SPP}
+				\label{fig:intensity_back}
+			\end{subfigure}
+			
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/diff_mid.png}
+				\caption{Differenz BFP, Integrationsmaske $45^\circ-135^\circ$}
+				\label{fig:diff_mid}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_mid.pdf}
+				\caption{Kontrast zwischen oberem und unterem SPP}
+				\label{fig:intensity_mid}
+			\end{subfigure}
+			
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/diff_forw.png}
+				\caption{Differenz BFP, Integrationsmaske $5^\circ-30^\circ$}
+				\label{fig:diff_front}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_forw.pdf}
+				\caption{Kontrast zwischen oberem und unterem SPP}
+				\label{fig:intensity_front}
+			\end{subfigure}
+			\caption[PSHE Messung]{Die Differenz-BFP-Abbildungen zeigen jeweils die relative Differenz in den Intensitäten der BFP zwischen $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$, also die Fälle von links- bzw. rechtszirkular polarisierter Anregung. Um den interessanten Bereich rund um $|\vec{k}_\perp| = \Re\{k_\mathrm{SPP}\}$ größer darzustellen, hat die Radius-Achse ein Offset. Als äußerer Rand der Darstellung wurde $|\vec{k}_\perp| = k_0\mathrm{NA}$ gewählt. Hierdurch ist die Darstellung verzerrt. Außerdem sind in der BFP in schwarz jeweils die Integrationsmasken dargestellt. Die Abbildungen auf der linken Seite zeigen die Abhängigkeit des Kontrastes zwischen den Intensitäten in der oberen und der unteren Integrationsmaske von der Orientierung des $\lambda/4$-Plättchens. Die vertikalen Linien in dem Diagramm an den Positionen $\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$ entsprechen einer Anregung mit zirkular polarisiertem Licht (alternierend links- und rechtszirkular).}	
+		\end{figure}
+	\FloatBarrier
+	\subsubsection{Azimutale Intensität und Intensitätsdifferenz}	
+		Da für die unterschiedlichen Orientierung des Integrationsbereichs qualitativ unterschiedliche Verhaltensweisen der Asymmetrie zwischen oberen und unterem SPP beobachtet worden sind, lohnt es sich noch eine weiter Darstellungsart einzuführen:
 		
-		\begin{subfigure}[b]{0.5\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/diff_forw.png}
-			\caption{Differenz BFP, Integrationsmaske $5^\circ-30^\circ$}
-			\label{fig:diff_front}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/intensity_forw.pdf}
-			\caption{Kontrast zwischen oberem und unterem SPP}
-			\label{fig:intensity_front}
-		\end{subfigure}
-		\caption[PSHE Messung]{Die Differenz-BFP-Abbildungen zeigen jeweils die relative Differenz in den Intensitäten der BFP zwischen $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$, also die Fälle von links- bzw. rechtszirkular polarisierter Anregung. Um den interessanten Bereich rund um $|\vec{k}_\perp| = \Re\{k_\mathrm{SPP}\}$ größer darzustellen, hat die Radius-Achse ein Offset. Als äußerer Rand der Darstellung wurde $|\vec{k}_\perp| = k_0\mathrm{NA}$ gewählt. Hierdurch ist die Darstellung verzerrt. Außerdem sind in der BFP in schwarz jeweils die Integrationsmasken dargestellt. Die Abbildungen auf der linken Seite zeigen die Abhängigkeit des Kontrastes zwischen den Intensitäten in der oberen und der unteren Integrationsmaske von der Orientierung des $\lambda/4$-Plättchens. Die vertikalen Linien in dem Diagramm an den Positionen $\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$ entsprechen einer Anregung mit zirkular polarisiertem Licht (alternierend links- und rechtszirkular).}	
-	\end{figure}
+		
+		 In Abbildung \ref{fig:angular_int_fp} wurde die über den Radius integrierte azimutal Winkel abhängige Intensitätsverteilung im Ortsbild bei einer Orientierung des $\lambda / 4$-Plättchens von $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$ dargestellt (also links- und rechts-zirkulare Polarisation). Um das Signal zu glätten wurden dabei jeweils ein Winkelbereich von $\Delta \alpha = 2^\circ$ zu einem einzelnen Durchschnittswert zusammengefasst. Um aus diesen Daten die Azimutalwinkel abhängige Asymmetrie zwischen links- und rechts-polarisierte Anregungsstrahlung zu gewinnen wurde aus den beiden Intensitäten die relative Differenz gebildet. Diese relative Differenz ist in Abbildung \ref{fig:angular_int_diff_fp} dargestellt.
+		\paragraph{Ortsraum}
+		\begin{align}
+			P_r(\phi, \alpha_{\lambda/4}) &= \int_{0}^{r_\mathrm{max}}r\,\mathrm{d}r I_r(r, \phi, \alpha_{\lambda /4}) \\
+			D_r(\phi, \alpha_{\lambda/4}) &= \dfrac{P_r(\phi, \alpha_{\lambda/4} = 45^\circ) - P_r(\phi, \alpha_{\lambda/4} = 135^\circ)}{P_r(\phi, \alpha_{\lambda/4} = 45^\circ) + P_r(\phi, \alpha_{\lambda/4} = 135^\circ)}
+		\end{align}
+		\begin{figure}		
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_45_135.pdf}
+				\caption{Winkelabhängige Intensitätsverteilung}
+				\label{fig:angular_int_fp}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_diff_45_135.pdf}
+				\caption{Winkelabhängige Intensitätsdifferenz}
+				\label{fig:angular_int_diff_fp}
+			\end{subfigure}
+			\caption{Abbildung \subref{fig:angular_int_fp} zeigt die azimutal-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierte Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Line wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:angular_int_diff_fp} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
+			\label{fig:angular_dist_fp}
+		\end{figure}
+		\FloatBarrier
+		\paragraph{Impulsraum}
+		\begin{align}
+			P_k(\phi, \alpha_{\lambda/4}) &= \int_{k_\mathrm{min}}^{k_\mathrm{max}}k\,\mathrm{d}k I_k(k, \phi, \alpha_{\lambda /4}) \\
+			D_k(\phi, \alpha_{\lambda/4}) &= \dfrac{P_k(\phi, \alpha_{\lambda/4} = 45^\circ) - P_k(\phi, \alpha_{\lambda/4} = 135^\circ)}{P_k(\phi, \alpha_{\lambda/4} = 45^\circ) + P_k(\phi, \alpha_{\lambda/4} = 135^\circ)}
+		\end{align}
+		\begin{figure}		
+			\begin{subfigure}[b]{0.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/bfp_angular_distribution_45_135.pdf}
+				\caption{Winkelabhängige Intensitätsverteilung}
+				\label{fig:angular_int_bfp}
+			\end{subfigure}
+			\hfill
+			\begin{subfigure}[b]{0.49\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{figures/spin_hall/bfp_angular_distribution_diff_45_135.pdf}
+				\caption{Winkelabhängige Intensitätsdifferenz}
+				\label{fig:angular_int_diff_bfp}
+			\end{subfigure}
+			\caption{Abbildung \subref{fig:angular_int_fp} zeigt die azimutal-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierte Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Line wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:angular_int_diff_fp} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
+			\label{fig:angular_dist_fp}
+		\end{figure}
+	
+	\FloatBarrier
 	\subsection{Diskussion}
 	In den Messdaten sind für unterschiedliche Ausbreitungsrichtungen relativ zur Einfallsebene des Lasers qualitativ unterschiedliche Verhaltensweisen zu beobachten.
 	\paragraph{Rückwärtsrichtung}
@@ -708,7 +816,6 @@
 	\newpage
 	\appendix
 	\bibliography{bib}
-	\section{Programmierung}
 	\section{Weitere Messdaten}
 	\begin{figure}[h!]
 		\label{fig:dirt_measure}
@@ -733,43 +840,36 @@
 		\caption{Intensitätsverteilung}
 		\label{fig:dirt_polar}
 		\end{subfigure}
-		\caption[Messung an kontaminierter Probe]{Die Abbildung zeigt die BFP bei der Messung an einer mit Öl kontaminierten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\,\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an reinen Proben.}			
+		\caption[Messung an kontaminierter Probe]{Die Abbildung zeigt die BFP bei der Messung an einer mit Öl kontaminierten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\,\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an nicht kontaminierten Proben.}			
 	\end{figure}
 
 	\begin{figure}[h!]
-		\label{fig:measure_polar}
+	\label{fig:measure_linear_polarisation}
+	
+	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\begin{subfigure}[b]{0.5\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_45.png}
-			\caption{$\alpha_{\lambda/4} = 45^\circ$}
-			\label{fig:measure_polar_45}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_135.png}
-			\caption{$\alpha_{\lambda/4} = 135^\circ$}
-			\label{fig:measure_polar_135}
-		\end{subfigure}
-		
-		\begin{subfigure}[b]{0.5\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_0.png}
-			\caption{$\alpha_{\lambda/4} = 0^\circ$}
-			\label{fig:dirt_radia_0}
-		\end{subfigure}
-		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_90.png}
-			\caption{$\alpha_{\lambda/4} = 90^\circ$}
-			\label{fig:dirt_radia_90}
-		\end{subfigure}
-		\caption[BFP in Abhängigkeit der Abstrahlrichtung]{Die Abbildung zeigt die BFP bei der Messung an einem Punktdefekt unter streifenden Laser-Einfall.}			
-	\end{figure}
-		
-	\section{Polarimeter}
+		\includegraphics[width=\textwidth]{figures/fp/fp_0.png}
+		\caption{$\alpha_{\lambda/4} = 0^\circ$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_0.png}
+		\caption{$\alpha_{\lambda/4} = 0^\circ$}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/fp/fp_90.png}
+		\caption{$\alpha_{\lambda/4} = 90^\circ$}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_90.png}
+		\caption{$\alpha_{\lambda/4} = 90^\circ$}
+	\end{subfigure}
+
+	\caption[BFP in Abhängigkeit der Abstrahlrichtung]{Die Abbildung zeigt die BFP bei der Messung an einem Punktdefekt unter streifenden Laser-Einfall.}			
+\end{figure}
 	\newpage
 	\section{Technische Zeichnungen}
 	\begin{figure}[h!]
