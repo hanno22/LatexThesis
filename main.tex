@@ -15,7 +15,7 @@
 \counterwithin{figure}{section}
 \counterwithin{equation}{section}
 \counterwithin{table}{section}
-\usepackage[left=3.50cm, right=3.50cm, top=3.00cm, bottom=3.00cm]{geometry}
+\usepackage[left=4cm, right=4cm, top=3.00cm, bottom=3.00cm]{geometry}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 \usepackage{rotating}
@@ -24,12 +24,15 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
 \usepackage{pdfpages}
+\usepackage{microtype}
+
 
 \title{Aufbau und Justage eines Leckstrahlmikroskops zum Nachweis des plasmonischen Spin-Hall-Effektes}
 \author{Hanno Christiansen}
 \date{März 2021}
 
 \begin{document}
+	\sloppy
 	
 	\includepdf{title.pdf}
 	\tableofcontents
@@ -50,23 +53,24 @@
 	
 	\newpage	
 	\section{Theorie}
-	\subsection{Oberflächen-Plasmon-Polariton (SPP)}		
+	\subsection{Oberflächen-Plasmon-Polariton (SPP)}
+	\label{sec:spp}		
 	Ein SPP ist das quantisierte Quasiteilchen einer an das elektromagnetische Feld gekoppelten Elektronen-Dichte-Oszillation an einer Grenzschicht zwischen einem Metall und einem Dielektrikum. Durch die spezielle Form dieser Grenzschichtgeometrie ist es möglich, trotz des rein longitudinalen Charakters der Elektronen-Dichte-Oszillation ein elektromagnetisches Feld mit transversalen Komponenten zu erzeugen. Das magnetische Feld eines SPP ist hingegen rein transversal. Daher spricht man auch von einer transversal-magnetischen Mode (TM-Mode). Durch die Existenz dieser transversalen Komponenten ist eine Kopplung zwischen SPP und der rein transversalen elektromagnetischen Strahlung prinzipiell möglich. Die einfachste Geometrie, in der SPP auftreten können, ist ein Zweischichtsystem: Der Halbraum oberhalb der $xy$-Ebene mit $z>0$ sei von einem Dielektrikum mit der Dielektrizitätskonstante $\epsilon_\mathrm{D}$ ausgefüllt. Im Halbraum unterhalb der $xy$-Ebene mit $z<0$ befinde sich ein Metall mit der im allgemeinen komplexen dielektrischen Funktion $\epsilon(\omega)$. An der Grenzschicht zwischen diesen beiden Halbräumen können SPP propagieren. Um nun einige charakteristische Eigenschaften von SPP zu erläutern, wird davon ausgegangen, dass das SPP entlang der $x$-Achse propagiert und entlang der y-Achse homogen ist. So wird das Problem effektiv auf zwei Dimensionen reduziert. Wie in \cite{Maier.2007} gezeigt, lassen sich die elektromagnetischen Felder eines SPP in dieser einfachen Geometrie durch folgende Ausdrücke beschreiben:
 	\begin{subequations}
 		\label{eq:fields_spp}
 		\begin{equation}
 			\label{eq:electric_field_spp}
-			\vec{E}_n(\vec{r}) = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{spp}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)	
+			\vec{E}_n(\vec{r}) = \begin{pmatrix} 1 \\ 0 \\ \pm k_{\mathrm{SPP}}/k_{z,n} \end{pmatrix} E_0 \exp\left(i(k_{\mathrm{SPP}}x + k_{z, n}|z|-\omega t)\right)	
 		\end{equation}
 		\begin{equation}
 			\label{eq:magnetic_field_spp}
-			\vec{H}_n(\vec{r}) = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} H_0 \exp\left(i(k_{\mathrm{spp}}x + k_{z, n}|z|-\omega t)\right)
+			\vec{H}_n(\vec{r}) = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} H_0 \exp\left(i(k_{\mathrm{SPP}}x + k_{z, n}|z|-\omega t)\right)
 		\end{equation}
 	\end{subequations}
-	Hierbei ist $\vec{E}_n(\vec{r})$ die elektrische Feldstärke im Medium $n$ am Ort $\vec{r}$, $E_0$ die Amplitude der elektrischen Feldstärke an der Grenzschicht, $\omega$ die Kreisfrequenz der Anregung, $x, z$ Komponenten von $\vec{r}$, $\vec{H}_n(\vec{r})$ die magnetische Feldstärke am Ort $\vec{r}$ im Medium $n$, $H_0$ die Amplitude der magnetischen Feldstärke an der Grenzschicht und $t$ die Zeit. Der komplexe Wellenvektor der Anregung entlang der Grenzfläche ist $k_{\mathrm{spp}}$, während der senkrechte Anteil des Wellenvektors durch $k_{z,n}$ beschrieben wird.
+	Hierbei ist $\vec{E}_n(\vec{r})$ die elektrische Feldstärke im Medium $n$ am Ort $\vec{r}$, $E_0$ die Amplitude der elektrischen Feldstärke an der Grenzschicht, $\omega$ die Kreisfrequenz der Anregung, $x, z$ Komponenten von $\vec{r}$, $\vec{H}_n(\vec{r})$ die magnetische Feldstärke am Ort $\vec{r}$ im Medium $n$, $H_0$ die Amplitude der magnetischen Feldstärke an der Grenzschicht und $t$ die Zeit. Der komplexe Wellenvektor der Anregung entlang der Grenzfläche ist $k_{\mathrm{SPP}}$, während der senkrechte Anteil des Wellenvektors durch $k_{z,n}$ beschrieben wird.
 	Der Index $n$ beschreibt hierbei das Material ($\mathrm{M}$ für das Metall, $\mathrm{D}$ für das Dielektrikum). 
-	In dem Operator $\pm$ steht das $+$ für das Metall und das $-$ für das Dielektrikum. Der im allgemeinen komplexe Wellenvektor der Anregung $k_{\mathrm{spp}}$ ist in beiden Materialien identisch. Der Realteil $\Re\{k_{\mathrm{spp}}\}$ des komplexen Wellenvektors lässt sich in die Wellenlänge $\lambda_{\mathrm{spp}} = 2\pi/ \Re\{k_{\mathrm{spp}}\} $ des SPP umrechnen. Der Imaginärteil $\Im\{k_{\mathrm{spp}}\}$ beschreibt das Dämpfungsverhalten des SPP entlang der Ausbreitungsrichtung. Der Imaginärteil lässt sich über $L_{\mathrm{spp}} = 1/(2\Im\{k_{\mathrm{spp}}\})$ in eine Propagationslänge umrechnen.  Hierfür gilt: Nachdem das SPP eine Propagationslänge in Ausbreitungsrichtung zurückgelegt hat, sind die ursprünglichen Amplituden des SPP auf $1/\mathrm{e}$ ihres ursprünglichen Betrages abgeklungen. Analog beschreibt $\Im\{k_{z, n}\}$ das exponentielle Abklingen der Anregung senkrecht zur Grenzfläche. Hier lassen sich anlog zur Propagationslänge die Eindringtiefen $\delta_{\mathrm{M,D}}$ definieren. Der quantitative Verlauf des elektrischen Feldes ist für ein rein reelles $k_{\mathrm{spp}}$ und rein imaginäre $k_{z, n}$ in Abb. \ref{fig:electric_field_spp} dargestellt. 
-	\begin{figure}[htbp] 
+	In dem Operator $\pm$ steht das $+$ für das Metall und das $-$ für das Dielektrikum. Der im allgemeinen komplexe Wellenvektor der Anregung $k_{\mathrm{SPP}}$ ist in beiden Materialien identisch. Der Realteil $\Re\{k_{\mathrm{SPP}}\}$ des komplexen Wellenvektors lässt sich in die Wellenlänge $\lambda_{\mathrm{SPP}} = 2\pi/ \Re\{k_{\mathrm{SPP}}\} $ des SPP umrechnen. Der Imaginärteil $\Im\{k_{\mathrm{SPP}}\}$ beschreibt das Dämpfungsverhalten des SPP entlang der Ausbreitungsrichtung. Der Imaginärteil lässt sich über $L_{\mathrm{SPP}} = 1/(2\Im\{k_{\mathrm{SPP}}\})$ in eine Propagationslänge umrechnen.  Hierfür gilt: Nachdem das SPP eine Propagationslänge in Ausbreitungsrichtung zurückgelegt hat, sind die ursprünglichen Amplituden des SPP auf $1/\mathrm{e}$ ihres ursprünglichen Betrages abgeklungen. Analog beschreibt $\Im\{k_{z, n}\}$ das exponentielle Abklingen der Anregung senkrecht zur Grenzfläche. Hier lassen sich anlog zur Propagationslänge die Eindringtiefen $\delta_{\mathrm{M,D}}$ definieren. Der quantitative Verlauf des elektrischen Feldes ist für ein rein reelles $k_{\mathrm{SPP}}$ und rein imaginäre $k_{z, n}$ in Abb. \ref{fig:electric_field_spp} dargestellt. 
+	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/E_Feld_SPP.png}
 		\caption[Elektrisches Feld SPP]{Quantitativer Verlauf der EM-Felder eines SPP entlang einer Metall-Dielektrikums-Grenzschicht. Die Orientierung des elektrischen Felds ist durch die Pfeile dargestellt. Die Grauwert-Skala der Pfeile entspricht dabei dem Betrag der elektrischen Feldstärke. Die Stärke des transversalen Magnetfeldes ist durch die Farbskala dargestellt.}
@@ -88,23 +92,23 @@
 		\end{equation}		
 		\begin{equation}
 			\label{eq:condition_spp_2}
-			k_{\mathrm{spp}}^2 +k_{z, n}^2 = \epsilon_n\left(\dfrac{\omega}{c}\right)^2; \text{ für  } n=\mathrm{M,D}
+			k_{\mathrm{SPP}}^2 +k_{z, n}^2 = \epsilon_n\left(\dfrac{\omega}{c}\right)^2; \text{ für  } n=\mathrm{M,D}
 		\end{equation}
 	\end{subequations}
 	Hierbei ist $\vec{D}$ die dielektrische Verschiebung, $\vec{E}$ die elektrische Feldstärke, $\vec{B}$ die magnetische Flussdichte, $\vec{H}$ die magnetische Feldstärke, 	$\epsilon_\mathrm{D}$ die Permittivität des Dielektrikums und $\epsilon_\mathrm{M} = \epsilon_\mathrm{M}(\omega)$ die dielektrische Funktion des Metalls in Abhängigkeit von der Kreisfrequenz der Anregung $\omega$. Durch das Lösen der Bedingungen \eqref{eq:condition_spp_1},  \eqref{eq:condition_spp_2} ergibt sich die Dispersionsrelation des SPP an einer Grenzschicht zwischen einem Metall und einem Dielektrikum zu: 
 	\begin{equation}
 		\label{eq:dispersion_spp}
 		\boxed{
-			k_{\mathrm{spp}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_\mathrm{D}\epsilon_\mathrm{M}(\omega)}{\epsilon_\mathrm{D} + 	\epsilon_\mathrm{M}(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
+			k_{\mathrm{SPP}}\left(\omega\right) = \dfrac{\omega}{c} \sqrt{\dfrac{\epsilon_\mathrm{D}\epsilon_\mathrm{M}(\omega)}{\epsilon_\mathrm{D} + 	\epsilon_\mathrm{M}(\omega)}}  = k_0(\omega) n_{\mathrm{eff}}(\omega)}
 	\end{equation}
-	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung im Vakuum. Und $n_{\mathrm{eff}}(\omega) = \sqrt{\epsilon_\mathrm{D}\epsilon_\mathrm{M}(\omega)/(\epsilon_\mathrm{D} + 	\epsilon_\mathrm{M}(\omega))}$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über die Zusammenhänge $E = \hbar \omega$ und $P = \hbar \Re\{k_\mathrm{spp}\}$ auch als Impuls $P(E)$ in Abhängigkeit von der Energie $E$ dargestellt werden.
+	Hierbei ist $k_0 = \omega / c$ die Dispersion von elektromagnetischer Strahlung im Vakuum. Und $n_{\mathrm{eff}}(\omega) = \sqrt{\epsilon_\mathrm{D}\epsilon_\mathrm{M}(\omega)/(\epsilon_\mathrm{D} + 	\epsilon_\mathrm{M}(\omega))}$ wird als effektiver Brechungsindex der Anregung bezeichnet. Die Dispersion kann über die Zusammenhänge $E = \hbar \omega$ und $P = \hbar \Re\{k_\mathrm{SPP}\}$ auch als Impuls $P(E)$ in Abhängigkeit von der Energie $E$ dargestellt werden.
 	
-	Aus der Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{spp}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{spp}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien gilt: $ \Im\{k_{z, n}\} \gg \Re\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung fallen die Amplituden der Felder senkrecht zur Ausbreitungsrichtung exponentiell ab. Diesen Umstand bezeichnet man als Evaneszenz. Die Anregung ist daher eng an der Grenzfläche lokalisiert. 
+	Aus der Gleichung \eqref{eq:condition_spp_2} folgt $k_{z, n} = \sqrt{\epsilon_n k_0^2 - k_{\mathrm{SPP}}^2}$. Diese Beziehung legt den Zusammenhang zwischen $k_{\mathrm{SPP}}$ und $k_{z, n}$ fest. Außerdem lässt sich hieraus erkennen, dass für typische Materialien gilt: $ \Im\{k_{z, n}\} \gg \Re\{k_{z, n}\}$. Durch die Dominanz des Imaginärteils über den Realteil der Wellenvektorkomponente senkrecht zur Ausbreitungsrichtung fallen die Amplituden der Felder senkrecht zur Ausbreitungsrichtung exponentiell ab. Diesen Umstand bezeichnet man als Evaneszenz. Die Anregung ist daher eng an der Grenzfläche lokalisiert. 
 		
 	Im folgenden werden die Messdaten der dielektrischen Funktion von Gold aus der Publikation \cite{Olmon.2012} verwendet, um den Verlauf der Dispersion einer Vakuum-Gold-Mode aus Gleichung \eqref{eq:dispersion_spp} zu berechnen.  Die Publikation stellt Messdaten für unterschiedliche Gold-Oberflächenrauigkeiten zur Verfügung. Es wurden die Messdaten für aufgedampftes Gold verwendet, da die in dieser Arbeit verwendeten Proben bedampft worden sind. Für die Berechnung der Dispersion der Gold-Glas-Mode wurde $\epsilon_\mathrm{D} = 2.327$  verwendet, da dies den verwendeten Proben entspricht. In der Dispersionskurve Abb. \ref{fig:dispersion_spp} ist zu erkennen, dass der Wellenvektor des SPP bei einer Anregungs-Energie von $E = hc/\lambda_{\mathrm{HeNe}}= 1.95\,\mathrm{eV}$ rechts von der Dispersion elektromagnetischer Strahlung im Vakuum liegt. Es tritt bei gegebener Energie also eine Wellenvektor-Differenz zwischen SPP und elektromagnetischer Strahlung auf. Diese $k$-Differenz sorgt dafür, dass SPPs nicht ohne weiteres von elektromagnetischer Strahlung angeregt werden können.
 	\begin{figure}[h]		
 		\centering
-		\includegraphics[width=0.7\textwidth]{figures/dispersion.pdf}
+		\includegraphics[width=0.7\textwidth]{figures/new/2_2_dispersion.pdf}
 		\caption[Dispersion SPP]{Die Abbildung zeigt die mit \eqref{eq:dispersion_spp} und der dielektrischen Funktion von Gold aus \cite{Olmon.2012} berechnete Dispersion für ein SPP an der Grenzschicht zwischen Gold und Vakuum. Außerdem wurde die Dispersion von EM-Strahlung im Vakuum $k_0(E)$ und in Glas $k_0(E)\sqrt{\epsilon_\mathrm{Glas}}$ für $\epsilon_\mathrm{Glas} =2.327$ \cite{Zeiss.} dargestellt, da dieses Glas im weiteren Verlauf der Arbeit als Deckglas der Proben verwendet worden ist. Die Bedeutung der Glas Dispersion wird für das Experiment im Kapitel \ref{sec:leakage_radiation} Leckstrahlung näher erläutert.}
 		\label{fig:dispersion_spp}		
 	\end{figure}	
@@ -117,7 +121,7 @@
 	In der Kretschmann-Konfiguration wird ein System aus drei Schichten verwendet (Abbildung \ref{fig:kretschman}). Ein dünner Metallfilm wird zwischen zwei Dielektrika ($\mathrm{D}_1$, $\mathrm{D}_2$) mit $\epsilon_{\mathrm{D}_1} > \epsilon_{\mathrm{D}_2}$ eingeschlossen. Das SPP soll hierbei an der Grenzschicht Metall-$\mathrm{D}_2$ propagieren. In der der ersten Schicht wird der Wellenvektor der anregenden EM-Strahlung zunächst auf $k_\mathrm{\mathrm{D}_1} = k_0 \sqrt{\epsilon_\mathrm{D}}$ vergrößert. Die Permittivität $\epsilon_{\mathrm{D}_1}$ wird dabei so gewählt, dass $k_\mathrm{\mathrm{D}_1} = k_0 \sqrt{\epsilon_{\mathrm{D}_1}} > k_\mathrm{SPP}$ gilt. Der Einfallswinkel $\theta_E$ der EM-Strahlung auf die Grenzschichtebene wird dann so festgelegt, dass der auf die Grenzschichtebene projizierte Anteil des Wellenvektors $k_{\mathrm{\mathrm{D}_1}\parallel} = k_{\mathrm{\mathrm{D}_1}} \sin(\theta_E)$ exakt gleich dem Wellenvektor des SPP $k_\mathrm{SPP}$ an der Grenzschichtebene Metall-$\mathrm{D}_2$ ist. Aus dieser Gleichheit ergibt sich die folgende Phasenanpassungsbedingung: 
 	\begin{align}
 		\label{eq:phase_condition_kretschmann}
-		\sin(\theta_E) &= \dfrac{\Re\{k_{\mathrm{spp}}\}}{k_{\mathrm{D}_1}}\\
+		\sin(\theta_E) &= \dfrac{\Re\{k_{\mathrm{SPP}}\}}{k_{\mathrm{D}_1}}\\
 		\Rightarrow \Re\{k_{\mathrm{SPP}}\} &= \sin(\theta_E) k_0 \sqrt{\epsilon_{\mathrm{D}_1}}
 	\end{align}  
 	\begin{figure}[h] 
@@ -126,7 +130,7 @@
 		\caption[Kretschmann-Konfiguration]{Schematischer Aufbau der Kretschmann-Konfiguration. Die Anregungsstrahlung tritt hier zunächst in das Medium mit $\epsilon_{\mathrm{D}_1}$ ein. Hierdurch wird der Wellenvektor der Anregungsstrahlung auf $k_{\mathrm{D}_1}=k_0\sqrt{\epsilon_{\mathrm{D}_1}}$ vergrößert. $\mathrm{D}_1$ wird so gewählt, dass $k_{\mathrm{D}_1}> k_{\mathrm{SPP}}$ gilt. ($k_{\mathrm{SPP}}$ bezieht sich hierbei auf die Mode Metall-Dielektrikum 2 und ergibt sich aus \eqref{eq:dispersion_spp}). Der Einfallswinkel $\theta_E$ wird so gewählt, dass die Projektion von $k_{\mathrm{D}_1}$ auf die Goldoberfläche exakt $k_{\mathrm{SPP}}$ entspricht. Die Abbildung ist an \cite{Jaruschewski.2020} angelehnt.}
 		\label{fig:kretschman}
 	\end{figure}
-	Der Anregungsmechanismus in der Kretschmann-Konfiguration kann mit Hilfe des in Abbildung \ref{fig:dispersion_spp} dargestellten Dispersionsverhalten von SPPs und EM-Strahlung für ein Vakuum-Gold-Glas System mit einem Helium-Neon Laser (He-Ne Laser) der Wellenlänge $\lambda_{\mathrm{HeNe}}=633\,\mathrm{nm}$ auch grafisch verdeutlicht werden: Der Wechsel der EM-Strahlung aus dem Vakuum in das Glas führt dazu, dass $k$ von dem Schnittpunkt der blauen Kurve $k_0$ mit $E(633 \, \mathrm{nm})$ auf den Schnittpunkt der orangenen Kurve $k_0(E)\sqrt{\epsilon_\mathrm{Glas}}$ mit $E(633 \, \mathrm{nm})$ wechselt. Die Projektion von $k_{\mathrm{Glas}\parallel}$ auf die Grenzfläche bei Variation des Einfallswinkels $\theta_E$ entspricht dann einer Rotation von $k_0(E)\sqrt{\epsilon_\mathrm{Glas}}$ gegen den Uhrzeigersinn um den Ursprung. Der Einfallswinkel  $\theta_E$ und damit auch die Rotation der Glas-Dispersion wird nun über Phasenanpassungsbedingung \eqref{eq:phase_condition_kretschmann} so gewählt, dass $k_{\mathrm{Glas}\parallel}$ bei der Energie $E=E(633\,\mathrm{nm})$ einen Berührpunkt mit der Dispersion $k_\mathrm{spp}$ des SPP hat.
+	Der Anregungsmechanismus in der Kretschmann-Konfiguration kann mit Hilfe des in Abbildung \ref{fig:dispersion_spp} dargestellten Dispersionsverhalten von SPPs und EM-Strahlung für ein Vakuum-Gold-Glas System mit einem Helium-Neon Laser (He-Ne Laser) der Wellenlänge $\lambda_{\mathrm{HeNe}}=633\,\mathrm{nm}$ auch grafisch verdeutlicht werden: Der Wechsel der EM-Strahlung aus dem Vakuum in das Glas führt dazu, dass $k$ von dem Schnittpunkt der blauen Kurve $k_0$ mit $E(633 \, \mathrm{nm})$ auf den Schnittpunkt der orangenen Kurve $k_0(E)\sqrt{\epsilon_\mathrm{Glas}}$ mit $E(633 \, \mathrm{nm})$ wechselt. Die Projektion von $k_{\mathrm{Glas}\parallel}$ auf die Grenzfläche bei Variation des Einfallswinkels $\theta_E$ entspricht dann einer Rotation von $k_0(E)\sqrt{\epsilon_\mathrm{Glas}}$ gegen den Uhrzeigersinn um den Ursprung. Der Einfallswinkel  $\theta_E$ und damit auch die Rotation der Glas-Dispersion wird nun über Phasenanpassungsbedingung \eqref{eq:phase_condition_kretschmann} so gewählt, dass $k_{\mathrm{Glas}\parallel}$ bei der Energie $E=E(633\,\mathrm{nm})$ einen Berührpunkt mit der Dispersion $k_\mathrm{SPP}$ des SPP hat.
 	Bei der Reflexion einer elektromagnetischen Welle an einem Metall dringen in das Metall evaneszente Felder ein \cite{Novotny.2012b}. Ist die Metallschicht ausreichend dünn, haben diese evaneszenten Felder an der Grenzfläche Metall-$\mathrm{D}_2$ noch genügend Feldstärke, um dort ein SPP anzuregen. Dies ist nur möglich, da die Wellenvektorkomponente parallel zur Grenzschichtebene wie oben erläutert, an das SPP angepasst worden ist. Die in Abb. \ref{fig:kretschman} gezeigte Geometrie nutzt für $\mathrm{D}_1$ einen Halbkreis, damit der Strahl unabhängig vom Winkel $\theta_\mathrm{E}$ senkrecht in $\mathrm{D}_1$ eintritt.
 	\paragraph{Anregung an Strukturen}
 	Eine weitere Möglichkeit, die Wellenvektordifferenz zu überwinden, stellen scharfe Strukturen in oder an der Metalloberfläche dar. Räumliche Diskontinuitäten von $\epsilon(\vec{r},\omega)$ führen dazu, dass die Impulserhaltung, welche erst zu einer Erhaltung des Wellenvektors geführt hat, lokal außer Kraft gesetzt werden kann. Um nun abschätzen zu können, ob eine räumliche Diskontinuität von $\epsilon(\vec{r},\omega)$ eine hinreichend große Impulsdifferenz zwischen SPP und EM-Strahlung überwinden kann, muss eine räumliche Fouriertransformation von $\epsilon(\vec{r},\omega)$ gebildet werden. Scharfe Strukturen im Ortsraum besitzen gemäß den Gesetzen der Fouriertransformation ein breites Raumfrequenzspektrum. Dieses breite Raumfrequenzspektrum sorgt dafür, dass die nötige Wellenvektordifferenz überwunden werden kann, um ein SPP anzuregen. Der Streuprozess von einem Photon an einem kleinem Partikel auf der Goldoberfläche kann in erster Näherung auch als abstrahlender Dipol aufgefasst werden, dessen EM-Strahlung wiederum ein breites Raumfrequenzspektrum aufweist. Dieser Prozess wird detaillierter in Abschnitt \ref{sec:spatial_freq_dip} anhand des Raumfrequenzspektrums eines Dipols dargestellt.
@@ -135,10 +139,10 @@
 	Leckstrahlung ist der inverse Effekt zur Anregung in der Kretschmann-Konfiguration. In einem Dreischichtsystem $\mathrm{D}_2$-Metall-$\mathrm{D}_1$, bestehend aus einem Metall und zwei Dielektrika ($\mathrm{D}_1$, $\mathrm{D}_2$), kann ein an der Grenzfläche $\mathrm{D}_2$-Metall propagierendes SPP evaneszente EM-Felder erzeugen, die bis zur Grenzfläche Metall-$\mathrm{D}_1$ vordringen können (Abbildung \ref{fig:leakage_radiation}). Damit diese Felder trotz der Evaneszenz die Grenzfläche Metall-$\mathrm{D}_1$ erreichen, ist es notwendig, dass die Metallschicht hinreichend dünn ist. Diese Felder können EM-Strahlung in $\mathrm{D}_1$ unter dem Winkel $\theta_\mathrm{L}$ hervorrufen. Damit der Wellenvektor des SPP und die zur Grenzschicht parallelen Komponenten des Wellenvektors der Leckstrahlung übereinstimmen, muss dieser Winkel analog zu \eqref{eq:phase_condition_kretschmann} folgende Phasenanpassungsbedingung erfüllen:
 	\begin{equation}
 		\label{eq:phase_condition}
-		\boxed{\Re\{k_{\mathrm{spp}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{\mathrm{D}_1}}}
+		\boxed{\Re\{k_{\mathrm{SPP}}\}=\sin(\theta_\mathrm{L}) k_0 \sqrt{\epsilon_{\mathrm{D}_1}}}
 	\end{equation}
 	
-	Dies ist nur möglich, wenn gilt: {$\sqrt{\epsilon_{\mathrm{D}_1}} > \Re\{n_\mathrm{eff, spp}\}$}. Diese in das Dielektrikum $\mathrm{D}_1$ abgegebene Strahlung bezeichnet man als Leckstrahlung. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\Re\{k_{\mathrm{spp}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie genutzt, um den Wellenvektor des SPP zu bestimmen.
+	Dies ist nur möglich, wenn gilt: {$\sqrt{\epsilon_{\mathrm{D}_1}} > \Re\{n_\mathrm{eff, spp}\}$}. Diese in das Dielektrikum $\mathrm{D}_1$ abgegebene Strahlung bezeichnet man als Leckstrahlung. Durch die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann einem bestimmten Abstrahlwinkel $\theta_L$ ein konkreter $\Re\{k_{\mathrm{SPP}}\}$ zugeordnet werden und umgekehrt. Dieser Umstand wird bei der Leckstrahlmikroskopie genutzt, um den Wellenvektor des SPP zu bestimmen.
 	Die Phasenanpassungsbedingung \eqref{eq:phase_condition} kann, wie in \cite{Burke.1986} gezeigt wird, durch eine Fouriertransformation verallgemeinert werden. So erhält man den Ausdruck \eqref{eq:ext_phase_condition} für die winkelabhängige Abstrahlung von Leckstrahlung einer SPP-Mode mit bekanntem Wellenvektor $k_{\mathrm{SPP}} \in \mathbb{C}$
 	\begin{equation}
 		\label{eq:ext_phase_condition}
@@ -151,16 +155,6 @@
 		\caption[Leckstrahlung Drei-Schichtsystem]{Die Abbildung zeigt die Abstrahlung von Leckstrahlung in einem Drei-Schichtsystem. An einem Defekt auf der Metalloberfläche wird mit einem Laser ein SPP angeregt (siehe Abschnitt \ref{sec:exictation}). Das SPP propagiert an der Grenzschicht $\mathrm{D}_2$-Metall und strahlt unter dem Winkel $\theta_L$ Leckstrahlung in das Dielektrikum $\mathrm{D}_1$ ab. Der Winkel $\theta_L$ ergibt sich dabei aus der Phasenanpassungsbedingung \eqref{eq:phase_condition}}.
 		\label{fig:leakage_radiation}
 	\end{figure}
-	\subsubsection{Berechnung von charakteristischen Größen für das System Luft-Gold-Glas}
-	Alle in dieser Arbeit durchgeführten Messungen wurden am System Luft-Gold-Glas durchgeführt. Daher werden an dieser Stelle die oben eingeführten Größen für dieses System angegeben. Die Dielektrizitätskonstante des Glases ist $\epsilon_{\mathrm{G}} = 2.327$ \cite{Zeiss.}, die von Luft beträgt $\epsilon_{\mathrm{L}} = 1.00059$ \cite{Hippel.1995}. Die dielektrische Funktion von Gold wurde bei einer Anregungsenergie von $E_{\mathrm{HeNe}} = h\lambda/c = 1.96\,\mathrm{eV} $ durch Interpolation der Messdaten aus der Publikation \cite{Olmon.2012} berechnet: $\epsilon_{\mathrm{Au}}(1.96\mathrm{eV}) = -12.04 +1.163i$. Aus diesen Daten lassen sich nun folgende Größen berechnen:
-	\begin{subequations}
-		\begin{align}
-			n_{\mathrm{eff}} &= \sqrt{\dfrac{\epsilon_{\mathrm{L}}\epsilon_{\mathrm{Au}(\omega)}}{\epsilon_{\mathrm{L}} + 	\epsilon_{\mathrm{Au}}(\omega)}} = 	1.044 + 0.005i \label{eq:theo_n_eff}\\			
-			\theta_\mathrm{L} &=  \arcsin\left(\dfrac{\Re(n_{\mathrm{eff}})}{ n_\mathrm{G}}\right) = 43.2^\circ 
-			\label{eq:theo_theta_l}\\
-			k_{\mathrm{SPP}} &= k_0 n_{\mathrm{eff}} = (10.365 + 0.0449i)\,\mathrm{\mu m}^{-1}\label{eq:theo_k_spp}
-		\end{align}
-	\end{subequations}
 	\subsection{Plasmonischer Spin-Hall-Effekt (PSHE)}
 	Als PSHE wird bezeichnet, dass an einer räumlich symmetrischen Struktur angeregte SPP, abhängig von der Polarisation der anregenden Strahlung, bevorzugt in eine bestimmte Richtung propagieren. Speziell propagiert ein SPP das mit links-zirkular polarisierter Anregungsstrahlung erzeugt worden ist in die entgegengesetzte Richtung zu dem SPP, welches mit rechts-zirkular polarisierter Strahlung angeregt worden ist (Abbildung \ref{fig:spin_hall_schema}). Der PSHE kann durch zwei verschiedene Vorgehensweisen erklärt werden. Ein Weg ist es, die Strahlung, die von der Struktur ausgeht, an welcher SPP angeregt werden, durch einen zirkular polarisierten Dipol zu nähern. Das Fernfeld eines zirkular polarisierten Dipols ist isotrop. Daher ist es zunächst verwunderlich, dass ein zirkular polarisierter Dipol zu einer gerichteten Anregung führen kann. Bei genauerem Betrachten des Dipol-Feldes fällt allerdings auf, dass das Nahfeld nicht isotrop ist. Wenn nun ein SPP unterstützendes Schichtsystem in dieses Nahfeld des Dipols gebracht wird, kann diese Nahfeld-Anisotropie zu einer gerichteten Anregung führen.
 	Eine weitere Vorgehensweise, den Effekt zu erklären, geht von der Erhaltung des Drehimpulses aus. Das Photon hat vor der Wechselwirkung mit der Struktur einen longitudinalen Drehimpuls, der je nach Helizität der zirkularen Polarisation in oder entgegen der Ausbreitungsrichtung des Photons zeigt. Das SPP hingegen hat einen Drehimpuls, der transversal auf seiner Ausbreitungsrichtung steht (siehe Abschnitt \ref{sec:spin_spp}). Damit der Drehimpuls nach der Wechselwirkung erhalten bleibt, ist also Änderung der Propagationsrichtung notwendig.
@@ -215,16 +209,16 @@
 	Der Dipol sei:
 	$$\vec{P} = \begin{pmatrix} 0 \\ -i\end{pmatrix}$$
 	Das Raumfrequenzspektrum dieses Dipols ist in \ref{fig:spatial_spectrum_z} dargestellt und zeigt ungerade Parität, ist also punktsymmetrisch bezüglich des Ursprungs.
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\label{fig:spatial_spectrum_zx}
-		\begin{subfigure}[h]{0.49\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/spatial_spectrum_x.pdf}
 			\caption{Orientierung in x-Richtung}
 			\label{fig:spatial_spectrum_x}
 		\end{subfigure}		
-		\begin{subfigure}[h]{0.5\textwidth}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/spatial_spectrum_z.pdf}
 			\caption{Orientierung in z-Richtung}
@@ -276,13 +270,13 @@
 	\paragraph{Drehimpulserhaltung beim PSHE}
 	Durch den streifenden Einfall des zirkular polarisierten Lasers hat der Drehimpuls der anregenden Strahlung vor der Wechselwirkung mit dem Nanopartikel eine $x$-Komponente. Je nachdem, ob das resultierende SPP in $+y$-Richtung oder in $-y$-Richtung propagiert, hat das SPP einen Drehimpuls in  $+x$ oder $-x$ Richtung. Die Propagationsrichtung wird sich nun so einstellen, dass der Drehimpuls bei der Interaktion mit dem Nanopartikel erhalten bleibt. Da ein Wechsel der Helizität der Polarisation der anregenden Strahlung auch zu einer Umkehr des Drehimpulses der Strahlung führt, zieht eine umgekehrte Helizität unterschiedliche Propagationsrichtungen des SPP nach sich (dargestellt in Abbildung \ref{fig:spin_hall_schema}).
 	\begin{figure}[h]
-		\begin{subfigure}[h]{0.49\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/pshe_left.png}
 			\caption{}
 			\label{fig:pshe_left}
 		\end{subfigure}		
-		\begin{subfigure}[h]{0.5\textwidth}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/pshe_right.png}
 			\caption{}
@@ -297,7 +291,7 @@
 	Um den optischen Spin-Hall-Effekt nachweisen zu können, ist es notwendig, die Polarisation des Anregungslasers zu kontrollieren. Hierfür wurden ein Polarisationsfilter und eine $\lambda /4$-Verzögerungsplatte verwendet. Der in dieser Arbeit verwendete He-Ne-Laser der Firma \textit{Thorlabs} ist annähernd linear polarisiert.
 	\subsubsection{Bestimmung der Polarisation des Anregungslasers}
 	\label{sec:polarimeter}
-	Für die Kontrolle der Polarisation des Anregungslasers ist es von entscheidender Bedeutung, dass der ursprüngliche Polarisationszustand bekannt ist. Außerdem zeigt die folgende Messung, dass die von den Herstellern angegebenen Orientierungen des $\lambda/4$-Plättchens und des Polarisationsfilters näherungsweise stimmen. Die Messungen sind außerdem ein starkes Indiz dafür, dass sowohl das $\lambda/4$-Plättchen als auch der Polarisationsfilter ordnungsgemäß funktionieren. Die folgenden Ausführungen sind für das Verständnis der weiteren Arbeit nicht zwingend erforderlich, schließen aber einige wichtige Fehlerquellen aus. Außerdem zeigt die folgende Messung, dass der Polarisationsfilter, der in dem Hauptaufbau vor dem $\lambda / 4$-Plättchen verwendet worden ist, um die Polarisation vor dem $\lambda / 4$-Plättchen zu definieren, notwendig ist. Der Quellcode für die in diesem Abschnitt durchgeführte Simulation ist unter \url{https://github.com/hanno22/SpinHallEffectThesis/blob/master/models} in den Dateien \textit{JonesFormalism.py} und \textit{Lambda4OrientationDataSet.py} zu finden. (Die Funktionalität ist dort jeweils in Klassen gegliedert.)
+	Für das Einstellen der Polarisation des Anregungslasers ist es von entscheidender Bedeutung, dass der ursprüngliche Polarisationszustand bekannt ist. Außerdem zeigt die folgende Messung, dass die von den Herstellern angegebenen Orientierungen des $\lambda/4$-Plättchens und des Polarisationsfilters näherungsweise stimmen. Die Messungen sind außerdem ein starkes Indiz dafür, dass sowohl das $\lambda/4$-Plättchen als auch der Polarisationsfilter ordnungsgemäß funktionieren. Die folgenden Ausführungen sind für das Verständnis der weiteren Arbeit nicht zwingend erforderlich, schließen aber einige wichtige Fehlerquellen aus. Außerdem zeigt die folgende Messung, dass der Polarisationsfilter, der in dem Hauptaufbau vor dem $\lambda / 4$-Plättchen verwendet worden ist, um die Polarisation vor dem $\lambda / 4$-Plättchen zu definieren, notwendig ist. Der Quellcode für die in diesem Abschnitt durchgeführte Simulation ist unter \url{https://github.com/hanno22/SpinHallEffectThesis/blob/master/models} in den Dateien \textit{JonesFormalism.py} und \textit{Lambda4OrientationDataSet.py} zu finden. (Die Funktionalität ist dort jeweils in Klassen gegliedert.)
 	\paragraph{Jones-Formalismus}
 	Der Jones-Formalismus ist ein Verfahren, welches es ermöglicht, die Polarisation von elektromagnetischer Strahlung mathematisch zu beschreiben. Die folgenden Ausführungen orientieren sich an \cite{Hecht.2018}. Das elektrische Feld einer monochromatischen ebenen Welle mit der Kreisfrequenz $\omega$ und der Wellenzahl $k$ die entlang der $z$-Richtung propagiert lässt sich durch folgenden Ausdruck beschreiben:
 	\begin{equation}
@@ -363,16 +357,16 @@
 		\epsilon = \dfrac{a}{b}
 	\end{equation}
 	Hierbei ist $a$ die große und $b$ die kleine Halbachse der Polarisationsellipse. Die Elliptizität des Lasers wurde in dieser Arbeit durch den Fit der Simulation auf $\epsilon = 0.1 $ bestimmt. Durch diese Abweichungen des Lasers von einer rein linearen Polarisation war es notwendig, die Polarisation des Lasers vor dem $\lambda /4$-Plättchen im Hauptaufbau durch einen Polarisationsfilter festzulegen.
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.5\linewidth]{figures/Polarimeter}
 		\caption[Jones-Polarimeter]{Die Abbildung zeigt den schematischen Aufbau eines Jones-Polarimeter. Die Komponenten in Strahlreihenfolge sind: Helium-Neon-Laser (\textbf{He-Ne}), $\lambda/4$-Plättchen ($\boldsymbol{\lambda / 4}$), Polarisationsfilter (\textbf{PF}), Leistungsmessgerät(\textbf{LM}). Das $\lambda/4$-Plättchen kann um die optische Achse rotiert werden.}
 		\label{fig:polarimeter}
 	\end{figure}
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.7\linewidth]{figures/graph_polarimeter}
-		\caption[Polarimeter Simulation]{Diese Abbildung zeigt die Daten einer Messung mit dem Jones-Polarimeter. Der untere Teil der Abbildung zeigt die gemessene Leistung $P(\alpha_{\lambda /4})$. Die blauen Kreuze sind hierbei jeweils Messpunkte. Die orange gestrichelte Linie zeigt die mit einem \textit{least square fit} an die Messdaten angepasste Simulation des Polarimeteraufbaus. Der obere Teil der Abbildung zeigt die im unteren Teil verwendeten Fit-Parameter für den Jones-Vector $\vec{J}$. Hierbei wurden die Polarisationsellipse sowie die zwei Halbachsen $a$ und $b$ eingezeichnet. Die Feldstärken sind dabei in willkürlichen Einheiten dargestellt, da für die exakte Feldstärkenbestimmung nicht die Leistung, sondern die Intensität nach dem Durchgang durch das Polarimeter gemessen werden müsste.}
+		\includegraphics[width=0.6\linewidth]{figures/new/3_2_graph_polarimeter}
+		\caption[Polarimeter Simulation]{Diese Abbildung zeigt die Daten einer Messung mit dem Jones-Polarimeter. Der obere Teil der Abbildung zeigt die gemessene Leistung $P(\alpha_{\lambda /4})$. Die blauen Kreuze sind hierbei jeweils Messpunkte. Die orange gestrichelte Linie zeigt die mit einem \textit{least square fit} an die Messdaten angepasste Simulation des Polarimeteraufbaus. Der untere Teil der Abbildung zeigt die im oberen Teil verwendeten Fit-Parameter für den Jones-Vector $\vec{J}$. Hierbei wurden die Polarisationsellipse sowie die zwei Halbachsen $a$ und $b$ eingezeichnet. Die Feldstärken sind dabei in willkürlichen Einheiten dargestellt, da für die exakte Feldstärkenbestimmung nicht die Leistung, sondern die Intensität nach dem Durchgang durch das Polarimeter gemessen werden müsste.}
 		\label{fig:graphpolarimeter}
 	\end{figure}
 	\subsubsection{Polarisationsfilter}	
@@ -380,20 +374,20 @@
 	\subsubsection{Verzögerungsplättchen}
 	Mit einem Verzögerungsplättchen lässt sich die Polarisation einer einfallenden Welle verändern. Eine EM-Welle lässt sich immer als Überlagerung von zwei linear und senkrecht zueinander polarisierten Wellen beschreiben. Diese beiden senkrecht aufeinander stehenden Polarisationen sind im Allgemeinen zueinander phasenverschoben. Das Funktionsprinzip eines Verzögerungsplättchens besteht darin, die relative Phasenverschiebung zwischen diesen beiden Polarisationen zu verändern. So kann man mit einem geschickt gewählten Verzögerungsplättchen aus jeder beliebigen Ausgangspolarisation in einen beliebigen anderen Polarisationszustand wechseln. Ein Verzögerungsplättchen weist immer eine schnelle und eine langsame Achse auf. Diese beiden Achsen stehen senkrecht aufeinander. Die Phasenverschiebung $\Delta\Phi$ zwischen zwei EM-Wellen, von denen die eine entlang der langsamen Achse und die andere entlang der schnellen Achse linear polarisiert ist, stellt eine charakteristische Größe des jeweiligen Verzögerungsplättchens dar. Physikalisch  werden Verzögerungsplättchen durch doppelbrechende Kristalle realisiert. Die jeweilige Phasendifferenz ist hierbei von der Dicke des doppelbrechenden Kristalls und von den Brechungsindizes der langsamen und der schnellen Kristallachse abhängig. Wenn diese Größen so dimensioniert sind, dass die Phasendifferenz zwischen den beiden Polarisationen, die eine EM-Welle beim Durchgang durch das Plättchen erfährt, $\Delta \Phi = \pi /4 $ ist, spricht man von einem  $\lambda /4$-Verzögerungsplättchen. Diese Phasendifferenz ist immer an eine bestimmte Wellenlänge angepasst.  Ein $\lambda /4$-Verzögerungsplättchen kann aus linear polarisiertem Licht zirkular polarisiertes Licht erzeugen, wenn eine der beiden Kristallachsen eine Orientierung von 45° zur ursprünglichen Polarisationsachse des Lasers aufweist \cite{Hecht.2018}. Diese Eigenschaft wurde in dieser Arbeit ausgenutzt. In Abbildung \ref{fig:polarisationlambda} ist die Polarisation hinter dem Verzögerungsplättchen in Abhängigkeit der relativen Orientierung vom Polarisationsfilter zum $\lambda /4$-Verzögerungsplättchen dargestellt. 
 	\begin{figure}[h]
-		\begin{subfigure}[h]{0.49\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=0.5\textwidth]{figures/polarisation_control.pdf}
 			\caption{}
 			\label{fig:pol_control_scheme}
 		\end{subfigure}
 		%\hfill	
-		\begin{subfigure}[h]{0.5\textwidth}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/Polarisation_lambda}
 			\caption{}
 			\label{fig:polarisationlambda}
 		\end{subfigure}	
-		\caption[Polarisation $\lambda/4$-Plättchen]{Abbildung \subref{fig:pol_control_scheme} zeigt die zur Kontrolle der Polarisation der anregenden Strahlung verwendete Konfiguration aus Polarisationsfilter (PF) und $\lambda/4$-Plättchen ($\lambda/4$). Abbildung \ref{fig:polarisationlambda} zeigt die Polarisation hinter dem $\lambda/4$-Plättchen in Abhängigkeit von der relativen Orientierung zwischen $\lambda/4$-Plättchen und Polarisationsfilter.}
+		\caption[Polarisation $\lambda/4$-Plättchen]{Abbildung \subref{fig:pol_control_scheme} zeigt die zum Einstellen der Polarisation der anregenden Strahlung verwendete Konfiguration aus Polarisationsfilter (PF) und $\lambda/4$-Plättchen ($\lambda/4$). Abbildung \subref{fig:polarisationlambda} zeigt die Polarisation hinter dem $\lambda/4$-Plättchen in Abhängigkeit von der relativen Orientierung zwischen $\lambda/4$-Plättchen und Polarisationsfilter.}
 		\label{fig:pol_control}
 	\end{figure}
 
@@ -405,16 +399,16 @@
 	Aus diesem Bild wird mit Hilfe eines 4f-Aufbaus (Abschnitt \ref{sec:fourier}) die Leckstrahlung selektiert, welche unter dem spezifischen Leckstrahlwinkel aus dem Glassubstrat ausgetreten ist. So ist es möglich, die plasmonischen Anregungen ohne Störungen des direkt transmittierten Strahls zu beobachten. Das in dieser Arbeit verwendete LRM basiert auf dem Aufbau, den \textit{Jaruschewski} im Rahmen seiner Masterarbeit \cite{Jaruschewski.2020} entwickelt hat.
 	\subsubsection{Immersionsobjektiv}
 	Da der Winkel, unter dem das SPP Leckstrahlung in das Glas abgibt, größer ist als der kritische Winkel für die Totalreflexion an der Grenzschicht Glas-Luft, muss für die Abbildung der Leckstrahlung ein Immersionsobjektiv verwendet werden. Ein Immersionsobjektiv nutzt ein Immersionsöl, das zwischen Objektiv und Probe aufgebracht wird. Durch die Adhäsions- und Kohäsionskräfte in dem Öl ist es möglich, dauerhaft einen kleinen Öltropfen zwischen Objektiv und Probe zu halten. In dieser Arbeit  wurde eine sogenannte homogene Immersion verwendet, dies bedeutet, dass die Brechungsindices von Deckglas, Immersionsöl und Frontlinse des Immersionsobjektives sehr nah beieinander liegen. Dadurch tritt an der Grenzfläche Glas-Immersionsöl für die Leckstrahlung keine Totalreflexion auf. Durch den großen Winkel, unter dem die Leckstrahlung aus der Probe austritt, ist es außerdem notwendig, dass das Objektiv einen großen maximalen Öffnungswinkel aufweist, damit die Leckstrahlung korrekt abgebildet und nicht im Inneren des Objektives absorbiert wird. Die Fähigkeit eines Objektivs, Licht unter großen Winkeln zur optischen Achse aufzunehmen, lässt sich durch die numerische Apertur $\mathrm{NA} = n\sin\theta_{max}$ beschreiben. $n$ ist hierbei der Brechungsindex des Mediums vor dem Objektiv, und $\theta_{max}$ ist der halbe maximale Öffnungswinkel des Objektivs. Die numerische Apertur berücksichtigt also, dass der Winkel eines Strahls zur optischen Achse durch Verwendung eines Mediums mit großem Brechungsindex zwischen Objektiv und Probe verkleinert werden kann. Eine große numerische Apertur bedeutet, dass das Objektiv Licht auch noch unter großen Winkeln zur optischen Achse aufnehmen kann. In dieser Arbeit wurde ein Immersionsöl mit Brechungsindex $n_{"ol} = 1.518$ und ein Immersionsobjektiv mit $\mathrm{NA} = 1.216$ verwendet. Hieraus ergibt sich ein maximaler halber Öffnungswinkel von $\theta_{max} = \arcsin(\mathrm{NA} / n_{"ol}) = 53.2^\circ > \theta_L = 43.2^\circ$. Das verwendete Immersionsobjektiv kann die Leckstrahlung, die unter dem Winkel $\theta_L = 43.2^\circ$ \eqref{eq:theo_theta_l} aus der Probe austritt, also abbilden. Ferner ist das Immersionsobjektiv unendlich korrigiert. Dies bedeutet, dass die Korrekturen der Abbildungsfehler des Objektivs darauf abgestimmt worden sind, dass die Probe in der Brennweite des Objektivs steht. Wenn die Probe in der Brennweite des Objektivs steht, ist die Strahlung, welche aus dem Objektiv austritt, parallel und das Zwischenbild entsteht erst im Unendlichen. (Unter Vernachlässigung der komplexen Abbildungskorrekturen kann ein Objektiv als eine einfache Sammellinse angesehen werden.) Um dieses Zwischenbild in eine endliche Distanz zu verschieben, ist noch eine weitere Sammellinse, die Tubuslinse notwendig. Ein unendlich korrigiertes Objektiv kann auch außerhalb dieser Betriebsart verwendet werden. Allerdings treten dann zunehmend Fehler in der Abbildung auf. Der korrekte Betrieb des Objektivs kann durch die Position des Zwischenbildes hinter der Tubuslinse überprüft werden. Liegt das Zwischenbild hinter der Tubuslinse genau in deren Brennweite, so liegt die Probe in der Brennweite des Objektivs und die Abbildung des Objektives ist optimal korrigiert.\cite{Kuhl.2018} Der Strahlengang für zwei Sammellinsen unterschiedlicher Brennweite in der unendliche korrigierten Betriebsart ist in Abbildung \ref{fig:bildentstehungobjektiv} dargestellt.
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.7\linewidth]{figures/BildentstehungObjektiv.pdf}
-		\caption[Strahlengang unendlich korrigiertes Objektiv]{Die Abbildung zeigt den Strahlengang für zwei Sammellinsen. Die erste Sammellinse imitiert dabei das Immersionsobjektiv mit der Brennweite $f_\mathrm{IO}$ und die zweite Sammellinse imitiert die Tubuslinse mit der Brennweite $f_\mathrm{IO}$. Das Immersionsobjektiv wird in der 'unendliche korrigierten' Betriebsart verwendet. Das Objekt befindet sich also in der Brennweite $f_\mathrm{IO}$ des Immersionsobjektives. Der Abstand zwischen den beiden Sammellinsen beträgt in der Abbildung gerade $f_\mathrm{IO} + f_\mathrm{TL}$, kann aber frei gewählt werden, da die Strahlen zwischen den Linsen parallel verlaufen. Das vergrößerte Bild des Objektes entsteht in der hinteren Brennebene der Tubuslinse.}
+		\caption[Strahlengang unendlich korrigiertes Objektiv]{Die Abbildung zeigt den Strahlengang für zwei Sammellinsen. Die erste Sammellinse imitiert dabei das Immersionsobjektiv mit der Brennweite $f_\mathrm{IO}$ und die zweite Sammellinse imitiert die Tubuslinse mit der Brennweite $f_\mathrm{IO}$. Das Immersionsobjektiv wird in der 'unendliche korrigierten' Betriebsart verwendet. Das Objekt befindet sich also in der Brennweite $f_\mathrm{IO}$ des Immersionsobjektives. Der Abstand zwischen den beiden Sammellinsen beträgt in der Abbildung gerade $f_\mathrm{IO} + f_\mathrm{TL}$, kann aber frei gewählt werden, da die Strahlen zwischen den Linsen parallel verlaufen. Bei zu großer Distanz erreichen die Strahlen die Tubuslinse jedoch nicht mehr. Das vergrößerte Bild des Objektes entsteht in der hinteren Brennebene der Tubuslinse.}
 		\label{fig:bildentstehungobjektiv}
 	\end{figure}
 	
 	\subsubsection{Fourier-Optik}
 	\label{sec:fourier}
-	\begin{figure}[htbp] 
+	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/FourierLinse.pdf}
 		\caption[Fourieroptik]{Eine Sammellinse erzeugt das Fraunhofersche Beugungsbild in ihrer hinteren Brennebene (BFP). Parallele Strahlen werden in Abhängigkeit ihres Winkels zur optischen Achse auf einem Punkt in der BFP fokussiert. Die Abbildung ist an eine Abbildung aus \cite{Hecht.2018} angelehnt.}
@@ -425,20 +419,20 @@
 	\paragraph{4f-Aufbau}
 	In dieser Arbeit wird für diese optische Filterung ein $4f$-Aufbau verwendet. Ein $4f$-Aufbau besteht aus zwei Linsen mit der Brennweite $f$, die im Abstand $2f$ zueinander angeordnet werden. Die beiden Linsen werden so positioniert, dass sich im Abstand $f$ von der ersten Linse das Zwischenbild des Immersionsobjektivs befindet. Zwischen den beiden Linsen entsteht nun ein winkelaufgelöstes Fourierbild; Dieses wird durch die numerische Apertur des Immersionsbildes scharf begrenzt.  In diesem winkelaufgelösten Fourierbild kann nun gezielt ein Teil des Fourierspektrums (d.h. der Strahlung, die unter einem bestimmten Winkel zur optischen Achse aus der Probe ausgetreten ist) herausgefiltert werden. Die zweite Linse erzeugt nun aus diesem gefilterten Fourierspektrum wieder das Ortsbild. Dieses besteht nun nur noch aus den ausgewählten Fourierkomponenten. Der $4f$-Aufbau ist schematisch in Abbildung \ref{fig:aufbau_schema} erläutert. In dieser Arbeit wurde so der direkt transmittierte Strahl aus der optischen Abbildung eliminiert.
 	\paragraph{Optionale Linse}
-	Der $4f$-Aufbau erzeugt aus den ausgewählten Fourierkomponenten ein Ortsbild der Anregung. Da für die Analyse der Eigenschaften des SPP allerdings auch das winkelaufgelösten Fourierbild von Interesse ist, wurde hinter dem $4f$-Aufbau noch einen weitere optionale Linse aufgestellt. Diese wird genutzt, um das gefilterte Ortsbild in das gefilterte winkelaufgelöste Fourierbild zu transformieren. Die Linse kann leicht demontiert werden, um schnell zwischen den beiden Darstellungsarten zu wechseln. Die Winkelauflösung kann bei monochromatischer Strahlung auch als eine Darstellung der Komponenten des Wellenvektors die senkrecht auf der optischen Achse stehen aufgefasst werden. Da der Impuls eines Photons wiederum durch $p = \hbar k$ ausgedrückt werden kann, wird diese Darstellungsart auch als Impulsdarstellung bezeichnet.
+	Der $4f$-Aufbau erzeugt aus den ausgewählten Fourierkomponenten ein Ortsbild der Anregung. Da für die Analyse der Eigenschaften des SPP allerdings auch das winkelaufgelösten Fourierbild von Interesse ist, wurde hinter dem $4f$-Aufbau noch einen weitere optionale Linse aufgestellt. Diese wird genutzt, um das gefilterte Ortsbild in das gefilterte winkelaufgelöste Fourierbild zu transformieren. Die Linse kann leicht demontiert werden, um schnell zwischen den beiden Darstellungsarten zu wechseln. Die Winkelauflösung kann bei monochromatischer Strahlung auch als eine Darstellung der Komponenten des Wellenvektors, die parallel zur Probenoberfläche stehen, aufgefasst werden. Da der Impuls eines Photons wiederum durch $p = \hbar k$ ausgedrückt werden kann, wird diese Darstellungsart auch als Impulsdarstellung bezeichnet.
 	
 	\subsection{Details des optischen Aufbaus}
 	In dieser Arbeit wurde der Aufbau von \textit{Jaruschewski} \cite{Jaruschewski.2020} in einigen Details verbessert und umgerüstet, so dass der Laser auch unter schrägem Einfall auf die Probe gerichtet werden kann. Die verwendeten Komponenten sind detailliert in Anhang \ref{tab:components} aufgelistet. Der Aufbau ist in Abbildung \ref{fig:aufbau_schema} schematisch dargestellt. Als Anregungslaser wurde ein He-Ne-Dauerstrich-Laser der Firma \textit{Thorlabs} mit einer Leistung von $P = 35 \,\mathrm{mW}$ und einer Wellenlänge von $\lambda = 633\,\mathrm{nm}$ verwendet.
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
-		\begin{subfigure}[b]{0.9\textwidth}		
+		\begin{subfigure}{0.9\textwidth}		
 			\centering
 			\includegraphics[width=0.9\textwidth]{figures/Aufbau_Schema.pdf}
 			\caption{Schematischer Aufbau}			
 			\label{fig:aufbau_schema}
 		\end{subfigure}
 		\vfil
-		\begin{subfigure}[b]{0.9\textwidth} 
+		\begin{subfigure}{0.9\textwidth} 
 			\centering
 			\includegraphics[width=0.9\textwidth]{figures/aufsicht_aufbau_anotated.jpg}
 			\caption{Foto des Aufbau}
@@ -451,8 +445,8 @@
 		In diesem Abschnitt werden alle verwendeten optischen Komponenten benannt (in Strahlreihenfolge), und die zugehörige Funktion wird kurz erläutert. Die Komponenten sind in Abbildung \ref{fig:Aufbau} dargestellt.
 		\begin{itemize}
 			\item \textbf{Neutraldichtefilter (ND)} dient der Abschwächung des Lasers, um eine Überbelichtung des CMOS-Sensors zu verhindern.
-			\item \textbf{Polarisationsfilter (PF)} dient der Kontrolle der Polarisation des Lasers (siehe Abschnitt \ref{sec:cntr_pol}).
-			\item $\boldsymbol{\lambda / 4}$\textbf{-Plättchen (}$\boldsymbol{\lambda / 4}$\textbf{)} dient der Kontrolle der Polarisation des Lasers (siehe Abschnitt \ref{sec:cntr_pol}).
+			\item \textbf{Polarisationsfilter (PF)} dient dem Einstellen der Polarisation des Lasers (siehe Abschnitt \ref{sec:cntr_pol}).
+			\item $\boldsymbol{\lambda / 4}$\textbf{-Plättchen (}$\boldsymbol{\lambda / 4}$\textbf{)} dient dem Einstellen der Polarisation des Lasers (siehe Abschnitt \ref{sec:cntr_pol}).
 			\item \textbf{Einkoppellinse (EL)} dient der Fokussierung des Lasers auf die Probe, um hohe Intensitäten zu erreichen und möglichst gezielt einen Defekt zu beleuchten.
 			\item \textbf{Probe (P)} Auf der Gold-Glas-Probe werden die SPP angeregt.
 			\item \textbf{Immersionsobjektiv (IO)} dient der Abbildung der Leckstrahlung.
@@ -467,18 +461,19 @@
 		Um die Fokussierung der Probe zu erleichtern, wurde außerdem eine LED-Hintergrundbeleuchtung verwendet. Das Licht der LED wurde mit einer Sammellinse kollimiert und mit einer weiteren Linse FL $f_{\mathrm{FL}}=50\mathrm{mm}$ auf die  Probe fokussiert. Diese Linse wurde bei Bedarf mit einer Magnetsäule an der richtigen Stelle vor der Probe positioniert.
 		
 	\subsubsection{Veränderungen des vorhandenen Aufbaus}
+	\label{sec:OpticalChanges}
 	\paragraph{Einkoppellinse}
 	Aus geometrischen Gründen war es nicht mehr möglich, den Laser mit einem Objektiv bei streifendem Einfall auf die Probe zu fokussieren, da sonst das Objektiv mit der Probe kollidieren würde. Stattdessen wurde eine Sammellinse als Einkoppellinse (EL) verwendet mit $f_{\mathrm{EL}}= 30\mathrm{mm}$. Die Wahl der Brennweite der Einkoppellinse ist ein Kompromiss: Je kleiner die Brennweite ist, desto kleiner lässt sich der Laser fokussieren. Wenn die Brennweite allerdings zu klein ist, kollidiert die Linsenhalterung mit der Probe. Mit kleinerer Brennweite sind also nur kleinere Einfallswinkel zur Probennormale möglich. Um trotzdem eine möglichst kleine Brennweite verwenden zu können, wurde eine sehr kompakte Linsenhalterung verwendet. Diese Halterung wurde über einen Querarm an einer xyz-Verfahreinheit montiert, so dass man die Linse in allen drei Raumrichtungen verfahren kann. Dies ist wichtig, um den Laser gezielt auf den Punkt zu fokussieren, an welchem die optische Achse die Probe schneidet. Dieser Aufbau ist in Abbildung \ref{fig:linsenhalterung} gezeigt.
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
-		\begin{subfigure}[b]{0.4\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/Einkoppellinse.jpg}
 			\caption{Querarm}
 			\label{fig:querarm}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.4\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/Kollision_Einkoppellinse.jpg}
 			\caption{Kollision Linse mit Probe}
@@ -490,7 +485,7 @@
 	
 	\paragraph{Probenhalterung}
 	Die Probenhalterung des alten Aufbaus wies das Problem auf, dass die senkrechte Ausrichtung der Probe zur optischen Achse nur grob per Auge erfolgen konnte. Dadurch war beim Verfahren der Probe ein ständiges Nachfokussieren erforderlich. Außerdem fehlte der Halterung die ausreichende Stabilität, was die Fokussierung zusätzlich erschwerte. Daher wurde im Rahmen dieser Arbeit eine neue Probenhalterung entwickelt, konstruiert und die zentrale Werkstatt im Physikzentrum mit der Fertigung beauftragt. Eine technische Zeichnung der Probenhalterung ist im Anhang \ref{fig:tz_probenhalter} zu finden. Diese Probenhalterung behebt die Schwachstellen der alten und hat außerdem einen Anschlag für die Probe, so dass es nun prinzipiell möglich ist, anhand der Skalen an den Mikrometerschrauben der Verfahreinheit Koordinaten abzulesen. So wird ermöglicht, trotz eines Probenwechsel später wieder die gleichen Orte auf der Probe anzufahren.
-	\begin{figure}[htbp] 
+	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.5\textwidth]{figures/Probenhalter.pdf}
 		\caption[Probenhalterung]{Probenhalter mit montierter Probe vor dem Immersionsobjektiv}
@@ -498,24 +493,24 @@
 	\end{figure}
 	\paragraph{Cage-System}
 	Sämtliche Optiken hinter dem Immersionsobjektiv wurden in ein Cage-System der Firma \textit{Thorlabs} integriert. Der Umbau auf die Cage-System-Optomechaniken wurde zunächst vollständig in einer CAD-Software geplant (Abbildung \ref{fig:cage_system}). Das Cage-System besteht aus quadratischen Halterungen, die in ihren Eckpunkten Bohrungen haben, durch welche sich Edelstahlstäbe schieben lassen. Diese Fixierung der Halterungen an vier Punkten verhindert ein Verkippen der Linsen entlang der optischen Achse. Die Halterungen können entlang der optischen Achse auf den vier Eckstäben verschoben werden. Für die  Linsen TL, L1, L2 wurden xy-Halter verwendet, die senkrecht zur optischen Achse mit feinen Justierschrauben sehr genau verstellt werden können. Im Laufe dieser Arbeit hat sich herausgestellt, dass diese sehr feine Justierung nicht notwendig gewesen wäre, da der Aufbau äußerst unempfindlich auf kleine Fehler in der Justage der Linsen reagiert. Die Tubuslinse (TL) des Herstellers \textit{Zeiss} ist in einem Halter mit einem $M32\times0.5$ Gewinde montiert. Eine technische Zeichnung der Tubuslinse ist in Abbildung \ref{fig:tubelensetz} zu finden. Für dieses Gewinde stellt \textit{Thorlabs} keine Komponenten her, deswegen war ein Adapter notwendig. Dieser Adapter wurde im Rahmen dieser Arbeit entwickelt und konstruiert und dann von \textit{Sönke Harm} gefertigt. Eine technische Zeichnung dieses Adapters ist in Abbildung \ref{fig:tz_adapter} zu finden. Die optionale Linse (OL) wurde mit einer Magnethalterung in das Cage-System eingebaut. Diese Halterung ermöglicht es, die Linse sehr einfach zu entfernen und so zwischen der Darstellung der Image-Plane und der Backfocal-Plane (BFP) beziehungsweise der Darstellung des Ortsraumes und der Darstellung des Impulsraumes zu wechseln. Außerdem wurde die OL in einem längeren Gewindetubus montiert, so dass ein präzises Verfahren der Linse entlang der optischen Achse möglich ist. Dies ist notwendig, um die BFP exakt zu fokussieren. Ist die richtige Position der OL einmal bestimmt, kann der Gewindetubus mit einem Gewindering gekontert werden. Auch der CMOS-Sensor der Firma \textit{Allied-Vision} wurde in das Cage-System integriert. Hierfür war ein Adapter von der Kameraobjektiv-Gewindenorm \textit{C-Mount} auf die Gewindenorm \textit{SM-2} des Cage-System Herstellers \textit{Thorlabs} notwendig. Eine technische Zeichnung des Cage-System-Aufbaus ist im Anhang in Abbildung \ref{fig:tz_cage_system} zu finden. Der Beam-Block (BB) und der Image-Filter (IF) sind mit Magnetsäulen direkt auf dem optischen Tisch befestigt.
-	\begin{figure}[htbp] 
+	\begin{figure}[h] 
 		\centering
 		\includegraphics[width=0.7\textwidth]{figures/Cage_System.pdf}
 		\caption[Cage-System]{Tubuslinse, 4f-System, optionale Linse und CMOS im Cage-System}
 		\label{fig:cage_system}
 	\end{figure}	
 	\subsection{Probe}
-	Die ersten Messungen dieser Arbeit wurden mit Proben, die noch durch die Messungen von \textit{Joris Jaruschewski} \cite{Jaruschewski.2020} vorhanden waren, durchgeführt. Da diese Proben jedoch auch auf der Goldseite mit Immersionsöl kontaminiert waren, wurden später neue Proben verwendet. Diese Proben wurden von \textit{Till Leißner} in S\o nderborg hergestellt. Hierfür wurden Deckgläser der Firma \textit{Carl Zeiss} mit einem Brechungsindex von $n_{\mathrm{Glas}}= 1.52$ verwendet. Die Deckgläser wurden mit einer $d_{\mathrm{Gold}} = 50\mathrm{nm}$ dicken Goldschicht bedampft. Die Deckgläser haben eine Dicke von $d_{\mathrm{Glas}} = 170 \mathrm{\mu m}$. Als Anregungsstruktur wurden Defektstellen verwendet. Die Proben wurden in kleine Edelstahlbleche (Technische Zeichnung \ref{fig:tz_probenblech}) eingeklebt, welche wiederum in die Probenhalterung passen. Damit die Proben auf der Goldseite nicht mit Immersionsöl kontaminiert werden, wurden sie mit einem Epoxid-Kleber in die Edelstahlbleche abdichtend eingeklebt.
-	\begin{figure}
+	Die ersten Messungen dieser Arbeit wurden mit Proben, die noch durch die Messungen von \textit{Joris Jaruschewski} \cite{Jaruschewski.2020} vorhanden waren, durchgeführt. Da diese Proben jedoch auch auf der Goldseite mit Immersionsöl kontaminiert waren, wurden später neue Proben verwendet. Diese Proben wurden von \textit{Till Leißner} in S\o nderborg hergestellt. Hierfür wurden Deckgläser der Firma \textit{Carl Zeiss} mit einem Brechungsindex von $n_{\mathrm{Glas}}= 1.52$ verwendet. Die Deckgläser wurden mit einer $d_{\mathrm{Gold}} = 50\mathrm{nm}$ dicken Goldschicht bedampft. Die Deckgläser haben eine Dicke von $d_{\mathrm{Glas}} = 170 \mathrm{\mu m}$. Als Anregungsstruktur wurden Defektstellen verwendet. Die Proben wurden in kleine Edelstahlbleche (Technische Zeichnung \ref{fig:tz_probenblech}) eingeklebt, welche wiederum in die Probenhalterung passen. Damit die Proben auf der Goldseite nicht mit Immersionsöl kontaminiert werden, wurde diese Klebung abdichtend mit einem Epoxid-Kleber durchgeführt (\ref{fig:probe}).
+	\begin{figure}[h]
 		\centering
-		\begin{subfigure}[b]{0.4\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/Probe_Vorderseite.jpg}
 			\caption{Goldseite}
 			\label{fig:probe_vorderseite}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.4\textwidth}
+		\begin{subfigure}{0.4\textwidth}
 			\centering
 			\includegraphics[width=\textwidth]{figures/Probe_Rueckseite.jpg}
 			\caption{Glasseite}
@@ -525,109 +520,118 @@
 		\label{fig:probe}
 	\end{figure}
 	\subsection{Justage des Aufbaus}
-	Die allgemeine Justage des LRM verlief - bis auf die Justage des Lasers auf die Probe - wie von \textit{Joris Jaruschewski} \cite{Jaruschewski.2020} beschrieben. Diese war durch den notwendigen schrägen Einfall des Lasers auf die Probe deutlich erschwert. Die Justage erfolgte mit montierter Probe. Zunächst wurde die Probe mit Hilfe der Hintergrundbeleuchtung in den korrekten Abstand zum IO gebracht (im korrekten Abstand ist das Bild der Probe scharf zu sehen). Als nächstes wurde der Laser mit zwei Spiegeln grob in dem erwünschten Winkel auf die Probe justiert. Danach wurden Einkoppellinse, $\lambda/4$-Plättchen und Polarisationsfilter in den Strahlgang gestellt. Die Feinjustierung des Lasers auf die Probe wurde nun durch das Verschieben der Einkoppellinse durchgeführt. Hierbei ist es hilfreich, den Strahl durch das Verfahren der EL entlang der optischen Achse etwas zu de-fokussieren, so dass man die Randbereiche des Strahls über den CMOS-Sensor in dem Ortsbild auch schon sehen kann, wenn der Strahl noch nicht exakt die optische Achse trifft. Sobald ein Teil des Strahls im Ortsbild detektiert worden ist, wird er durch weiteres Bewegen der Linse zentriert und dann schrittweise weiter fokussiert. Durch das Verkippen der Einkoppellinse zum Laser wandert der Strahl beim Fokussieren des Lasers auf der Probe aus. Das Verkippen der Linse wird behoben, sobald der Laser optimal fokussiert ist. Hierfür wird der Laser durch die beiden Spiegel sukzessive so einjustiert, dass der Spot auf der Probe beim Defokussieren des Lasers nicht mehr wandert.
+	Die allgemeine Justage des LRM verlief - bis auf die Justage des Lasers auf die Probe - wie von \textit{Joris Jaruschewski} \cite{Jaruschewski.2020} beschrieben. Diese war durch den notwendigen schrägen Einfall des Lasers auf die Probe deutlich erschwert. Die Justage erfolgte mit montierter Probe. Zunächst wurde die Probe mit Hilfe der Hintergrundbeleuchtung in den korrekten Abstand zum IO gebracht (im korrekten Abstand ist das Bild der Probe scharf zu sehen). Als nächstes wurde der Laser mit zwei Spiegeln grob in dem erwünschten Winkel auf die Probe justiert. Danach wurden EL, $\lambda/4$-Plättchen und PF in den Strahlgang gestellt. Die Feinjustierung des Lasers auf die Probe wurde nun durch das Verschieben der EL durchgeführt. Hierbei ist es hilfreich, den Strahl durch das Verfahren der EL entlang der optischen Achse etwas zu de-fokussieren, so dass man die Randbereiche des Strahls über den CMOS-Sensor in dem Ortsbild auch schon sehen kann, wenn der Strahl noch nicht exakt die optische Achse trifft. Sobald ein Teil des Strahls im Ortsbild detektiert worden ist, wird er durch weiteres Bewegen der EL zentriert und dann schrittweise weiter fokussiert. Durch das Verkippen der EL zum Laser wandert der Strahl beim Fokussieren des Lasers auf der Probe aus. Das Verkippen der Linse wird behoben, sobald der Laser optimal fokussiert ist. Hierfür wird der Laser durch die beiden Spiegel sukzessive so einjustiert, dass der Spot auf der Probe beim Defokussieren des Lasers nicht mehr wandert.
 	
 		
 	\subsection{Messung}
-	Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probemessungen überprüft, die mit den Daten von \textit{Jaruschewski} \cite{Jaruschewski.2020} und \textit{Ebel} \cite{ebel.2019} verglichen worden sind. Da für den Nachweis des PSHE keine Kenntnis des Betrages des Wellenvektors notwendig ist, wurde auf eine Kalibrierung des Impulsraumes verzichtet. Die in den Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ und $|\vec{r}|$ wurden aus der Kalibrierung von \textit{Jaruschewski} errechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche ausgewählt. Das Vorgehen hierbei bestand darin, die Probe zu verfahren und dabei die Anregung im Impulsraum zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, ist in der Impulsdarstellung die charakteristische Leckstrahlung zu erkennen. Das Ziel war, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nachdem ein geeigneter Defekt ausgewählt war, wurden Bilder des Ortsraumes und des Impulsraumes für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
+	Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probemessungen überprüft, die mit den Daten von \textit{Jaruschewski} \cite{Jaruschewski.2020} und \textit{Ebel} \cite{ebel.2019} verglichen worden sind. Da für den Nachweis des PSHE keine Kenntnis des Betrages des Wellenvektors notwendig ist, wurde auf eine Kalibrierung des Impulsraumes verzichtet. Die in allen nachfolgenden Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ und $|\vec{r}|$ wurden aus der Kalibrierung von \textit{Jaruschewski} errechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche ausgewählt. Das Vorgehen hierbei bestand darin, die Probe zu verfahren und dabei die Anregung im Impulsraum zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, ist in der Impulsdarstellung die charakteristische Leckstrahlung zu erkennen. Das Ziel war, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nachdem ein geeigneter Defekt ausgewählt war, wurden Bilder des Ortsraumes und des Impulsraumes für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
 	\subsection{Verarbeitung der Messdaten}
 	\label{sec:polar_calculation}
-	Die Messdaten wurden in der Programmiersprache Python mit den Bibliotheken \textit{Numpy}, \textit{OpenCV}, \textit{Scipy} und \textit{Matplotlib} verarbeitet. Die mit dem CMOS-Sensor aufgenommen Bilder wurden im Windows Bitmap Format (BMP) mit einer Bittiefe von  $b = 8$ gespeichert. Die Auflösung der verwendeten Sensors beträgt $2592 \times 1944$. Der verwendete CMOS-Sensor liefert auch eine Farbinformation. Jeder Bildpunkt der BMP-Datei besteht aus einem Rot, einem Grün und einem Blau Wert zwischen $0$ und $2^b - 1= 255$. Ein CMOS Sensor ist nicht Wellenlängen sensitiv. Die Farbinformation wird durch eine Filtermatrix vor dem CMOS Sensor gewonnen. Die unterschiedlichen Farbdaten könnten genutzt werden, um Informationen über das Spektrum der detektierten Strahlung zu erlangen, dass war in dieser Arbeit allerdings nicht von Interesse, da die Leckstrahlung monochromatisch ist (mit der gleichen Wellenlänge, wie die anregende Strahlung). Deswegen wurde aus den RGB-Werten das arithmetische Mittel berechnet. Die Intensität wurde so skaliert, dass der maximale Werte 1 entspricht. Die Aufnahme des Orts und des Impulsraumes wurden zunächst von den kartesischen Pixel-Koordinaten in Polarkoordinaten transformiert, da dies die weitere Auswertung stark vereinfacht. Als Ursprung wurde dabei im Impulsraum der Mittelpunkt der Kreisförmigen Begrenzung der Impulsdarstellung durch die numerische Apertur, und im Ortsraum das Anregungszentrum gewählt. Um aus den äquidistanten Pixel-Koordinaten ein äquidistantes Gitter in Polarkoordinaten zu erzeugen, mussten die Daten interpoliert werden. Diese Interpolation wurde mit der Funktion \textit{linearPolar()} im Modus \textit{INTER\_CUBIC} aus der Bibliothek \textit{openCV} ausgeführt. Die so gewonnenen Daten in Polarkoordinaten konnten nun mit Hilfe der \textit{matplotlib} dargestellt werden. Für die weitere Auswertung musste unter anderem ein radiales Profil berechnet werden, in Polarkoordinaten wird diese Integration zu einer einfachen Summe über eine Achse. Für die Analyse des Spin-Hall Effektes mussten Intensitäten in bestimmten Masken integriert werden. Auch diese Integration hat sich durch die Verwendung von Polarkoordinaten stark vereinfacht. Der gesamte in dieser Arbeit geschriebene Quellcode wird unter \url{https://github.com/hanno22/SpinHallEffectThesis} zur Verfügung gestellt.
+	Die Messdaten wurden in der Programmiersprache Python mit den Bibliotheken \textit{Numpy}, \textit{OpenCV}, \textit{Scipy} und \textit{Matplotlib} verarbeitet. Die mit dem CMOS-Sensor aufgenommen Bilder wurden im Windows Bitmap Format (BMP) mit einer Bittiefe von  $b = 8$ gespeichert. Die Auflösung der verwendeten Sensors beträgt $2592 \times 1944$. Der verwendete CMOS-Sensor liefert auch eine Farbinformation. Jeder Bildpunkt der BMP-Datei besteht aus einem Rot, einem Grün und einem Blau Wert zwischen $0$ und $2^b - 1= 255$. Ein CMOS Sensor ist nicht Wellenlängen sensitiv. Die Farbinformation wird durch eine Filtermatrix vor dem CMOS Sensor gewonnen. Die unterschiedlichen Farbdaten könnten genutzt werden, um Informationen über das Spektrum der detektierten Strahlung zu erlangen, dass war in dieser Arbeit allerdings nicht von Interesse, da die Leckstrahlung monochromatisch ist (mit der gleichen Wellenlänge, wie die anregende Strahlung). Deswegen wurde aus den RGB-Werten das arithmetische Mittel berechnet. Die Intensität wurde für jedes Bild so skaliert, dass der maximale Werte 1 entspricht. Die Aufnahme des Orts und des Impulsraumes wurden zunächst von den kartesischen Pixel-Koordinaten in Polarkoordinaten transformiert, da dies die weitere Auswertung stark vereinfacht. Als Ursprung wurde dabei im Impulsraum der Mittelpunkt der Kreisförmigen Begrenzung der Impulsdarstellung durch die numerische Apertur, und im Ortsraum das Anregungszentrum gewählt. Um aus den äquidistanten Pixel-Koordinaten ein äquidistantes Gitter in Polarkoordinaten zu erzeugen, mussten die Daten interpoliert werden. Diese Interpolation wurde mit der Funktion \textit{linearPolar()} im Modus \textit{INTER\_CUBIC} aus der Bibliothek \textit{openCV} ausgeführt. Die so gewonnenen Daten in Polarkoordinaten konnten nun mit Hilfe der \textit{matplotlib} dargestellt werden. Für die weitere Auswertung musste unter anderem ein radiales Profil berechnet werden, in Polarkoordinaten wird diese Integration zu einer einfachen Summe über eine Achse. Für die Analyse des Spin-Hall Effektes mussten Intensitäten in bestimmten Masken integriert werden. Auch diese Integration hat sich durch die Verwendung von Polarkoordinaten stark vereinfacht. Der gesamte in dieser Arbeit geschriebene Quellcode wird unter \url{https://github.com/hanno22/SpinHallEffectThesis} zur Verfügung gestellt.
 	\newpage
 	
 	\section{Ergebnisse und Diskussion}
+	\subsection{Berechnung von charakteristischen Größen für das System Luft-Gold-Glas}
+		Alle in dieser Arbeit durchgeführten Messungen wurden am System Luft-Gold-Glas durchgeführt. Daher werden an dieser Stelle die in Abschnitt \ref{sec:spp} eingeführten Größen für dieses System angegeben. Die Dielektrizitätskonstante des verwendeten Glases ist $\epsilon_{\mathrm{G}} = 2.327$ \cite{Zeiss.}, die von Luft beträgt $\epsilon_{\mathrm{L}} = 1.00059$ \cite{Hippel.1995}. Die dielektrische Funktion von Gold wurde bei einer Anregungsenergie von $E_{\mathrm{HeNe}} = h\lambda/c = 1.96\,\mathrm{eV} $ durch Interpolation der Messdaten aus der Publikation \cite{Olmon.2012} berechnet: $\epsilon_{\mathrm{Au}}(1.96\mathrm{eV}) = -12.04 +1.163i$. Aus diesen Daten lassen sich nun folgende Größen berechnen:
+		\begin{subequations}
+			\begin{align}
+				n_{\mathrm{eff}} &= \sqrt{\dfrac{\epsilon_{\mathrm{L}}\epsilon_{\mathrm{Au}(\omega)}}{\epsilon_{\mathrm{L}} + 	\epsilon_{\mathrm{Au}}(\omega)}} = 	1.044 + 0.005i \label{eq:theo_n_eff}\\			
+				\theta_\mathrm{L} &=  \arcsin\left(\dfrac{\Re(n_{\mathrm{eff}})}{ n_\mathrm{G}}\right) = 43.2^\circ 
+				\label{eq:theo_theta_l}\\
+				k_{\mathrm{SPP}} &= k_0 n_{\mathrm{eff}} = (10.365 + 0.0449i)\,\mathrm{\mu m}^{-1}\label{eq:theo_k_spp}
+			\end{align}
+		\end{subequations}
 	
 	\subsection{Überprüfung der Funktionsfähigkeit des LRM}
 	In diesem Abschnitt soll verifiziert werden, dass die Messdaten des LRM tatsächlich plasmonischer Natur sind.
 	\subsubsection{Verunreinigte Proben}
-	Die ersten Testmessungen wurden an Proben durchgeführt, die noch aus vorangegangenen Arbeiten vorhanden waren. Diese Proben waren sowohl auf der Goldseite als auch auf der Glasseite mit Immersionsöl kontaminiert. Diese Kontamination sorgte dafür, dass die Anregung im $k$-Raum ein deutlich breiteres Spektrum aufwies, als die später durchgeführten Messungen an nicht kontaminierten Proben. (Die Messung an der kontaminierten Probe wird im Anhang \ref{fig:dirt_polar} dargestellt.) Die Verbreiterung des $k$-Raumspektrums kann durch Dämpfung des SPP durch das Öl auf der Probe erklärt werden. Eine der Proben wurde mit Ethanol gereinigt und anschließend die Messung wiederholt. Die Kontamination konnte so weitestgehend entfernt werden, und die Anregung zeigt ein deutlich schmaleres Spektrum. Allerdings wurde die Probe durch die Reinigung mechanisch so stark beschädigt, dass die Defektdichte zu hoch war, um einen Defekt mit einer Umgebung ohne Fehlstellen zu finden. Insbesondere hat die Reinigung zu Kratzern auf der Goldoberfläche geführt, die scharfe Beugungskanten in der Impulsdarstellung  erzeugen. Für den weiteren Verlauf der Arbeit wurden daher neue Proben hergestellt. Diese Proben wurden statt mit Leitsilber mit Epoxidkleber abdichtend in die Probenbleche eingeklebt, so dass keine erneute Kontamination mit Immersionsöl auftreten konnte.
-	\subsubsection{Bestimmung von  $k_{\mathrm{spp}}$ an neuer Probe}
-	Zur Bestimmung von $k_{\mathrm{spp}}$ wurde die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene untersucht. Da die Begrenzung des Impulsbildes durch die NA nur vom Immersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung des Impulsbildes durchzuführen. In der vorliegenden Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in der Arbeit \cite{Jaruschewski.2020} von \textit{Joris Jaruschewski} verwendet, daher kann die Kalibrierung aus dieser Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{spp}}$ der Wert der numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\,\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \,\mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \, \mathrm{nm}} = 12.07 \pm 0.05\,\mathrm{\mu m}^{-1}$ bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{spp}}$ bestimmt. Hierfür wurde das Integral:
+	Die ersten Testmessungen wurden an Proben durchgeführt, die noch aus vorangegangenen Arbeiten vorhanden waren. Diese Proben waren sowohl auf der Goldseite als auch auf der Glasseite mit Immersionsöl kontaminiert. Diese Kontamination sorgte dafür, dass die Anregung im $k$-Raum ein deutlich breiteres Spektrum aufwies, als die später durchgeführten Messungen an nicht kontaminierten Proben. (Die Messung an der kontaminierten Probe wird im Anhang \ref{fig:dirt_measure} dargestellt.) Die Verbreiterung des $k$-Raumspektrums kann durch Dämpfung des SPP durch das Öl auf der Probe erklärt werden. Eine der Proben wurde mit Ethanol gereinigt und anschließend die Messung wiederholt. Die Kontamination konnte so weitestgehend entfernt werden, und die Anregung zeigte ein deutlich schmaleres Spektrum. Allerdings wurde die Probe durch die Reinigung mechanisch so stark beschädigt, dass die Defektdichte zu hoch war, um einen Defekt mit einer Umgebung ohne Fehlstellen zu finden. Insbesondere hat die Reinigung zu Kratzern auf der Goldoberfläche geführt, die scharfe Beugungskanten in der Impulsdarstellung  erzeugen. Für den weiteren Verlauf der Arbeit wurden daher neue Proben hergestellt. Diese Proben wurden statt mit Leitsilber mit Epoxidkleber abdichtend in die Probenbleche eingeklebt, so dass keine erneute Kontamination mit Immersionsöl auftreten konnte.
+	\subsubsection{Bestimmung von  $k_{\mathrm{SPP}}$ an neuer Probe}
+	Zur Bestimmung von $k_{\mathrm{SPP}}$ wurde die Anregung an einem Punktdefekt bei einem Einfallswinkel $\alpha_{\mathrm{E}} = 60^\circ$ bei linearer Polarisation parallel zur Einfallsebene des Lasers untersucht. Die Messdaten sind in Abbildung \ref{fig:example_measure} dargestellt. Die Einfallsrichtung des Lasers ist hierbei von links entlang der $0^\circ$-Linie. Es fällt auf, dass die Anregung in Einfallsrichtung des Lasers deutlich stärker ausgeprägt ist, als entgegengesetzt der Einfallsrichtung. Die bei einer Anregung unter senkrechtem Einfall erwartete Direktionalität der SPP-Anregung (siehe Abbildung \ref{fig:vergleich-bildentstehung}) wurde bei dem schrägen Einfall der Anregungsstrahlung nicht beobachtet. Dies lässt sich durch die aus dem schrägen Einfall resultierende veränderte Orientierung des Magnetfeldes der Anregungsstrahlung erklären. In einer in \cite{Hohenau.2011} durchgeführten Simulation zur Bildentstehung im LRM wurde außerdem eine Intensitätsmodulation im Ortsraum mit längerer Wellenlänge beobachtet (siehe Abbildung \ref{fig:vergleich-bildentstehung}). Diese Intensitätsmodulation ist in Abbildung \ref{fig:example_fp} aufgrund der zu kurzen Belichtungsdauer und des zu kleinen Bildausschnittes nicht zu erkennen.
+	
+	Da die Begrenzung des Impulsbildes durch die NA nur vom Immersionsobjektiv und dem Brechungsindex des verwendeten Immersionsöls abhängt, ist diese Begrenzung gut geeignet, um eine Kalibrierung des Impulsbildes durchzuführen. In der vorliegenden Arbeit wird sowohl das gleiche Immersionsöl als auch das gleiche Immersionsobjektiv wie in der Arbeit \cite{Jaruschewski.2020} von \textit{Joris Jaruschewski} verwendet, daher konnte die Kalibrierung aus seiner Arbeit übernommen werden. Dort wurde durch eine SPP-Mode mit bekanntem $k_{\mathrm{SPP}}$ der Wert der numerischen Apertur der Kombination Immersionsobjektiv-Immersionsöl bei einer Wellenlänge von $\lambda=633\,\mathrm{nm}$ auf $\mathrm{NA}_{\lambda = 633 \,\mathrm{nm}} = 1.216 \pm 0.005$  und $k_0\mathrm{NA}_{\lambda = 633 \, \mathrm{nm}} = (12.07 \pm 0.05)\,\mathrm{\mu m}^{-1}$ bestimmt. Anhand dieser Kalibrierung wurde der Wert von $k_{\mathrm{SPP}}$ bestimmt. Hierfür wurde das Integral:
 	\begin{equation}
-		P_k\left(|\vec{k}_{\bot}|\right) := \int_{0}^{2 \pi} I_k\left(|\vec{k}_{\bot}|, \phi\right)\mathrm{d}\phi
+		P_k\left(|\vec{k}_{\parallel}|\right) := \int_{0}^{360^\circ} I_k\left(|\vec{k}_{\parallel}|, \phi\right)\mathrm{d}\phi
 	\end{equation}	 
-	ausgewertet. Hierbei ist $I_k(|\vec{k}_{\bot}|, \phi)$ die Intensitätsverteilung in der Impulsdarstellung. Das Maximum dieser radialen Intensitätsverteilung entspricht nach Gleichung \eqref{eq:ext_phase_condition} $k_{\mathrm{spp}}$ und liegt bei $k_{\mathrm{spp}}= 10.35\,\mathrm{\mu m}^{-1}$. Dieser Wert stimmt bis auf $0.2\%$ mit dem Wert aus der theoretischen Berechnung \eqref{eq:theo_k_spp} überein. Allerdings ist hier zu bemerken, dass die Luft-Gold-Glas-Mode auch in \cite{Jaruschewski.2020} für die Kalibrierung genutzt worden ist. Die Messdaten sind in Abbildung \ref{fig:example_bfp} und die radiale Intensitätsverteilung ist in Abbildung \ref{fig:radial_profile} dargestellt. Die Einfallsrichtung des Lasers war hierbei entlang der $0^\circ$-Linie. Es fällt auf, dass die Anregung in Einfallsrichtung des Lasers deutlich stärker ausgeprägt ist, als entgegengesetzt der Einfallsrichtung. Die bei einer Anregung unter senkrechtem Einfall erwartete Direktionalität der SPP-Anregung (siehe Abbildung \ref{fig:vergleich-bildentstehung}) wurde bei dem schrägen Einfall der Anregungsstrahlung nicht beobachtet. Dies lässt sich durch die aus dem schrägen Einfall resultierende veränderte Orientierung des Magnetfeldes der Anregungsstrahlung erklären. In der in \cite{Hohenau.2011} durchgeführten Simulation zur Bildentstehung im LRM wurde außerdem noch eine Intensitätsmodulation im Ortsraum mit längerer Wellenlänge beobachtet (siehe Abbildung \ref{fig:vergleich-bildentstehung}). Diese Intensitätsmodulation ist in Abbildung \ref{fig:example_fp} aufgrund der zu kurzen Belichtungsdauer nicht zu erkennen.
-	\begin{figure}
-		\label{fig:example_measure}
+	ausgewertet. Hierbei ist $I_k(|\vec{k}_{\parallel}|, \phi)$ die gemessene Intensitätsverteilung in der Impulsdarstellung. Das Maximum dieser radialen Intensitätsverteilung entspricht nach Gleichung \eqref{eq:ext_phase_condition} $\Re\{k_{\mathrm{SPP}}\}$ und liegt bei $\Re\{k_{\mathrm{SPP}}\}= 10.35\,\mathrm{\mu m}^{-1}$ (Siehe Abbildung \ref{fig:radial_profile}). Dieser Wert stimmt bis auf $0.2\%$ mit dem Wert aus der theoretischen Berechnung \eqref{eq:theo_k_spp} überein. Allerdings ist hier zu bemerken, dass die Luft-Gold-Glas-Mode auch in \cite{Jaruschewski.2020} für die Kalibrierung genutzt worden ist. Diese gute Übereinstimmung von Messung und theoretischer Berechnung von $\Re\{k_\mathrm{SPP}\}$ zeigt also streng genommen nur, dass das Verhalten des LRM sich durch die durchgeführten Modifikationen nicht maßgeblich verändert hat.
+	\begin{figure}[h]		
 		\centering
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/fp/fp_0.png}
-			\caption{Intensitätsverteilung in der FP}
+			\includegraphics[width=\textwidth]{figures/new/4_1_fp_0.png}
+			\caption{Intensitätsverteilung im Ortsraum}
 			\label{fig:example_fp}		
 			\end{subfigure}
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/example_polar.png}
-				\caption{Intensitätsverteilung in der BFP}
+				\includegraphics[width=\textwidth]{figures/new/4_1_bfp_0.png}
+				\caption{Intensitätsverteilung im Impulsraum}
 				\label{fig:example_bfp}		
 			\end{subfigure}
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 					\centering
-				\includegraphics[width=\textwidth]{figures/example_radial.pdf}
+				\includegraphics[width=\textwidth]{figures/new/4_1_radial_int.pdf}
 				\caption{Radiale Intensitätsverteilung}
 				\label{fig:radial_profile}			
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/lorenz_profile}
-				\caption{Lorentz-Fit}
+				\includegraphics[width=\textwidth]{figures/new/4_1_lorenz_profile.pdf}
+				\caption{Lorentz-Fit an radiale Intensitätsverteilung}
 				\label{fig:lorenz_profile}			
 			\end{subfigure}
 	
-		\caption[Messwerte bei linearer Polarisation]{Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation.
-			Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung des Impulsraumes durch die NA und wurde ausgenutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung hat ein Maximum bei $k_{\mathrm{spp}}= 10.35\,\mathrm{\mu m ^{-1}}$.}			
+		\caption[Messwerte bei linearer Polarisation]{Messung unter $\alpha_{\mathrm{E}} = 60^\circ$ bei p-Polarisation. Die Einfallsrichtung des Lasers ist hierbei von links entlang der $0^\circ$-Linie. Der rot markierte Knick in der Intensitätsverteilung entsteht durch die Begrenzung des Impulsraumes durch die NA und wurde genutzt, um die Skala zu kalibrieren. Die radiale Intensitätsverteilung \subref{fig:radial_profile} hat ein Maximum bei $\Re\{k_{\mathrm{SPP}}\}= 10.35\,\mathrm{\mu m ^{-1}}$. Der Lorenz-Fit \subref{fig:lorenz_profile} wurde genutzt um $\Im\{k_{\mathrm{SPP}}\}= 0.16\,\mathrm{\mu m ^{-1}}$ }
+		\label{fig:example_measure}			
 	\end{figure}
 
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.7\linewidth]{"figures/Vergleich Bildentstehung"}
-		\caption[Vergleich des Ortsbildes mit einer Simulation aus \cite{Hohenau.2011}]{Die Abbildung zeigt eine in \cite{Hohenau.2011} durchgeführte Simulation zur Bildentstehung in einem Leckstrahlmikroskop. In der Simulation ist von einem linear polarisierten Dipol als Anregungsquelle ausgegangen worden. Als Anregungswellenlänge wurde $\lambda_\mathrm{sim}= 725\,\mathrm{nm}$ verwendet. Anders als bei den in der vorliegenden Arbeit durchgeführten Messungen wurde in der Simulation der Dipol so orientiert, dass er einem senkrechtem Einfall der Anregungsstrahlung entspricht. In der Simulation ist eine deutliche Direktionalität in der Intensitätsverteilung zu erkennen. Diese lässt sich, wie in \cite{Hohenau.2011} detailliert erläutert wird, durch die notwendige Kopplung zwischen dem transversal-magnetischen Feld des SPP und dem Magnetfeld des linear-polarisierten Dipols erklären. Die Darstellungen der Simulation wurden um $90^\circ$ gedreht, um die gleiche Orientierung der linearen Polarisation wie in Abbildung \ref{fig:example_fp} zu erreichen.}
+		\includegraphics[width=0.9\linewidth]{"figures/Vergleich Bildentstehung"}
+		\caption[Vergleich des Ortsbildes mit einer Simulation aus \cite{Hohenau.2011}]{Die Abbildung zeigt eine in \cite{Hohenau.2011} durchgeführte Simulation zur Bildentstehung in einem Leckstrahlmikroskop. In der Simulation ist von einem linear polarisierten Dipol als Anregungsquelle ausgegangen worden. Diese lineare Polarisation ist in der Abbildung horizontal orientiert. Als Anregungswellenlänge wurde $\lambda_\mathrm{sim}= 725\,\mathrm{nm}$ verwendet. Anders als bei den in der vorliegenden Arbeit durchgeführten Messungen wurde in der Simulation der Dipol so orientiert, dass er einem senkrechtem Einfall der Anregungsstrahlung auf die Probe entspricht. In der Simulation ist eine deutliche Direktionalität bezüglich der Polarisationsebene des Dipols in der Intensitätsverteilung zu erkennen: Die Anregung findet bevorzugt senkrecht zur Polarisationsrichtung des Dipols statt. Diese lässt sich, wie in \cite{Hohenau.2011} detailliert erläutert wird, durch die notwendige Kopplung zwischen dem transversal-magnetischen Feld des SPP und dem Magnetfeld des linear-polarisierten Dipols erklären. Die rechte Abbildung zeigt das Anregungszentrum mit reduzierte Helligkeit und einem größerem Maßstab. Dort ist zu erkennen, dass die Direktionalität erst in etwas größerer Entfernung zum Anregungszentrum deutlich auszumachen ist. (Hinweis: Die Darstellungen der Simulation wurden um $90^\circ$ gedreht, um die gleiche Orientierung der linearen Polarisation wie in Abbildung \ref{fig:example_fp} zu erreichen.)}
 		\label{fig:vergleich-bildentstehung}
 	\end{figure}
-	Aus der radialen Intensitätsverteilung des Impulsraumes lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung des Impulsbildes nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über die Anpassung eines Lorentzprofils mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Dieser Fit hat $\Im\{k_\mathrm{SPP}\} = 0.16\,\mathrm{\mu m}^{-1}$ ergeben. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären: Erstens kommt es durch Abbildungsfehler in dem LRM zu einer Verbreiterung des Profils im Impulsraum \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPP. Zweitens ist die genaue Qualität der Probe unbekannt, und weitere Defekte und größere Oberflächenrauigkeiten können zu einer stärkeren Dämpfung des SPP führen. Außerdem wurde in der theoretischen Berechnung die Dämpfung des SPP durch die Dissipation von Leckstrahlung nicht berücksichtigt. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19\,\mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht um $19\%$ von dem in der vorliegenden Arbeit gemessenen Wert ab. Da die Profilbreite im Vergleich zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat oder die Qualität der optischen Abbildung verbessert werden konnte (in \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet). Hierbei ist anzumerken, dass der Lorentz-Fit äußerst empfindlich auf die Wahl des Fit-Bereichs reagiert. Außerdem ist wie in Abbildung \ref{fig:lorenz_profile} dargestellt der Fit nur eine grobe Näherung und stimmt nicht besonders gut mit den Messdaten überein.	
-	
+	Aus der radialen Intensitätsverteilung des Impulsraumes lässt sich außerdem der Imaginärteil des Wellenvektors bestimmen. Hierfür  wird ausgenutzt, dass die radiale Intensitätsverteilung der Leckstrahlung im Impulsraum nach \eqref{eq:ext_phase_condition} ein Lorentz-Profil sein sollte. Die Profilbreite wird hierbei durch den Imaginärteil des Wellenvektors bzw. der Dämpfung des SPP in Propagationsrichtung bestimmt. Aus den Messdaten lässt sich diese Profilbreite nun über die Anpassung eines Lorentzprofils mit der Methode der kleinsten Quadrate bestimmen. Diese Fit-Kurve ist in Abbildung \ref{fig:lorenz_profile} dargestellt. Als Fit-Parameter wurde dabei $\Im\{k_\mathrm{SPP}\} = 0.16\,\mathrm{\mu m}^{-1}$ bestimmt. Die Abweichung von $250\%$ zu dem theoretisch errechneten Wert \ref{eq:theo_k_spp} lässt sich durch zwei Effekte erklären: Erstens kommt es durch Abbildungsfehler in dem LRM zu einer Verbreiterung des Profils im Impulsraum \cite{Jaruschewski.2020}, daher ergibt die gemessene Profilbreite nur eine obere Schranke für die tatsächliche Dämpfung des SPP. Zweitens ist die genaue Qualität der Probe unbekannt, und weitere Defekte und größere Oberflächenrauigkeiten können zu einer stärkeren Dämpfung des SPP führen. Außerdem wurde in der theoretischen Berechnung die Dämpfung des SPP durch die Dissipation von Leckstrahlung nicht berücksichtigt. In der Arbeit \cite{Jaruschewski.2020} wurde  $\Im\{k_\mathrm{SPP}\} = 0.19\,\mathrm{\mu m}^{-1}$ gemessen. Dieser Wert weicht um $19\%$ von dem in der vorliegenden Arbeit gemessenen Wert ab. Da die Profilbreite im Vergleich zu \cite{Jaruschewski.2020} kleiner geworden ist, ist davon auszugehen, dass entweder die Probenqualität zugenommen hat oder die Qualität der optischen Abbildung verbessert werden konnte (in \cite{Jaruschewski.2020} wurde das Intensitätsprofil nur entlang einer Linie und nicht über den gesamten Vollkreis berechnet). Hierbei ist anzumerken, dass der Lorentz-Fit äußerst empfindlich auf die Wahl des Fit-Bereichs reagiert. Außerdem stimmt, wie in Abbildung \ref{fig:lorenz_profile} dargestellt, der Lorentz-Fit nur recht grob mit der tatsächlich gemessenen Intensitätsverteilung überein.
+	\FloatBarrier
 	\subsection{Nachweis des PSHE}
-	Zum Nachweis des PSHE wurde mit Hilfe des Leckstrahlmikroskopes die Anregung eines SPPs an einem Punktdefekt in Abhängigkeit der Polarisation der Anregungsstrahlung untersucht. Es wurde für unterschiedliche Orientierungen des $\lambda /4$-Plättchens jeweils eine Intensitätsmessung der Leckstrahlung im Ortsraum und im Impulsraum durchgeführt. Die gemessene Intensitätsverteilung im Ortsraum sei durch $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und die gemessene Intensitätsverteilung im Impulsraum durch $I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4})$ beschrieben (die Umrechnung der kartesischen Pixeldaten in Polarkoordinaten wird in Abschnitt \ref{sec:polar_calculation} näher erläutert). Hierbei ist $|\vec{r}|$ der radiale Abstand zum Anregungszentrum, $|\vec{k}_\perp|$ der Betrag des Wellenvektor senkrecht zu optischen Achse und $\alpha_{\lambda/4}$ die Orientierung des $\lambda/4$-Plättchens. Der Polarwinkel $\phi$ beschreibt in der Ortsraumdarstellung den Winkel zu einem Ort und in der Impulsdarstellung eine Richtung des Wellenvektors. Da das Koordinatensystem des Ortsraumes so gewählt worden ist, dass das Anregungszentrum im Ursprung liegt, entspricht der Winkel zu einem Punkt im Ortsraum auch gerade dem Winkel des Wellenvektors, der diesen Punkt im Ortsraum erreichen kann. $\phi = 0$ liegt hierbei in der Einfallsebene in Richtung der anregenden Strahlung. Der Impulsraum wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens  $\alpha_{\lambda/4} \in [0^\circ,360^\circ)$ mit einer Schrittweite von $2^\circ$ aufgenommen. Das Ortsbild der Anregung wurde mit einer Schrittweite von $20^\circ$ aufgezeichnet.
+	Zum Nachweis des PSHE wurde mit Hilfe des Leckstrahlmikroskopes die Anregung eines SPPs an einem Punktdefekt in Abhängigkeit der Polarisation der Anregungsstrahlung untersucht. Es wurde für unterschiedliche Orientierungen des $\lambda /4$-Plättchens jeweils eine Intensitätsmessung der Leckstrahlung im Ortsraum und im Impulsraum durchgeführt. Die gemessene Intensitätsverteilung im Ortsraum sei durch $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und die gemessene Intensitätsverteilung im Impulsraum durch $I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4})$ beschrieben (die Umrechnung der kartesischen Pixeldaten in Polarkoordinaten wird in Abschnitt \ref{sec:polar_calculation} näher erläutert). Hierbei ist $|\vec{r}|$ der radiale Abstand zum Anregungszentrum, $|\vec{k}_\parallel|$ der Betrag des Wellenvektor parallel zur Oberfläche der Probe und $\alpha_{\lambda/4}$ die Orientierung des $\lambda/4$-Plättchens. Der Polarwinkel $\phi$ beschreibt in der Ortsraumdarstellung den Winkel zu einem Ort in der Bildebene und in der Impulsdarstellung eine Richtung des Wellenvektors. Da das Koordinatensystem des Ortsraumes so gewählt worden ist, dass das Anregungszentrum im Ursprung liegt, entspricht der Winkel zu einem Punkt im Ortsraum auch gerade dem Winkel des Wellenvektors, der diesen Punkt im Ortsraum erreichen kann. $\phi = 0$ liegt hierbei in der Einfallsebene in Richtung der anregenden Strahlung. Das Impulsbild wurde für unterschiedliche Orientierungen des $\lambda/4$-Plättchens  $\alpha_{\lambda/4} \in [0^\circ,360^\circ)$ mit einer Schrittweite von $2^\circ$ und das Ortsbild mit einer Schrittweite von $20^\circ$ aufgenommen.
 	
 	\subsubsection{Rohdaten}
-	Zunächst wurden die Rohdaten bei links- und rechts-zirkular polarisierter Anregungsstrahlung untersucht, also $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und $I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4})$ für $\alpha_{\lambda /4} \in \{45^\circ, 135^\circ\}$. Diese Daten sind in Abbildung \ref{fig:measure_pshe_raw} dargestellt. 
-	\begin{figure}
-		\begin{subfigure}[b]{0.49\textwidth}
+	Zunächst wurden die Rohdaten bei links- und rechts-zirkular polarisierter Anregungsstrahlung untersucht, also $I_r(|\vec{r}|, \phi, \alpha_{\lambda /4})$ und $I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4})$ für $\alpha_{\lambda /4} \in \{45^\circ, 135^\circ\}$. Diese Daten sind in Abbildung \ref{fig:measure_pshe_raw} dargestellt. 
+	\begin{figure}[h]
+		\begin{subfigure}{0.49\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/fp/fp_45.png}
+			\includegraphics[width=\textwidth]{figures/new/4_3_fp_45.png}
 			\caption{$I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ)$}
 			\label{fig:raw_fp_45}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.5\textwidth}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_45.png}
-			\caption{$I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4}= 45^\circ)$}
+			\includegraphics[width=\textwidth]{figures/new/4_3_bfp_45.png}
+			\caption{$I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4}= 45^\circ)$}
 			\label{fig:raw_bfp_45}
 		\end{subfigure}		
 		\hfill		
-		\begin{subfigure}[b]{0.49\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/fp/fp_135.png}
+			\includegraphics[width=\textwidth]{figures/new/4_3_fp_135.png}
 			\caption{$I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)$}
 			\label{fig:raw_fp_135}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.5\textwidth}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_135.png}
-			\caption{$I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4}= 135^\circ)$}
+			\includegraphics[width=\textwidth]{figures/new/4_3_bfp_135.png}
+			\caption{$I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4}= 135^\circ)$}
 			\label{fig:raw_bfp_135}
 		\end{subfigure}
-		\caption[Rohdaten PSHE]{Die Abbildung zeigt Rohdaten der Leckstrahlung eines SPPs im Ortsraum (\subref{fig:raw_fp_45}, \subref{fig:raw_fp_135}) und im Impulsraum (\subref{fig:raw_bfp_45}, \subref{fig:raw_bfp_135}). Der direkt transmittierte Strahl wurde dabei mit dem BB aus der Abbildung gefiltert. Die Messungen \subref{fig:raw_fp_45}, \subref{fig:raw_bfp_45} sind dabei mit einer Orientierung der $\lambda / 4$-Platte von $\alpha_{\lambda/4} = 45^\circ$ aufgenommen und \subref{fig:raw_fp_135}, \subref{fig:raw_bfp_135} mit $\alpha_{\lambda/4} = 135^\circ$. Diese Orientierungen sorgen für eine links- bzw. rechts-zirkulare Polarisation des Anregungslasers.}
+		\caption[Rohdaten PSHE]{Die Abbildung zeigt Rohdaten der Leckstrahlung eines SPPs im Ortsraum (Abbildungen \subref{fig:raw_fp_45}, \subref{fig:raw_fp_135}) und im Impulsraum (Abbildungen \subref{fig:raw_bfp_45}, \subref{fig:raw_bfp_135}). Der direkt transmittierte Strahl wurde dabei mit dem BB aus der Abbildung gefiltert. Die Messungen \subref{fig:raw_fp_45}, \subref{fig:raw_bfp_45} sind dabei mit einer Orientierung der $\lambda / 4$-Platte von $\alpha_{\lambda/4} = 45^\circ$ aufgenommen und \subref{fig:raw_fp_135}, \subref{fig:raw_bfp_135} mit $\alpha_{\lambda/4} = 135^\circ$. Diese Orientierungen sorgen für eine links- bzw. rechts-zirkulare Polarisation des Anregungslasers.}
 		\label{fig:measure_pshe_raw}			
 	\end{figure}
 	\paragraph{Ortsraum}
-	In den Rohdaten ist im Ortsbild in Rückwärtsrichtung bezüglich der Einfallsrichtung des Anregungslasers bereits eine leichte Asymmetrie zu beobachten: Die Intensität der Anregung ist in Abbildung \ref{fig:raw_fp_45} zwischen $90^\circ$ und $180^\circ$ größer als zwischen $180^\circ$ und $270^\circ$. Bei Wechsel des Drehsinns der Polarisation des Anregungslaser (Abbildung \ref{fig:raw_fp_135}) invertiert diese Asymmetrie ihr Vorzeichen. In Vorwärtsrichtung ist bemerkenswerterweise auch eine Asymmetrie zu beobachten, die zur Asymmetrie in Rückwärtsrichtung entgegengesetzt ist: In Abbildung \ref{fig:raw_fp_45} ist die gemessene Intensität zwischen $0^\circ$ und $90^\circ$ größer als zwischen $270^\circ$ und $360^\circ$. Auch diese Asymmetrie invertiert bei Wechsel des Drehsinns der Polarisation ihr Vorzeichen.
-	(... Interpretation Ortsraum schwierig)
+	In den Rohdaten ist im Ortsbild in Rückwärtsrichtung bezüglich der Einfallsrichtung des Anregungslasers bereits eine leichte Asymmetrie zu beobachten: Die Intensität der Anregung ist in Abbildung \ref{fig:raw_fp_45} zwischen $90^\circ$ und $180^\circ$ größer als zwischen $180^\circ$ und $270^\circ$. Bei Wechsel des Drehsinns der Polarisation des Anregungslaser (Abbildung \ref{fig:raw_fp_135}) invertiert diese Asymmetrie ihr Vorzeichen. In Vorwärtsrichtung ist bemerkenswerterweise auch eine Asymmetrie zu beobachten, die zur Asymmetrie in Rückwärtsrichtung entgegengesetzt ist: In Abbildung \ref{fig:raw_fp_45} ist die gemessene Intensität zwischen $0^\circ$ und $90^\circ$ größer als zwischen $270^\circ$ und $360^\circ$. Auch diese Asymmetrie invertiert bei Wechsel des Drehsinns der Polarisation ihr Vorzeichen. 
 	\paragraph{Impulsraum} 
-	In den Rohdaten des Impulsraumes ist in Rückwärtsrichtung ein äquivalentes Verhalten zu dem Verhalten der Anregung im Ortsraum zu erkennen. In Vorwärtsrichtung ist in den Rohdaten des Impulsraumes hingegen keine deutliche Asymmetrie zu beobachten.
-	\FloatBarrier
+	In den Rohdaten des Impulsraumes ist in Rückwärtsrichtung ein äquivalentes Verhalten zu dem Verhalten der Anregung im Ortsraum zu erkennen. In Vorwärtsrichtung ist in den Rohdaten des Impulsraumes hingegen keine deutliche Asymmetrie zu beobachten. Diese zunächst verwunderliche Diskrepanz zwischen Orts und Impulsdarstellung wird in Abschnitt \ref{sec:polar_int} näher analysiert.
 	\subsubsection{Differenz- und Integrationsdaten}
 		Um die Asymmetrie bei Anregung mit zirkular polarisierter Strahlung im Detail zu untersuchen, wurde ein Differenzbild zwischen den Intensitäten, die bei links- und rechts-zirkular polarisierter Anregungsstrahlung gemessen worden sind, errechnet. Diese Differenzdaten wurden sowohl für die Messung im Ortsraum als auch für die Messung im Impulsraum bestimmt.			
 		\paragraph{Ortsraum}
@@ -636,7 +640,7 @@
 		 	\label{eq:diff_measure}
 			D_r\left(|\vec{r}|, \Phi\right) := \dfrac{I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ) - I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)}{I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 45^\circ) + I_r(|\vec{r}|, \phi, \alpha_{\lambda /4} = 135^\circ)}
 		\end{equation} 
-		 Diese relative Intensitätsdifferenz im Ortsraum ist in Abbildung \ref{fig:diff_fp_45_135} dargestellt. In dieser Darstellung ist zu erkennen, dass die relative Intensitätsdifferenz in radialer Richtung eine Modulation mit der gleichen Raumfrequenz wie die Rohdaten zeigt. Auf konzentrischen Kreisen mit geringer Intensität im Ursprungssignal treten im Differenzbild negative Werte auf, und auf konzentrischen Kreisen mit hoher Intensität im Ursprungssignal treten positive Werte im Differenzbild auf. Die Modulation der Differenz in polarer Richtung entsteht nur durch ein Verringern einer der beiden oben beschriebenen Differenzen, nicht jedoch durch einen Vorzeichenwechsel. Für dieses Verhalten konnte im Rahmen dieser Arbeit keine endgültige Erklärung gefunden werden. Die radiale Modulation der Intensität im Ortsbild der Leckstrahlung entsteht durch die Überlagerung der direkt von dem Defekt erzeugten Dipolstrahlung, welche durch die NA im Impulsraum scharf abgeschnitten wird, mit der Leckstrahlung des propagierenden SPP. Diese Überlagerung führt zu einer Schwebung die zu den beiden in der Abbildung \ref{fig:vergleich-bildentstehung} erkennbaren Wellenlängen im Ortsraum führt \cite{Hohenau.2011}. Ob sich eine Veränderung der Polarisation der Anregungsstrahlung auf diesen Bildentstehungsprozess auswirkt, und wenn ja wie diese Auswirkung ausfällt, muss noch untersucht werden. Daher ist eine korrekte Interpretation des Ortsraumbildes schwierig. 
+		 Diese relative Intensitätsdifferenz im Ortsraum ist in Abbildung \ref{fig:diff_fp_45_135} dargestellt. In dieser Darstellung ist zu erkennen, dass die relative Intensitätsdifferenz in radialer Richtung eine Modulation mit der gleichen Raumfrequenz wie die Rohdaten zeigt. Auf konzentrischen Kreisen mit geringer Intensität im Ursprungssignal treten im Differenzbild negative Werte auf, und auf konzentrischen Kreisen mit hoher Intensität im Ursprungssignal treten positive Werte im Differenzbild auf. Die Modulation der Differenz in polarer Richtung entsteht nur durch ein Verringern einer der beiden oben beschriebenen Differenzen, nicht jedoch durch einen Vorzeichenwechsel. Für dieses Verhalten konnte im Rahmen dieser Arbeit keine endgültige Erklärung gefunden werden. Die radiale Modulation der Intensität im Ortsbild der Leckstrahlung entsteht durch die Überlagerung der direkt von dem Defekt erzeugten Dipolstrahlung, welche durch die NA im Impulsraum scharf abgeschnitten wird, mit der Leckstrahlung des propagierenden SPP. Diese Überlagerung führt zu einer Schwebung die zu den beiden in der Abbildung \ref{fig:vergleich-bildentstehung} erkennbaren Wellenlängen im Ortsraum führt \cite{Hohenau.2011}. Ob sich eine Veränderung der Polarisation der Anregungsstrahlung auf diesen Bildentstehungsprozess auswirkt, und wenn ja wie diese Auswirkung ausfällt, muss noch untersucht werden. Daher ist eine korrekte Interpretation des Ortsraumbildes komplex. 
 		 
 		 Um die Asymmetrie der Anregung bezüglich der Einfallsebene des Lasers in Abhängigkeit der Polarisation des Lasers zu charakterisieren, wurden zwei Bereiche im Ortsraum ausgewählt, über die die Intensität integriert wurde. Diese Integrationsbereiche wurden symmetrisch bezüglich der horizontalen Einfallsebene des Lasers gewählt:		 
 		 \begin{align}
@@ -652,46 +656,46 @@
 		 	P_{r, \mathrm{relativ}, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{r, \mathrm{Unten}}(\alpha_{\lambda/4})}{P_{r, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{r, \mathrm{Unten}}(\alpha_{\lambda/4})}	 	
 		 \end{align}
 	 	Hierbei ist $r_\mathrm{max}$ die Begrenzung der Integrationsbereiche in radialer Richtung. Die Winkel $\phi_\mathrm{min} < \phi_\mathrm{max}$ legen die beiden Integrationsbereiche in polarer
-	 	 Richtung fest. Diese über eine Fläche integrierte Intensität ist eine Leistung. Die Integration wurde für alle Orientierungen des $\lambda/4$-Plättchens durchgeführt. Die Leistungen des oberen und unteren SPP wurde mit den Beziehungen \eqref{eq:relative_power} auf die Summe der beiden Leistungen normiert. Das Ergebnis dieser Auswertung ist in den Abbildungen \ref{fig:int_fp_45_135}, \subref{fig:int_fp_45_135_mid}, \subref{fig:int_fp_45_135_front} für unterschiedliche Kombinationen von $\phi_\mathrm{min}$ und $\phi_\mathrm{max}$ dargestellt. Die Integrationsbereiche sind dabei jeweils in  \ref{fig:diff_fp_45_135}, \subref{fig:diff_fp_45_135_mid}, \subref{fig:diff_fp_45_135_front} markiert.		 
-		\begin{figure}		
-			\begin{subfigure}[b]{0.5\textwidth}
+	 	 Richtung fest. Diese über eine Fläche integrierte Intensität ist eine Leistung. Die Integration wurde für alle Orientierungen des $\lambda/4$-Plättchens durchgeführt. Die Leistungen des oberen und unteren SPP wurde mit den Beziehungen \eqref{eq:relative_power} auf die Summe der beiden Leistungen normiert. Das Ergebnis dieser Auswertung ist in den Abbildungen \ref{fig:int_fp_45_135}, \subref{fig:int_fp_45_135_mid}, \subref{fig:int_fp_45_135_front} für unterschiedliche Kombinationen von $\phi_\mathrm{min}$ und $\phi_\mathrm{max}$ dargestellt. Die aus $\phi_\mathrm{min}$ und $\phi_\mathrm{max}$ resultierenden Integrationsbereiche sind dabei jeweils in  \ref{fig:diff_fp_45_135}, \subref{fig:diff_fp_45_135_mid}, \subref{fig:diff_fp_45_135_front} markiert.		 
+		\begin{figure}[h]		
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_back.png}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_back.png}
 				\caption{	$D_r\left(|\vec{r}|, \Phi\right)$}
 				\label{fig:diff_fp_45_135}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_back_int.pdf}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_back_int.pdf}
 				\caption{$\phi_\mathrm{min} =135^\circ, \phi_\mathrm{max}=170^\circ$}
 				\label{fig:int_fp_45_135}
 			\end{subfigure}
 			
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_mid.png}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_mid.png}
 				\caption{$D_r\left(|\vec{r}|, \Phi\right)$}
 				\label{fig:diff_fp_45_135_mid}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_mid_int.pdf}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_mid_int.pdf}
 				\caption{ $\phi_\mathrm{min} =45^\circ, \phi_\mathrm{max}=135^\circ$}
 				\label{fig:int_fp_45_135_mid}
 			\end{subfigure}
 			
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_forw.png}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_front.png}
 				\caption{$D_r\left(|\vec{r}|, \Phi\right)$}
 				\label{fig:diff_fp_45_135_front}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/fp/fp_forw_int.pdf}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_4_fp_front_int.pdf}
 				\caption{ $\phi_\mathrm{min} =10^\circ, \phi_\mathrm{max}=45^\circ$}
 				\label{fig:int_fp_45_135_front}
 			\end{subfigure}
@@ -700,16 +704,17 @@
 		\end{figure}
 		\subparagraph{Analyse}
 			\begin{itemize}
-				\item In Rückwärtsrichtung (Abbildung \ref{fig:diff_fp_45_135}, \subref{fig:int_fp_45_135} mit $\phi_\mathrm{min} =135^\circ, \phi_\mathrm{max}=170^\circ$) konnte im Ortsraum die für den PSHE erwartete Asymmetrie beobachtet werden. Bei zirkularer Polarisation ($\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$, in der Abbildung \ref{fig:int_fp_45_135} durch senkrechte Linien gekennzeichnet) ist jeweils eine Asymmetrie in Bezug auf die Einfallsebene zu erkennen. Diese Asymmetrie wechselt bei Umkehr des Drehsinns der zirkularen Polarisation wie erwartet ihre Orientierung. Allerdings liegen die Maxima dieser Asymmetrie jeweils etwas zur zirkularen Polarisation verschoben. Es ist außerdem auffällig, dass in den Intervallen $\alpha_{\lambda/4} \in [135^\circ,225^\circ]$ und $\alpha_{\lambda/4} \in [315^\circ, 225^\circ]$ jeweils ein weiteres Maximum in der Asymmetrie auftritt. Bei $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ ist die Anregungsstrahlung linear polarisiert. Der elektrische Feldvektor ist dabei parallel zur Einfallsebene orientiert. Daher sollte bei diesen Orientierungen keine Asymmetrie auftreten.
+				\item In Rückwärtsrichtung (Abbildung \ref{fig:diff_fp_45_135}, \subref{fig:int_fp_45_135} mit $\phi_\mathrm{min} =135^\circ, \phi_\mathrm{max}=170^\circ$) konnte im Ortsraum die für den PSHE erwartete Asymmetrie beobachtet werden. Bei zirkularer Polarisation ($\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$, in der Abbildung \ref{fig:int_fp_45_135} durch senkrechte Linien gekennzeichnet) ist jeweils eine Asymmetrie in Bezug auf die Einfallsebene zu erkennen. Diese Asymmetrie wechselt bei Umkehr des Drehsinns der zirkularen Polarisation wie erwartet ihre Orientierung. Allerdings liegen die Maxima dieser Asymmetrie jeweils etwas zur zirkularen Polarisation verschoben. Es ist außerdem auffällig, dass in den Intervallen $\alpha_{\lambda/4} \in [135^\circ,225^\circ]$ und $\alpha_{\lambda/4} \in [315^\circ, 225^\circ]$ jeweils ein weiteres Maximum in der Asymmetrie auftritt. Bei $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ ist die Anregungsstrahlung linear polarisiert. Der elektrische Feldvektor ist dabei parallel zur Einfallsebene orientiert. Daher sollte bei diesen Orientierungen keine Asymmetrie auftreten. Die "Rest-Asymmetrie" die bei linearer Polarisation zu beobachten ist, wird vermutlich durch eine intrinsische Asymmetrie des zur Anregung verwendeten Defektes verursacht. 
 				\item Senkrecht zur Einfallsebene (Abbildung \ref{fig:diff_fp_45_135_mid}, \subref{fig:int_fp_45_135_mid} mit $\phi_\mathrm{min} =45^\circ, \phi_\mathrm{max}=135^\circ$) ist ein sehr ähnliches Verhalten wie in Rückwärtsrichtung zu beobachten. Bei zirkularer Polarisation ist weiterhin eine mit dem Drehsinn der Polarisation alternierende Asymmetrie zwischen oberen und unteren SPP zu erkennen. Allerdings ist diese Asymmetrie bei $\alpha_{\lambda/4}=45^\circ$ vergleichsweise klein. Senkrecht zur Einfallsebene tritt ebenfalls jeweils ein weiteres Maximum in den Intervallen $\alpha_{\lambda/4} \in [135^\circ,225^\circ]$ und $\alpha_{\lambda/4} \in [315^\circ, 225^\circ]$ auf.
 				\item
 				In Vorwärtsrichtung (Abbildung \ref{fig:diff_fp_45_135_front}, \subref{fig:int_fp_45_135_front} mit  $\phi_\mathrm{min} =10^\circ, \phi_\mathrm{max}=45^\circ$) ist bemerkenswerterweise eine zu den beiden vorangegangenen Richtungen invertierte Modulation der Intensitäten zu erkennen. Während die Leistung des oberen SPP bei der Integration in Rückwärtsrichtung und senkrecht zur Ausbreitungsrichtung jeweils bei $\alpha_{\lambda /4} \in \{45^\circ, 225^\circ\}$ ein Maximum hatte, liegen bei der Integration in Vorwärtsrichtung bei diesen Orientierungen die Minima.
 			\end{itemize}
+		\FloatBarrier
 		\paragraph{Impulsraum}
 		Die oben ausgeführte Auswertung kann analog auch auf die Messdaten des Impulsraumes angewendet werden:
 		\begin{equation}
 			\label{eq:diff_measure_momentum}
-			D_k\left(|\vec{k}_\perp|, \Phi\right) := \dfrac{I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4} = 45^\circ) - I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4} = 135^\circ)}{I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4} = 45^\circ) + I_k(|\vec{k}_\perp|, \phi, \alpha_{\lambda /4} = 135^\circ)}
+			D_k\left(|\vec{k}_\parallel|, \Phi\right) := \dfrac{I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4} = 45^\circ) - I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4} = 135^\circ)}{I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4} = 45^\circ) + I_k(|\vec{k}_\parallel|, \phi, \alpha_{\lambda /4} = 135^\circ)}
 		\end{equation} 
 		\begin{align}
 			P_{k, \mathrm{Oben}}(\alpha_{\lambda/4}) &:= \int_{k_\mathrm{min}}^{k_\mathrm{max}}k \, \mathrm{d}k \int_{\phi_\mathrm{min}}^{\phi_\mathrm{max}} \mathrm{d}\phi I_k(k, \phi, \alpha_{\lambda /4}) \\
@@ -723,47 +728,47 @@
 			\nonumber
 			P_{k, \mathrm{relativ}, \mathrm{Unten}}(\alpha_{\lambda/4}) &:= 	\dfrac{P_{k, \mathrm{Unten}}(\alpha_{\lambda/4})}{P_{k, \mathrm{Oben}}(\alpha_{\lambda/4}) + P_{k, \mathrm{Unten}}(\alpha_{\lambda/4})}	 	
 		\end{align}
-		Die Auswertung des Impulsraumes hat gegenüber den Daten des Ortsraumes den Vorteil, dass hier das plasmonische Signal klar von dem Hintergrundsignal getrennt werden kann. Um in die Integration hauptsächlich das plasmonische Signal auf dem Kreisring mit Radius $k = k_\mathrm{SPP} = 10.3\,\mathrm{\mu m}^{-1}$ einfließen zu lassen, wurde die radiale Integration nur zwischen $k_\mathrm{min} = 9.8\,\mathrm{\mu m}^{-1}$ und $k_\mathrm{max} = 10.8\,\mathrm{\mu m}^{-1}$ durchgeführt. Das Differenzbild und die Auswertung der Integrationsbereiche sind in Abbildung \ref{fig:spin_hall_measure} dargestellt.		
-		\begin{figure}			
-			\begin{subfigure}[b]{0.5\textwidth}
+		Die Auswertung des Impulsraumes hat gegenüber den Daten des Ortsraumes den Vorteil, dass hier das plasmonische Signal klar von dem Hintergrundsignal getrennt werden kann. Um in die Integration hauptsächlich das plasmonische Signal auf dem Kreisring mit Radius $k = k_\mathrm{SPP} = 10.3\,\mathrm{\mu m}^{-1}$ einfließen zu lassen, wurde die radiale Integration nur zwischen $k_\mathrm{min} = 10.1\,\mathrm{\mu m}^{-1}$ und $k_\mathrm{max} = 10.8\,\mathrm{\mu m}^{-1}$ durchgeführt. Das Differenzbild und die Auswertung der Integrationsbereiche sind in Abbildung \ref{fig:spin_hall_measure} dargestellt.		
+		\begin{figure}[h]			
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/diff_back.png}
-				\caption{$D_k\left(|\vec{k}_\perp|, \Phi\right)$}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_back.png}
+				\caption{$D_k\left(|\vec{k}_\parallel|, \Phi\right)$}
 				\label{fig:diff_back}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_back.pdf}
-				\caption{$\phi_\mathrm{min} =120^\circ, \phi_\mathrm{max}=170^\circ$}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_back_int.pdf}
+				\caption{$\phi_\mathrm{min} =135^\circ, \phi_\mathrm{max}=170^\circ$}
 				\label{fig:intensity_back}
 			\end{subfigure}
 			
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/diff_mid.png}
-				\caption{$D_k\left(|\vec{k}_\perp|, \Phi\right)$}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_mid.png}
+				\caption{$D_k\left(|\vec{k}_\parallel|, \Phi\right)$}
 				\label{fig:diff_mid}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_mid.pdf}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_mid_int.pdf}
 				\caption{$\phi_\mathrm{min} =45^\circ, \phi_\mathrm{max}=135^\circ$}
 				\label{fig:intensity_mid}
 			\end{subfigure}
 			
-			\begin{subfigure}[b]{0.5\textwidth}
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/diff_forw.png}
-				\caption{$D_k\left(|\vec{k}_\perp|, \Phi\right)$}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_front.png}
+				\caption{$D_k\left(|\vec{k}_\parallel|, \Phi\right)$}
 				\label{fig:diff_front}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/intensity_forw.pdf}
-				\caption{$\phi_\mathrm{min} =5^\circ, \phi_\mathrm{max}=30^\circ$}
+				\includegraphics[width=\textwidth]{figures/new/fig_4_5_bfp_front_int.pdf}
+				\caption{$\phi_\mathrm{min} =10^\circ, \phi_\mathrm{max}=45^\circ$}
 				\label{fig:intensity_front}
 			\end{subfigure}
 			\caption[Differenz- und Integrationsdaten PSHE Impulsraum]{Die Abbildungen \subref{fig:diff_back}, \subref{fig:diff_mid}, \subref{fig:diff_front} zeigen die nach \eqref{eq:diff_measure_momentum} berechnete Differenz der Intensitäten im Impulsraum zwischen links- bzw. rechts-zirkular polarisierter Anregungsstrahlung. Diese Abbildungen unterscheiden sich nur durch die markierten Integrationsbereiche. Die Abbildungen \subref{fig:intensity_back}, \subref{fig:intensity_mid}, \subref{fig:intensity_front} zeigen jeweils die mit \eqref{eq:relative_power_momentum} über die zugehörigen markierten Bereiche integrierte Intensität normiert auf die Summe der Intensitäten beider Bereiche in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens, also $P_{k, \mathrm{relativ}, \mathrm{Oben}}(\alpha_{\lambda/4})$ und $P_{k, \mathrm{relativ}, \mathrm{Unten}}(\alpha_{\lambda/4})$. Die vertikalen Linien markieren dabei die Orientierung des $\lambda/4$-Plättchens $\alpha_{\lambda/4}$, bei denen zirkulare Polarisation auftritt.}	
@@ -771,7 +776,7 @@
 		\end{figure}
 		\subparagraph{Analyse}
 		\begin{itemize}
-			\item In Rückwärtsrichtung (Abbildungen \ref{fig:diff_back} u. \ref{fig:intensity_back}) konnte der erwartete Effekt beobachtet werden. Bei zirkularer Polarisation ($\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$) ist jeweils die maximale Asymmetrie in Bezug auf die Einfallsebene zu erkennen. Diese Asymmetrie wechselt beim Wechsel des Drehsinns der zirkularen Polarisation wie erwartet ihre Orientierung. Das beobachtete maximale Kontrastverhältnis ist hierbei $\eta = 1.6:1$. Dieses Kontrastverhältnis ist verglichen mit dem in \cite{OConnor.2014} beobachteten Kontrast von $\eta =7:1$ gering.  Die dort verwendete Nanostruktur war allerdings eine  $60\,\mathrm{nm}$ große Goldkugel, die mit der \textit{drop and cast} Methode auf der Goldoberfläche platziert worden ist. In der vorliegenden Arbeit wurde eine einfache Defektstelle auf dem Goldfilm für die Anregung verwendet. Die detaillierte Struktur dieses Defektes ist unbekannt und kann das Kontrastverhältnis beeinflussen.  Bei linearer Polarisation ($\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$) verschwindet die Asymmetrie bis auf einen kleinen Rest, der vermutlich durch eine intrinsische Asymmetrie der Anregungsstruktur verursacht wird. Durch diese intrinsische Asymmetrie lässt sich auch erklären, dass das Kontrastverhältnis zwischen $135^\circ$ und $ 315^\circ$ jeweils etwas geringer ist als zwischen $45^\circ$ und $225^\circ$.
+			\item In Rückwärtsrichtung (Abbildungen \ref{fig:diff_back} u. \ref{fig:intensity_back}) konnte der erwartete Signatur des PSHE beobachtet werden. Bei zirkularer Polarisation ($\alpha_{\lambda/4} \in \{45^\circ, 135^\circ, 225^\circ, 315^\circ\}$) ist jeweils die maximale Asymmetrie in Bezug auf die Einfallsebene zu erkennen. Diese Asymmetrie wechselt beim Wechsel des Drehsinns der zirkularen Polarisation wie erwartet ihre Orientierung. Das beobachtete maximale Kontrastverhältnis ist hierbei $\eta = 1.6:1$. Dieses Kontrastverhältnis ist verglichen mit dem in \cite{OConnor.2014} beobachteten Kontrast von $\eta =7:1$ gering.  Die dort verwendete Nanostruktur war allerdings eine  $60\,\mathrm{nm}$ große Goldkugel, die mit der \textit{drop and cast} Methode auf der Goldoberfläche platziert worden ist. In der vorliegenden Arbeit wurde eine einfache Defektstelle auf dem Goldfilm für die Anregung verwendet. Die detaillierte Struktur dieses Defektes ist unbekannt und kann das Kontrastverhältnis beeinflussen. Der Intensitätsverlauf in Rückwärtsrichtung zeigt jedoch trotzdem starke Ähnlichkeit zu den Messdaten aus \cite{OConnor.2014} (siehe Abbildung \ref{fig:measure_connor}). Bei linearer Polarisation ($\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$) verschwindet die Asymmetrie bis auf einen kleinen Rest, der vermutlich durch eine intrinsische Asymmetrie der Anregungsstruktur verursacht wird. Durch diese intrinsische Asymmetrie lässt sich auch erklären, dass das Kontrastverhältnis zwischen $135^\circ$ und $ 315^\circ$ jeweils etwas geringer ist als zwischen $45^\circ$ und $225^\circ$.
 			Die intrinsische Asymmetrie der Struktur addiert sich auf die Asymmetrie, die durch den Spin-Hall-Effekt verursacht wird, und erhöht bzw. verringert diese im Wechsel.
 			\item In Vorwärtsrichtung (Abbildungen \ref{fig:diff_front} u. \ref{fig:intensity_front}) konnte nicht der erwartete Effekt beobachtet werden. Hier tritt die maximale Asymmetrie jeweils bei elliptischer Polarisation auf und verschwindet bei zirkularer Polarisation. Bei linearer Polarisation verschwindet die Asymmetrie ebenfalls. Insgesamt zeigt der Verlauf die doppelte Frequenz der erwarteten Asymmetrie-Modulation. Daher ist das Signal auch symmetrisch bezüglich des Drehsinns der Polarisation. Für dieses Phänomen wurde im Rahmen dieser Arbeit keine endgültige Erklärung gefunden.
 			
@@ -779,18 +784,35 @@
 			
 			Bei genauerer Betrachtung des Differenzbildes zwischen links- und rechts-zirkularer Polarisation (Abbildung \ref{fig:diff_front}) fällt außerdem auf, dass das Differenzbild in Vorwärtsrichtung eine feine Struktur aufweist. Diese Struktur könnte durch Interferenzeffekte verursacht werden und gibt ebenfalls einen Hinweis auf die unbekannte Detailstruktur des Defektes.
 			
-			\item Senkrecht zur Einfallsebene (Abbildungen  \ref{fig:diff_mid} u. \ref{fig:intensity_mid}) wurde eine Überlagerung aus den oben beschriebenen Periodizitäten beobachtet. Diese Überlagerung führt dazu, dass das Signal des PSHE nicht mehr eindeutig zu identifizieren ist. Das überlagerte Signal zeigt Ähnlichkeit mit den in \cite{RodriguezFortuno.2013} durchgeführten Messungen an einer Gitterstruktur. Dort ist ebenfalls ein weiteres lokales Minimum der beiden Intensitäten bei linearer Polarisation zu beobachten (Vergleiche $\alpha_{\lambda/4}= 90$ aus Abbildung \ref{fig:intensity_mid} mit $\alpha_{\lambda/4}= 0$ aus Abbildung \ref{fig:RF_measure_int}). Die Darstellung in \ref{fig:RF_measure_int} zeigt jedoch absolute Intensitäten und keine relativen Intensitäten.
+			\item Senkrecht zur Einfallsebene (Abbildungen  \ref{fig:diff_mid} u. \ref{fig:intensity_mid}) wurde eine Überlagerung aus den oben beschriebenen Periodizitäten beobachtet. Diese Überlagerung führt dazu, dass das Signal des PSHE nicht mehr eindeutig zu identifizieren ist. Das überlagerte Signal zeigt Ähnlichkeit mit den in \cite{RodriguezFortuno.2013} durchgeführten Messungen an einer Gitterstruktur. Dort ist ebenfalls ein weiteres lokales Minimum der beiden Intensitäten bei linearer Polarisation zu beobachten (Vergleiche $\alpha_{\lambda/4}= 90^\circ$ aus Abbildung \ref{fig:intensity_mid} mit $\alpha_{\lambda/4}= 0^\circ$ aus Abbildung \ref{fig:RF_measure_int}). Die Darstellung in \ref{fig:RF_measure_int} zeigt jedoch absolute Intensitäten und keine relativen Intensitäten.
 		\end{itemize}
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\includegraphics[width=\linewidth]{../Präsentation/nano_kugel}
-		\caption[PSHE Messung von \cite{OConnor.2014}]{Die Abbildung zeigt die PSHE Messungen von \cite{OConnor.2014} an einer mit der \textit{drop and cast} Methode platzierten $60\,\mathrm{nm}$ großen Goldkugel. Der Verlauf der Intensitäten zeigt deutliche Ähnlichkeit mit den in dieser Arbeit durchgeführten Messungen in Rückwärtsrichtung (Abbildung \ref{fig:int_fp_45_135} und \ref{fig:intensity_back}).}
+		\caption[PSHE Messung von \cite{OConnor.2014}]{Die Abbildung zeigt die PSHE Messungen aus \cite{OConnor.2014} an einer mit der \textit{drop and cast} Methode platzierten $60\,\mathrm{nm}$ großen Goldkugel. Die SPPs wurden mit Hilfe eines Helium-Neon Lasers unter einem Einfallswinkel von $\alpha_{\mathrm{E}} = 70^\circ$ aufgenommen. Der Verlauf der Intensitäten zeigt deutliche Ähnlichkeit mit den in dieser Arbeit durchgeführten Messungen in Rückwärtsrichtung (Abbildung \ref{fig:int_fp_45_135} und \ref{fig:intensity_back}).}
 		\label{fig:measure_connor}
 	\end{figure}
-	
-	
+	\begin{figure}[h]		
+		\centering
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/RF_SM_Slits.pdf}
+			\caption{Struktur}
+			\label{fig:RF_measure_slits}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/RF_SM_Intensity.pdf}
+			\caption{Intensitätsverteilung}
+			\label{fig:RF_measure_int}
+		\end{subfigure}
+		\caption[Vergleichsmessung aus \cite{RodriguezFortuno.2013}]{Die Abbildung \subref{fig:RF_measure_int} zeigt die PSHE Messungen aus \cite{RodriguezFortuno.2013}, die an einer Gitterstruktur (Abbildung \subref{fig:RF_measure_slits}) durchgeführt wurden. Der beobachtete Intensitätsverlauf deutet darauf hin, dass komplexe Anregungsstrukturen sich in nicht trivialer Art und Weise auf den Intensitätsverlauf der beiden SPPs auswirken. Die Messung zeigt gewisse Ähnlichkeit zu dem in dieser Arbeit im Impulsraum beobachteten Verhalten senkrecht zur Einfallsebene des Lasers (Abbildung \ref{fig:intensity_mid}). Dort ist ebenfalls ein weiteres lokales Minimum der beiden Intensitäten bei linearer Polarisation zu beobachten (Vergleiche $\alpha_{\lambda/4}= 90^\circ$ aus Abbildung \ref{fig:intensity_mid} mit $\alpha_{\lambda/4}= 0^\circ$ aus Abbildung \subref{fig:RF_measure_int}).}
+		\label{fig:RF_measure}		
+	\end{figure}
 	\FloatBarrier
-	\subsubsection{Polare Intensität und polare Intensitätsdifferenz}	
+	\subsubsection{Polare Intensität und polare Intensitätsdifferenz}
+		\label{sec:polar_int}	
 		Da für die unterschiedlichen Orientierungen des Integrationsbereichs qualitativ unterschiedliche Verhaltensweisen der Asymmetrie zwischen oberem und unterem SPP beobachtet worden sind, ist es sinnvoll, noch eine weitere Darstellungsart einzuführen:		
 		
 		 In Abbildung \ref{fig:angular_int_fp} wurde die über den Radius integrierte polarwinkelabhängige Intensitätsverteilung im Ortsbild bei einer Orientierung des $\lambda / 4$-Plättchens von $\alpha_{\lambda/4} = 45^\circ$ und  $\alpha_{\lambda/4} = 135^\circ$ dargestellt (also links- und rechts-zirkulare Polarisation). Um aus diesen Daten die polarwinkelabhängige Asymmetrie zwischen links- und rechts-polarisierter Anregungsstrahlung zu gewinnen, wurde aus den beiden Intensitäten die relative Differenz gebildet. Diese relative Differenz ist in Abbildung \ref{fig:angular_int_diff_fp} dargestellt.
@@ -800,21 +822,21 @@
 			P_r(\phi, \alpha_{\lambda/4}) &= \int_{0}^{r_\mathrm{max}}r\,\mathrm{d}r I_r(r, \phi, \alpha_{\lambda /4}) \\
 			D_r(\phi) &= \dfrac{P_r(\phi, \alpha_{\lambda/4} = 45^\circ) - P_r(\phi, \alpha_{\lambda/4} = 135^\circ)}{P_r(\phi, \alpha_{\lambda/4} = 45^\circ) + P_r(\phi, \alpha_{\lambda/4} = 135^\circ)}
 		\end{align}
-		\begin{figure}		
-			\begin{subfigure}[b]{0.5\textwidth}
+		\begin{figure}[h]		
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_45_135.pdf}
+				\includegraphics[width=\textwidth]{figures/new/4_7_fp_angular_distribution_45_135.pdf}
 				\caption{Winkelabhängige Intensitätsverteilung}
 				\label{fig:angular_int_fp}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/fp_angular_distribution_diff_45_135.pdf}
+				\includegraphics[width=\textwidth]{figures/new/4_7_fp_angular_distribution_diff_45_135.pdf}
 				\caption{Winkelabhängige Intensitätsdifferenz}
 				\label{fig:angular_int_diff_fp}
 			\end{subfigure}
-			\caption[Polarwinkel Auswertung Ortsraum]{Abbildung \subref{fig:angular_int_fp} zeigt die polar-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierter Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Linie wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:angular_int_diff_fp} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
+			\caption[Polarwinkel Auswertung Ortsraum]{Abbildung \subref{fig:angular_int_fp} zeigt die polar-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierter Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Linie wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:spin_hall_measure_diff_fp} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
 			\label{fig:angular_dist_fp}
 		\end{figure}
 	
@@ -825,136 +847,142 @@
 			P_k(\phi, \alpha_{\lambda/4}) &= \int_{k_\mathrm{min}}^{k_\mathrm{max}}k\,\mathrm{d}k I_k(k, \phi, \alpha_{\lambda /4}) \\
 			D_k(\phi) &= \dfrac{P_k(\phi, \alpha_{\lambda/4} = 45^\circ) - P_k(\phi, \alpha_{\lambda/4} = 135^\circ)}{P_k(\phi, \alpha_{\lambda/4} = 45^\circ) + P_k(\phi, \alpha_{\lambda/4} = 135^\circ)}
 		\end{align}
-		\begin{figure}		
-			\begin{subfigure}[b]{0.5\textwidth}
+		\begin{figure}[h]		
+			\begin{subfigure}{0.5\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/bfp_angular_distribution_45_135.pdf}
+				\includegraphics[width=\textwidth]{figures/new/4_8_bfp_angular_distribution_45_135.pdf}
 				\caption{Winkelabhängige Intensitätsverteilung}
 				\label{fig:angular_int_bfp}
 			\end{subfigure}
 			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
+			\begin{subfigure}{0.49\textwidth}
 				\centering
-				\includegraphics[width=\textwidth]{figures/spin_hall/bfp_angular_distribution_diff_45_135.pdf}
+				\includegraphics[width=\textwidth]{figures/new/4_8_bfp_angular_distribution_diff_45_135.pdf}
 				\caption{Winkelabhängige Intensitätsdifferenz}
 				\label{fig:angular_int_diff_bfp}
 			\end{subfigure}
-			\caption[Polarwinkel Auswertung Impulsraum]{Abbildung \subref{fig:angular_int_fp} zeigt die polar-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierter Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Linie wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:angular_int_diff_fp} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
+			\caption[Polarwinkel Auswertung Impulsraum]{Abbildung \subref{fig:angular_int_fp} zeigt die polar-winkelabhängige Intensitätsverteilung der Leckstrahlung eines an einem Punktdefekt angeregten SPP im Ortsraum bei links- und rechts-zirkular polarisierter Anregungsstrahlung. Abbildung \subref{fig:angular_int_diff_fp} zeigt die relative Differenz zwischen diesen beiden Intensitätsverteilungen. Die $0$-Linie wurde in der Differenzdarstellung durch einen zum Ursprung konzentrischen Kreisring markiert. Für die Darstellung wurde ein Polarkoordinatensystem gewählt, um den Bezug zu den Abbildungen \ref{fig:spin_hall_measure} besser herzustellen. Hierbei ist zu beachten, dass die von der Kurve eingeschlossenen Flächen nicht mehr der über einen Winkelbereich integrierten Intensitätsdifferenz entsprechen, da die Kurve durch die Darstellung in Polarkoordinaten verzerrt wird.}
 			\label{fig:angular_dist_bfp}
 		\end{figure}
 		\paragraph{Analyse}
-		In den polaren Intensitätsdaten kann man das oben beschriebene Asymmetrieverhalten noch einmal deutlicher erkennen. In der polarwinkelabhängigen Intensitätsverteilung des Ortsbildes (Abbildung \ref{fig:angular_int_fp}) ist in Vorwärtsrichtung eine Asymmetrie mit umgekehrtem Vorzeichen zur Asymmetrie in Rückwärtsrichtung zu erkennen. Diese wechselnde Asymmetrie ist in der polarwinkelabhängigen Intensitätsverteilung des Impulsraumes (Abbildung \ref{fig:angular_int_bfp}) nicht zu beobachten. Hier tritt in dem Bereich $\phi \in [45^\circ, 315^\circ]$ eine gleichbleibende Asymmetrie auf. In Vorwärtsrichtung ist keine nennenswerte Asymmetrie zu beobachten. Diese Diskrepanz zwischen der winkelabhängigen Orts- und Impulsbilddarstellung ist dadurch zu erklären, dass in der Intensitätsverteilung im Ortsraum nicht zwischen dem plasmonischen und dem Hintergrundsignal unterschieden werden kann. Daher wird die Integration im Ortsraum \eqref{eq:integration_angular_int} zwangsweise auch über das Hintergrundsignal ausgeführt. Bei der Integration im Impulsraum wird durch die radialen Integrationsgrenzen $k_\mathrm{min}$ und $k_\mathrm{max}$ hauptsächlich das plasmonische Signal selektiert. Eine Diskrepanz zwischen Orts- und Impulsraum tritt außerdem auf, falls noch ein weiterer Defekt an der Anregung beteiligt ist. Wenn ein weiteres Anregungszentrum in der optischen Abbildung liegt, entspricht die Richtung zwischen Ursprung und einem Punkt im Ortsraum nicht mehr der Propagationsrichtung des SPP. In den Rohdaten des Ortsbildes (Abbildung \ref{fig:raw_fp_45}) ist zu erahnen, dass rechts neben dem Bildausschnitt ein weiteres Anregungszentrum liegt.	\begin{figure}
-			\label{fig:RF_measure}
-			\centering
-			\begin{subfigure}[b]{0.5\textwidth}
-				\centering
-				\includegraphics[width=\textwidth]{figures/RF_SM_Slits.pdf}
-				\caption{Struktur}
-				\label{fig:RF_measure_slits}
-			\end{subfigure}
-			\hfill
-			\begin{subfigure}[b]{0.49\textwidth}
-				\centering
-				\includegraphics[width=\textwidth]{figures/RF_SM_Intensity.pdf}
-				\caption{Intensitätsverteilung}
-				\label{fig:RF_measure_int}
-			\end{subfigure}
-			\caption[Vergleichsmessung aus \cite{RodriguezFortuno.2013}]{Die Abbildung zeigt die Messungen aus \cite{RodriguezFortuno.2013}, die an einer Gitterstruktur durchgeführt wurden.}			
-		\end{figure}
+		In den polaren Intensitätsdaten kann man das oben beschriebene Asymmetrieverhalten noch einmal deutlicher erkennen. In der polarwinkelabhängigen Intensitätsverteilung des Ortsbildes (Abbildung \ref{fig:angular_int_fp}) ist in Vorwärtsrichtung eine Asymmetrie mit umgekehrtem Vorzeichen zur Asymmetrie in Rückwärtsrichtung zu erkennen. Diese wechselnde Asymmetrie ist in der polarwinkelabhängigen Intensitätsverteilung des Impulsraumes (Abbildung \ref{fig:angular_int_bfp}) nicht zu beobachten. Hier tritt in dem Bereich $\phi \in [45^\circ, 315^\circ]$ eine gleichbleibende Asymmetrie auf. In Vorwärtsrichtung ist keine nennenswerte Asymmetrie zu beobachten. Diese Diskrepanz zwischen der winkelabhängigen Orts- und Impulsbilddarstellung ist dadurch zu erklären, dass in der Intensitätsverteilung im Ortsraum nicht zwischen dem plasmonischen und dem Hintergrundsignal unterschieden werden kann. Daher wird die Integration im Ortsraum \eqref{eq:integration_angular_int} zwangsweise auch über das Hintergrundsignal ausgeführt. Bei der Integration im Impulsraum wird durch die radialen Integrationsgrenzen $k_\mathrm{min}$ und $k_\mathrm{max}$ hauptsächlich das plasmonische Signal selektiert. Eine Diskrepanz zwischen Orts- und Impulsraum tritt außerdem auf, falls noch ein weiterer Defekt an der Anregung beteiligt ist. Wenn ein weiteres Anregungszentrum in der optischen Abbildung liegt, entspricht die Richtung zwischen Ursprung und einem Punkt im Ortsraum nicht mehr der Propagationsrichtung des SPP. In den Rohdaten des Ortsbildes (Abbildung \ref{fig:raw_fp_45}) ist zu erahnen, dass rechts neben dem Bildausschnitt ein weiteres Anregungszentrum liegt. Außerdem sorgt der gewählte Integrationsbereich $[0, r_\mathrm{max}]$ im Ortsraum dafür, dass längst nicht alle Strahlung die das Bild im Impulsraum erzeugt in die Darstellung eingeht.
+		
 	\newpage
 	\section{Zusammenfassung und Ausblick}
-	In dieser Arbeit wurde erfolgreich ein bestehendes Leckstrahlmikroskop modifiziert und in einigen Details verbessert. Der Strahlgang des Lasers wurde so verändert, dass die Einkopplung des Lasers unter schrägem Einfall auf die Probe erfolgen konnte. Hierfür musste das Einkoppelobjektiv durch einen einfache Sammellinse ersetzt werden. Außerdem wurde ein Polarisationsfilter und eine $\lambda/4$-Platte zur Kontrolle der Polarisation des Lasers verbaut. Es wurden außerdem zahlreiche Optomechaniken ausgetauscht. Durch diese Modifikationen konnte am Ende dieser Arbeit tatsächlich der plasmonischen Spin-Hall-Effekt (PSHE) nachgewiesen werden. Der PSHE wurde besonders deutlich in Rückwärtsrichtung bezogen auf die Einfallsrichtung der anregenden Strahlung beobachtet. Hier konnte ein Kontrastverhältnis von $\eta = 1.6$ zwischen zwei Propagationsrichtungen beobachtet werden. In Vorwärtsrichtung hingegen sind die Beobachtungn nicht so deutlich ausgefallen. Um des Verhalten in Vorwärtsrichtung genauer zu untersuchen wäre eine Simulation mit Hilfe der Transfermatrixmethode und dem Raumfrequenzspektrum eines $3d$-Dipols notwendig. Eventuell könnten durch diese Simulationen weiter Effekte quantitativ verstanden werden. Außerdem könnte die unbekannte Detail-Struktur des Defektes durch gezielt hergestellte Anregungszentren als mögliche Fehlerquelle eliminiert werden. Des weiteren wäre es interessant, die Messung an einer größeren Zahl von Defekten durchzuführen, und dann durch Messstatistik Effekte die aufgrund einer Substruktur des Defektes entstehen von systematischen Effekten zu unterscheiden.
+	In dieser Arbeit wurde erfolgreich ein bestehendes Leckstrahlmikroskop modifiziert und in einigen Details verbessert. Der Strahlgang des Lasers wurde so verändert, dass die Einkopplung des Lasers unter schrägem Einfall auf die Probe erfolgen konnte. Hierfür musste das Einkoppelobjektiv durch eine einfache Sammellinse ersetzt werden. Außerdem wurde ein Polarisationsfilter und eine $\lambda/4$-Platte zum Einstellen der Polarisation des Lasers verbaut. Zusätzlich wurden zahlreiche Optomechaniken ausgetauscht. Durch diese Modifikationen konnte der plasmonischen Spin-Hall-Effekt (PSHE) nachgewiesen werden.
+	
+	Hierfür wurde mit einem zirkular-polarisiertem He-Ne Laser unter einem Einfallswinkel von $60^\circ$ eine Defektstelle an einer Luft-Gold-Grenzschicht beleuchtet. Die Laserstrahlung regt dabei SPPs an dieser Defektstelle an. Die SPPs wurden dann anhand von Leckstrahlung, die sie in eine unterhalb der Goldschicht gelegene Glasschicht abgeben, mit dem Leckstrahlmikroskop im Orts- und Impulsraum analysiert. Speziell wurde bei einem Wechsel der Helizität der zirkular-polarisierten Anregungsstrahlung eine Veränderung der Hauptpropagationsrichtung des SPPs, die sich durch den PSHE erklären lässt, festgestellt. Der PSHE wurde dabei besonders deutlich in Rückwärtsrichtung bezogen auf die Einfallsrichtung der anregenden Strahlung beobachtet. Hier konnte ein Kontrastverhältnis von maximal $\eta = 1.6$ zwischen zwei senkrecht zur Einfallsebene des Lasers gelegenen Propagationsrichtungen im Impulsraum ermittelt werden. In Rückwärtsrichtung konnte diese Veränderung der Hauptpropagationsrichtung sowohl im Impulsbild als auch im Ortsbild der Leckstrahlung nachgewiesen werden. 
+		
+	In Vorwärtsrichtung hingegen zeigen die in dieser Arbeit durchgeführten Messungen im Orts- und im Impulsraum ein unterschiedliches Verhalten, dessen Ursprung weiter Untersuchungen erfordert und im Rahmen dieser Arbeit nicht endgültig geklärt werden konnte. Für eine detailliertere Untersuchung des Verhaltens in Vorwärtsrichtung gibt es folgende Ansätze:
+	\begin{itemize}
+		\item \textbf{Variation des Einfallswinkels} Alle in der vorliegenden Arbeit durchgeführten Messungen wurden bei einem Einfallswinkel von $\alpha_{\mathrm{E}} = 60^\circ$ durchgeführt. Die Winkelabhängigkeit des Verhaltens in Vorwärtsrichtung könnte Rückschlüsse auf die Ursache des Effektes erlauben, daher wäre das durchführen von weiteren Messungen mit unterschiedlichen Einfallswinkeln interessant (dabei muss für größere Einfallwinkel als $\alpha_{\lambda /4} = 60^\circ$ ein Einkoppellinse mit längerer Brennweite verwendet werden (siehe Abschnitt \ref{sec:OpticalChanges})).
+		\item \textbf{$s$-Polarisation statt $p$-Polarisation} Bei der Kontrolle der Anregungspolarisation des Lasers mittels eines Polarisationsfilters und eines $\lambda / 4$-Plättchens kann neben der Orientierung  des $\lambda / 4$-Plättchens die Orientierung der linearen Polarisation bei $\alpha_{\lambda /4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ gewählt werden. In der vorliegenden Arbeit wurde diese Polarisation analog zur Publikation \cite{RodriguezFortuno.2013} parallel zur Einfallsebene des Lasers gewählt. Für die detailliertere Analyse des SPP Verhalten in Vorwärtsrichtung wäre es mögliche, die Abhängigkeit von der Orientierung der linearen Polarisation zu untersuchen. Durch Einsetzen eines $\lambda /2$-Plättchens in den Strahlgang wäre eine weiterer Parameter zur Kontrolle der Anregungspolarisation verfügbar, dessen Einfluss auf die Propagationsrichtung systematisch untersucht werden könnte.
+		\item \textbf{Messung an unterschiedlichen Defekten} Der Einfluss der Detailstruktur des Defektes auf das Propagations-Verhalten des SPP könnte anhand der vorhandenen Proben durch Messungen an unterschiedlichen Defekten weiter untersucht werden.
+		\item \textbf{Anregung an Nano-Kugel} Um den Einfluss der unbekannten Detailstruktur, des in der vorliegenden Arbeit zur Anregung verwendeten intrinsischen Defektes, auf das Anregungsverhalten des SPP aus der Messung zu eliminieren, wäre es außerdem interessant als Anregungszentrum eine gezielt hergestellte Struktur zu verwenden (vgl. \cite{OConnor.2014}). 
+		\item \textbf{Polarisationsabhängigkeit Hintergrundsignals} Um den Einfluss des Hintergrundsignals auf die Asymmetrie in den Intensitäten den Intensitäten des Orts- und Impulsraumes zu untersuchen, wäre es möglich, Messungen an einer Probenstelle ohne Defekt durchzuführen. Effekte, die durch die unterschiedliche Absorptions- und Reflektionsfähigkeit von Gold für $p$- und $s$-polarisiertes Licht entstehen, könnten so eventuell beobachtet werden. Hierbei ist jedoch zu beachten, dass ein Teil des Hintergrundsignals erst in Anwesenheit eines Anregungszentrums entsteht(vgl. \cite{Drezet.2008}).
+		\item \textbf{Simulation}
+	\end{itemize}
 	
 	\newpage
 	\appendix
 	\bibliography{bib}
 	\newpage
 	\section{Weitere Messdaten}
-	\begin{figure}[h!]
-		\label{fig:dirt_measure}
+	\begin{figure}[h]		
 		\centering
-		\begin{subfigure}[b]{0.5\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/dirt_radial.pdf}
+			\includegraphics[width=\textwidth]{figures/new/B_1_fp_0.png}
+			\caption{Intensitätsverteilung}
+			\label{fig:dirt_polar_fp}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/new/B_1_bfp_90.png}
+			\caption{Intensitätsverteilung}
+			\label{fig:dirt_polar}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/new/B_1_radial_int.pdf}
 			\caption{Radial-Profil}
 			\label{fig:dirt_radial}
 		\end{subfigure}
 		\hfill
-		\begin{subfigure}[b]{0.49\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
-			\includegraphics[width=\textwidth]{figures/dirt_lorentz.pdf}
+			\includegraphics[width=\textwidth]{figures/new/B_1_lorenz_profile.pdf}
 			\caption{Lorentz-Fit}
 			\label{fig:dirt_lorentz}
 		\end{subfigure}
 	
-		\begin{subfigure}[b]{0.7\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{figures/dirt_polar.png}
-		\caption{Intensitätsverteilung}
-		\label{fig:dirt_polar}
-		\end{subfigure}
-		\caption[Messung an kontaminierter Probe]{Die Abbildung zeigt den Impulsraum bei der Messung an einer mit Öl kontaminierten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\,\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an nicht kontaminierten Proben.}			
+		
+		\caption[Messung an kontaminierter Probe]{Die Abbildung zeigt den Impulsraum bei der Messung an einer mit Öl kontaminierten Probe unter senkrechtem Laser-Einfall. Der Wellenvektor wurde hier mit Hilfe eines Lorentz-Fits auf $k_\mathrm{SPP} = (11.0 + 0.4i)\,\mathrm{\mu m}^{-1}$ bestimmt. Die Dämpfung ist hier also signifikant größer als bei den Messungen an nicht kontaminierten Proben.}
+		\label{fig:dirt_measure}			
 	\end{figure}
 
-	\begin{figure}[h!]
+	\begin{figure}[h]
 	\label{fig:measure_linear_polarisation}
 	
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/fp/fp_0.png}
+		\includegraphics[width=\textwidth]{figures/new/B_2_fp_0.png}
 		\caption{$\alpha_{\lambda/4} = 0^\circ$}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_0.png}
+		\includegraphics[width=\textwidth]{figures/new/B_2_bfp_0.png}
 		\caption{$\alpha_{\lambda/4} = 0^\circ$}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/fp/fp_90.png}
+		\includegraphics[width=\textwidth]{figures/new/B_2_fp_90.png}
 		\caption{$\alpha_{\lambda/4} = 90^\circ$}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.5\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{figures/spin_hall/polar/polar_90.png}
+		\includegraphics[width=\textwidth]{figures/new/B_2_bfp_90.png}
 		\caption{$\alpha_{\lambda/4} = 90^\circ$}
 	\end{subfigure}
 
 	\caption[Orts- und Impulsraum Rohdaten bei linearer Polarisation]{Die Abbildung zeigt den Orts und den Impulsraum bei der Messung an einem Punktdefekt unter streifenden Laser-Einfall mit linearer Polarisation.}			
 \end{figure}
-	\newpage
+
+\FloatBarrier
+
 	\section{Technische Zeichnungen}
-	\begin{figure}[h!]
+		\newpage
+	\begin{figure}[h]
 		\centering
 		\includegraphics[width=1\linewidth]{figures/tube_lense_tz}
 		\caption{Technische Zeichnung der Tubus-Linse}
 		\label{fig:tubelensetz}
 	\end{figure}
 	
-	\begin{sidewaysfigure}[h!]
+	\begin{sidewaysfigure}
 		\includegraphics[width=\textwidth]{figures/Technische_Zeichnung_Probenhalter.pdf}
 		\caption{Technische Zeichnung Probenhalter}
 		\label{fig:tz_probenhalter}
 	\end{sidewaysfigure}
-	\begin{sidewaysfigure}[h!]
+	\begin{sidewaysfigure}
 		\includegraphics[width=\textwidth]{figures/Probenblech.pdf}
 		\caption{Technische Zeichnung Probenblech}
 		\label{fig:tz_probenblech}
 	\end{sidewaysfigure}
-	\begin{sidewaysfigure}[h!]
+	\begin{sidewaysfigure}
 		\includegraphics[width=\textwidth]{figures/LinsenAdapter.pdf}
 		\caption{Technische Zeichnung Linsen-Adapter}
 		\label{fig:tz_adapter}
 	\end{sidewaysfigure}
-	\begin{sidewaysfigure}[h!]
+	\begin{sidewaysfigure}
 		\includegraphics[width=\textwidth]{figures/4f_system.pdf}
 		\caption{Technische Zeichnung Cage-System}
 		\label{fig:tz_cage_system}
 	\end{sidewaysfigure}
 	\newpage
 	\section{Liste der verwendeten Komponenten}
-	\begin{table}[h!]
+	\begin{table}[h]
 		\centering	
 		\begin{tabular}{|c|c|c|}
 			\hline
