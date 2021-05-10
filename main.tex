@@ -1,5 +1,5 @@
 % !TeX root = main
-\documentclass[a4paper, titlepage,  ngerman, fullpage]{book}
+\documentclass[a4paper, titlepage,  ngerman]{book}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
@@ -12,9 +12,9 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{chngcntr}
-\counterwithin{figure}{chapter}
-\counterwithin{equation}{chapter}
-\counterwithin{table}{chapter}
+%\counterwithin{figure}{chapter}
+%\counterwithin{equation}{chapter}
+%\counterwithin{table}{chapter}
 %\usepackage[left=4cm, right=4cm, top=3.00cm, bottom=3.00cm]{geometry}
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
@@ -26,7 +26,7 @@
 \usepackage{pdfpages}
 \usepackage{microtype}
 \usepackage{float}
-\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{1}
 
 
 \title{Aufbau und Justage eines Leckstrahlmikroskops zum Nachweis des plasmonischen Spin-Hall-Effektes}
@@ -38,9 +38,11 @@
 	\sloppy
 	\frontmatter
 	\includepdf{title.pdf}
-	\thispagestyle{empty}
-
+	\thispagestyle{empty}	
 	\tableofcontents
+	\listoffigures
+	\enlargethispage{1.5\baselineskip}
+	
 	\mainmatter
 	\chapter{Einführung}
 	Ein Leckstrahlmikroskop (engl. \textbf{L}eakage \textbf{R}adiation \textbf{M}icroscope LRM) dient der Beobachtung von Oberflächen-Plasmon-Polaritonen (engl. \textbf{S}urface \textbf{P}lasmon \textbf{P}olariton SPP). Ein SPP ist eine kollektive Ladungsdichteoszillation der freien Elektronen in einem Metall an der Grenzschicht zu einem Dielektrikum. Diese Elektronendichtewelle ist stark an das elektromagnetische Feld des Dielektrikums gebunden und eng an der Grenzschicht lokalisiert. SPPs können, wenn sie an sehr dünnen Metallfilmen angeregt werden, unter bestimmten Umständen elektromagnetische Strahlung an einer zweiten Grenzschicht in ein weiteres Dielektrikum abgeben. Diese Strahlung wird als Leckstrahlung bezeichnet und kann im Fernfeld mit einem LRM beobachtet werden. Aus der Leckstrahlung können verschiedene Rückschlüsse auf die Eigenschaften des SPP gezogen werden.\cite{Drezet.2008}
@@ -886,11 +888,8 @@
 		\item \textbf{Anregung an Nano-Kugel} Um den Einfluss der unbekannten Detailstruktur des in der vorliegenden Arbeit zur Anregung verwendeten intrinsischen Defektes auf das Anregungsverhalten des SPP aus der Messung zu eliminieren, wäre es außerdem interessant, als Anregungszentrum eine gezielt hergestellte Struktur zu verwenden (vgl. \cite{OConnor.2014}). 
 		\item \textbf{Polarisationsabhängigkeit des Hintergrundsignals} Um den Einfluss des Hintergrundsignals auf die Asymmetrie in den Intensitäten des Orts- und Impulsraumes zu untersuchen, wäre es möglich, Messungen an einer Probenstelle ohne Defekt durchzuführen, so dass es zu keiner plasmonischen Anregung kommt. Intensitätsmodulationen des Hintergrundsignals, die durch die unterschiedliche Absorptions- und Reflektionsfähigkeit von Gold für $p$- und $s$-polarisiertes Licht entstehen, könnten so eventuell beobachtet werden. Hierbei ist jedoch zu beachten, dass ein Teil des Hintergrundsignals erst in Anwesenheit eines Anregungszentrums entsteht(vgl. \cite{Drezet.2008}).
 	\end{itemize}
-	
-	\newpage
 	\appendix
 		\bibliography{bib}
-		\listoffigures
 	\newpage
 	\chapter{Weitere Messdaten}
 	\begin{figure}[H]		
