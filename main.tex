@@ -26,6 +26,7 @@
 \usepackage{pdfpages}
 \usepackage{microtype}
 \usepackage{float}
+\usepackage{minted}
 %\setcounter{tocdepth}{1}
 
 
@@ -536,7 +537,7 @@
 	Zunächst wurde die Funktionsfähigkeit des LRM durch einige Probemessungen überprüft, die mit den Daten von \textit{Jaruschewski} \cite{Jaruschewski.2020} und \textit{Ebel} \cite{ebel.2019} verglichen worden sind. Da für den Nachweis des PSHE keine Kenntnis des Betrages des Wellenvektors notwendig ist, wurde auf eine Kalibrierung des Impulsraumes verzichtet. Die in allen nachfolgenden Abbildungen dargestellten Skalen von $|\vec{k}_{\mathrm{SPP}}|$ und $|\vec{r}|$ wurden aus der Kalibrierung von \textit{Jaruschewski} errechnet. Die Polarisation des Lasers wurde so ausgerichtet, dass sie bei Orientierung des $\lambda/4$-Plättchen $\alpha_{\lambda/4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ parallel zur Einfallsebene des Lasers liegt.  Dann wurde ein geeigneter Defekt auf der Probenoberfläche ausgewählt. Das Vorgehen hierbei bestand darin, die Probe zu verfahren und dabei die Anregung im Impulsraum zu beobachten. Sobald der Laser hierbei auf einen Defekt trifft, ist in der Impulsdarstellung die charakteristische Leckstrahlung zu erkennen. Das Ziel war, einen Defekt zu finden, der möglichst symmetrisch abstrahlt. Nachdem ein geeigneter Defekt ausgewählt war, wurden Bilder des Ortsraumes und des Impulsraumes für unterschiedliche Orientierungen des $\lambda/4$-Plättchen bei gleichbleibender Belichtungszeit aufgenommen.
 	\section{Verarbeitung der Messdaten}
 	\label{sec:polar_calculation}
-	Die Messdaten wurden in der Programmiersprache Python mit den Bibliotheken \textit{Numpy}, \textit{OpenCV}, \textit{Scipy} und \textit{Matplotlib} verarbeitet. Die mit dem CMOS-Sensor aufgenommenen Bilder wurden im Windows Bitmap Format (BMP) mit einer Bittiefe von  $b = 8$ gespeichert. Die Auflösung des Sensors beträgt $2592 \times 1944$. Der verwendete CMOS-Sensor liefert auch eine Farbinformation. Jeder Bildpunkt der BMP-Datei besteht aus einem Rot-, einem Grün- und einem Blau-Wert zwischen $0$ und $2^b - 1= 255$. Ein CMOS Sensor ist nicht Wellenlängen-sensitiv. Die Farbinformation wird durch eine Filtermatrix vor dem CMOS Sensor gewonnen. Die unterschiedlichen Farbdaten könnten genutzt werden, um Informationen über das Spektrum der detektierten Strahlung zu erlangen; das war in dieser Arbeit allerdings nicht von Interesse, da die Leckstrahlung monochromatisch ist (mit der gleichen Wellenlänge wie die anregende Strahlung). Deswegen wurde aus den RGB-Werten das arithmetische Mittel berechnet. Die Intensität wurde für jedes Bild so skaliert, dass der maximale Wert 1 entspricht. Die Aufnahmen des Orts- und des Impulsraumes wurden zunächst von den kartesischen Pixel-Koordinaten in Polarkoordinaten transformiert, da dies die weitere Auswertung stark vereinfacht. Als Ursprung wurde dabei im Impulsraum der Mittelpunkt der kreisförmigen Begrenzung der Impulsdarstellung durch die numerische Apertur und im Ortsraum das Anregungszentrum gewählt. Um aus den äquidistanten Pixel-Koordinaten ein äquidistantes Gitter in Polarkoordinaten zu erzeugen, mussten die Daten interpoliert werden. Diese Interpolation wurde mit der Funktion \textit{linearPolar()} im Modus \textit{INTER\_CUBIC} aus der Bibliothek \textit{openCV} ausgeführt. Die so gewonnenen Daten in Polarkoordinaten konnten nun mit Hilfe der \textit{matplotlib} dargestellt werden. Für die weitere Auswertung musste unter anderem ein radiales Profil berechnet werden, in Polarkoordinaten wird diese Integration zu einer einfachen Summe über eine Achse. Für die Analyse des Spin-Hall-Effektes mussten Intensitäten in bestimmten Masken integriert werden. Auch diese Integration hat sich durch die Verwendung von Polarkoordinaten stark vereinfacht. Der gesamte in dieser Arbeit geschriebene Quellcode wird unter \url{https://github.com/hanno22/SpinHallEffectThesis} zur Verfügung gestellt.
+	Die Messdaten wurden in der Programmiersprache Python mit den Bibliotheken \textit{Numpy}, \textit{OpenCV}, \textit{Scipy} und \textit{Matplotlib} verarbeitet. Die mit dem CMOS-Sensor aufgenommenen Bilder wurden im Windows Bitmap Format (BMP) mit einer Bittiefe von  $b = 8$ gespeichert. Die Auflösung des Sensors beträgt $2592 \times 1944$. Der verwendete CMOS-Sensor liefert auch eine Farbinformation. Jeder Bildpunkt der BMP-Datei besteht aus einem Rot-, einem Grün- und einem Blau-Wert zwischen $0$ und $2^b - 1= 255$. Ein CMOS Sensor ist nicht Wellenlängen-sensitiv. Die Farbinformation wird durch eine Filtermatrix vor dem CMOS Sensor gewonnen. Die unterschiedlichen Farbdaten könnten genutzt werden, um Informationen über das Spektrum der detektierten Strahlung zu erlangen; das war in dieser Arbeit allerdings nicht von Interesse, da die Leckstrahlung monochromatisch ist (mit der gleichen Wellenlänge wie die anregende Strahlung). Deswegen wurde aus den RGB-Werten das arithmetische Mittel berechnet. Die Intensität wurde für jedes Bild so skaliert, dass der maximale Wert 1 entspricht. Die Aufnahmen des Orts- und des Impulsraumes wurden zunächst von den kartesischen Pixel-Koordinaten in Polarkoordinaten transformiert, da dies die weitere Auswertung stark vereinfacht. Als Ursprung wurde dabei im Impulsraum der Mittelpunkt der kreisförmigen Begrenzung der Impulsdarstellung durch die numerische Apertur und im Ortsraum das Anregungszentrum gewählt. Um aus den äquidistanten Pixel-Koordinaten ein äquidistantes Gitter in Polarkoordinaten zu erzeugen, mussten die Daten interpoliert werden. Diese Interpolation wurde mit der Funktion \textit{linearPolar()} im Modus \textit{INTER\_CUBIC} aus der Bibliothek \textit{openCV} ausgeführt. Die so gewonnenen Daten in Polarkoordinaten konnten nun mit Hilfe der \textit{matplotlib} dargestellt werden. Für die weitere Auswertung musste unter anderem ein radiales Profil berechnet werden, in Polarkoordinaten wird diese Integration zu einer einfachen Summe über eine Achse. Für die Analyse des Spin-Hall-Effektes mussten Intensitäten in bestimmten Masken integriert werden. Auch diese Integration hat sich durch die Verwendung von Polarkoordinaten stark vereinfacht. Ausgewählte Auszüge des Quellcodes sind im Anhang \ref{sec:source_code} zu finden. Der gesamte in dieser Arbeit geschriebene Quellcode wird unter \url{https://github.com/hanno22/SpinHallEffectThesis} zur Verfügung gestellt.
 	\newpage
 	
 	\chapter{Ergebnisse und Diskussion}
@@ -878,17 +879,17 @@
 		
 	\newpage
 	\chapter{Zusammenfassung und Ausblick}
-	Im Rahmen dieser Arbeit wurde mit Hilfe eines Leckstrahlmikroskops die Direktionalität der Propagationsrichtung von Oberflächen-Plasmon-Polaritonen (SPPs) untersucht. Die SPPs wurden dabei mit einem Helium-Neon-Laser unter einem Einfallswinkel von $\alpha_{\lambda/4}=60^\circ$ an einer Defektstelle auf einer Luft-Gold-Grenzschicht erzeugt. Speziell wurde die Abhängigkeit der Propagationsrichtung von der Polarisation der Anregungsstrahlung untersucht. Das Ziel der vorliegenden Arbeit war es, über diese Abhängigkeit der Propagationsrichtung von der Polarisation der Anregungsstrahlung den plasmonischen Spin-Hall-Effekt (PSHE) nachzuweisen.
+Im Rahmen dieser Arbeit wurde mit Hilfe eines Leckstrahlmikroskops die Direktionalität der Propagationsrichtung von Oberflächen-Plasmon-Polaritonen (SPPs) untersucht. Die SPPs wurden dabei mit einem Helium-Neon-Laser unter einem Einfallswinkel von $\alpha_{\lambda/4}=60^\circ$ an einer Defektstelle auf einer Luft-Gold-Grenzschicht angeregt. Speziell wurde die Abhängigkeit der Propagationsrichtung von der Polarisation der Anregungsstrahlung untersucht. Das Ziel der vorliegenden Arbeit war es, über diese Abhängigkeit der Propagationsrichtung von der Polarisation der Anregungsstrahlung den plasmonischen Spin-Hall-Effekt (PSHE) nachzuweisen.
 	
-	Das zur Beobachtung der Oberflächen-Plasmon-Polariton genutzte Leckstrahlmikroskop (LRM) war aus der vorangegangenen Arbeit \cite{Jaruschewski.2020} von  \textit{Jaruschewski} bereits vorhanden. Allerdings musste dieses LRM in einigen Details modifiziert werden, um die Beobachtung des PSHE zu ermöglichen. Damit die Polarisation der Anregungsstrahlung gezielt einstellt werden konnte, wurde in Strahlreihenfolge ein Polarisationsfilter und ein $\lambda/4$-Plättchen verwendet. Durch Verdrehen des $\lambda/4$-Plättchen entlang der optischen Achse wurden dann unterschiedliche Anregungs-Polarisationen eingestellt. Hierdurch konnte insbesondere die Direktionalität der Anregung bei links- und recht-zirkular polarisierter Anregungsstrahlung untersucht werden. Damit der PSHE auftritt, ist ein schräger Einfall der Strahlung auf die Probe notwendig. Um diesen zu realisieren, musste der gesamte Strahlgang vor der Probe neu konzeptioniert werden. Unter anderem musste dabei das Einkoppelobjektiv, welches den Laser auf die Probe fokussiert hat, durch eine einfache Sammellinse ersetzt werden. Außerdem wurden in dem Aufbau die Probenhalterung und zahlreiche Optomechaniken ausgetauscht und verbessert.
+	Das zur Beobachtung der Oberflächen-Plasmon-Polaritonen genutzte Leckstrahlmikroskop (LRM) war aus der vorangegangenen Arbeit \cite{Jaruschewski.2020} von  \textit{Jaruschewski} bereits vorhanden. Allerdings musste dieses LRM in einigen Details modifiziert werden, um die Beobachtung des PSHE zu ermöglichen. Damit die Polarisation der Anregungsstrahlung gezielt einstellt werden konnte, wurde in Strahlreihenfolge ein Polarisationsfilter und ein $\lambda/4$-Plättchen verwendet. Durch Verdrehen des $\lambda/4$-Plättchen entlang der optischen Achse wurden dann unterschiedliche Anregungs-Polarisationen eingestellt. Hierdurch konnte insbesondere die Direktionalität der Anregung bei links- und recht-zirkular polarisierter Anregungsstrahlung untersucht werden. Damit der PSHE auftritt, ist ein schräger Einfall der Strahlung auf die Probe notwendig. Um diesen zu realisieren, musste der gesamte Strahlgang vor der Probe neu konzeptioniert werden. Unter anderem musste dabei das Einkoppelobjektiv, welches den Laser auf die Probe fokussiert hat, durch eine einfache Sammellinse ersetzt werden. Außerdem wurden in dem Aufbau die Probenhalterung und zahlreiche Optomechaniken ausgetauscht und verbessert.
 	
-	Die Beobachtung von SPPs mit einem Leckstrahlmikroskop wurde mit Hilfe der Fourier-Optik im Orts- und Impulsraum durchgeführt. Die Funktionsfähigkeit des Experimentellen-Aufbaus wurde zunächst durch den Vergleich einer Probemessung mit Messdaten aus der Literatur verifiziert. Anschließend wurde die Propagationsrichtung in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens untersucht. Diese Messdaten wurden im Orts- und Impulsraum analysiert.
+	Die Beobachtung der SPPs mit dem Leckstrahlmikroskop wurde mit Hilfe von Fourier-Optik im Orts- und Impulsraum durchgeführt. Die Funktionsfähigkeit des Experimentellen-Aufbaus wurde zunächst durch den Vergleich einer Probemessung mit Messdaten aus der Literatur verifiziert. Anschließend wurde die Propagationsrichtung in Abhängigkeit der Orientierung des $\lambda/4$-Plättchens untersucht. Diese Messdaten wurden im Orts- und Impulsraum analysiert.
 	
-	Die durch den PSHE erwartete Direktionalität der Anregungsrichtung wurde im Ansatz bereits in den Rohdaten des Impulsraumes beobachtet. In den Rohdaten des Ortsbildes konnte der PSHE hingegen nicht eindeutig identifiziert werden. Dies lässt sich durch unterschiedliche Störfaktoren erklären, die das Ortsbild beeinflussen. Um die Polarisationsabhängigkeit des PSHE qualitativ weiter zu untersuchen, wurde sowohl das Ortsbild als auch das Impulsbild in jeweils zwei Integrationsbereiche aufgeteilt, über die jeweils die gemessene Intensität integriert wurde. Auch bei dieser Auswertungsmethode konnten Störung, welche die Auswertung des Ortsbildes erschweren identifiziert werden. Diese Integrationsdaten wurden für alle Orientierungen des $\lambda/4$-Plättchens aufgetragen. Dieses Verfahren wurde dann für unterschiedliche angeordnete Integrationsbereiche angewendet. Hierdurch konnte beobachtet werden, dass die Anregung in Vorwärts- und Rückwärtsrichtung bezogen auf den Einfall des Lasers, ein qualitative unterschiedliches Verhalten zeigt: In Rückwärtsrichtung konnte die durch den PSHE erwartet Modulation der Intensitäten gemessen werden. Hier konnte ein Kontrastverhältnis von maximal $\eta = 1.6$ zwischen zwei senkrecht zur Einfallsebene des Lasers gelegenen Integrationsbereichen ermittelt werden. In Vorwärtsrichtung wurde hingegen eine systematische Modulation der integrierten Intensität beobachtet, welche nicht durch den PSHE erklärt werden kann.
+	Die durch den PSHE erwartete Direktionalität der Anregungsrichtung wurde im Ansatz bereits in den Rohdaten des Impulsraumes beobachtet. In den Rohdaten des Ortsbildes konnte der PSHE hingegen nicht eindeutig identifiziert werden. Dies lässt sich durch unterschiedliche Störfaktoren erklären, die das Ortsbild beeinflussen. Um die Polarisationsabhängigkeit des PSHE qualitativ weiter zu untersuchen, wurde sowohl das Ortsbild als auch das Impulsbild in jeweils zwei Integrationsbereiche aufgeteilt, über die die gemessene Intensität integriert wurde. Auch bei dieser Auswertungsmethode konnten Störung, welche die Auswertung des Ortsbildes erschweren, identifiziert werden. Die Integrationsdaten wurden für alle Orientierungen des $\lambda/4$-Plättchens aufgetragen. Dieses Verfahren wurde dann für unterschiedliche angeordnete Integrationsbereiche angewendet. Hierdurch konnte beobachtet werden, dass die Anregung in Vorwärts- und Rückwärtsrichtung bezogen auf den Einfall des Lasers, ein qualitative unterschiedliches Verhalten zeigt: In Rückwärtsrichtung konnte die durch den PSHE erwartet Modulation der Intensitäten gemessen werden. Hier konnte ein Kontrastverhältnis von maximal $\eta = 1.6$ zwischen zwei senkrecht zur Einfallsebene des Lasers gelegenen Integrationsbereichen ermittelt werden. In Vorwärtsrichtung wurde hingegen eine systematische Modulation der integrierten Intensität beobachtet, welche nicht durch den PSHE erklärt werden kann.
 	
-	Um das konkrete Verhalten des SPP in unterschiedlichen Raumrichtungen weiter zu charakterisieren wurde dann im letzten Schritt die Anregung bei links- und rechts-zirkular polarisierter Anregungsstrahlung detaillierter untersucht. In einer polarwinkelabhängigen Intensitätsverteilung wurde dabei analysiert, bis zu welcher Richtung bezogen auf die Einfallsrichtung des Anregungslasers der PSHE zu beobachten ist. Im Ortsbild ist dabei, resultierend aus den unterschiedlichen Störungen, die das Ortsbild beeinflussen, in Vorwärtsrichtung eine zur Rückwärtsrichung invertierte Assymetrie zu beobachten. Im Impulsraum konnte bis zu einem Winkel von $\phi = 45^\circ$ die durch den PSHE erzeugte Asymmetrie beobachtet werden.
+	Um das konkrete Verhalten des SPP in unterschiedlichen Raumrichtungen weiter zu charakterisieren wurde dann im letzten Schritt die Anregung bei links- und rechts-zirkular polarisierter Anregungsstrahlung detaillierter untersucht. In einer polarwinkelabhängigen Intensitätsverteilung wurde dabei analysiert, bis zu welcher Richtung bezogen auf die Einfallsrichtung des Anregungslasers der PSHE zu beobachten ist. Im Ortsbild ist dabei in Vorwärtsrichtung eine zur Rückwärtsrichung invertierte Assymetrie zu beobachten. Im Impulsraum konnte bis zu einem Winkel von $\phi = 45^\circ$ die durch den PSHE erzeugte Asymmetrie beobachtet werden.
 		
-	In Vorwärtsrichtung hingegen zeigen die in dieser Arbeit durchgeführten Messungen im Orts- und im Impulsraum ein bemerkenswertes Verhalten, dessen Ursprung weitere Untersuchungen erfordert und im Rahmen dieser Arbeit nicht endgültig geklärt werden konnte. Für eine weiterführende Untersuchung des Verhaltens in Vorwärtsrichtung gibt es folgende Ansätze:
+	In Vorwärtsrichtung zeigen die in dieser Arbeit durchgeführten Messungen also im Orts- und im Impulsraum ein bemerkenswertes Verhalten, dessen Ursprung weitere Untersuchungen erfordert und im Rahmen dieser Arbeit nicht endgültig geklärt werden konnte. Für eine weiterführende Untersuchung des Verhaltens in Vorwärtsrichtung gibt es folgende Ansätze:
 	\begin{itemize}
 		\item \textbf{Variation des Einfallswinkels} Alle in der vorliegenden Arbeit durchgeführten Messungen wurden bei einem Einfallswinkel von $\alpha_{\mathrm{E}} = 60^\circ$ durchgeführt. Die Winkelabhängigkeit des Verhaltens in Vorwärtsrichtung könnte Rückschlüsse auf die Ursache des Effektes erlauben, daher wären weitere Messungen mit unterschiedlichen Einfallswinkeln interessant.
 		\item \textbf{$s$-Polarisation statt $p$-Polarisation} Bei der Kontrolle der Anregungspolarisation des Lasers mittels eines Polarisationsfilters und eines $\lambda / 4$-Plättchens kann neben der Orientierung  des $\lambda / 4$-Plättchens die Orientierung der linearen Polarisation bei $\alpha_{\lambda /4} \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$ gewählt werden. Durch Einsetzen eines $\lambda /2$-Plättchens in den Strahlgang wäre ein weiterer Parameter zur Kontrolle der Anregungspolarisation verfügbar, dessen Einfluss auf die Propagationsrichtung systematisch untersucht werden könnte.
@@ -962,7 +963,451 @@
 \end{figure}
 
 \FloatBarrier
-\newpage
+\chapter{Quellcode}
+\label{sec:source_code}
+\section{Jones-Polarimeter}
+\subsection{Jones-Formalismus}
+\begin{minted}[breaklines]{python}
+import cmath as cm
+import numpy as np
+
+
+class JonesVector(np.ndarray):
+
+    def __new__(cls, input_array):
+        obj = np.asarray(input_array).view(cls)
+        return obj.view(cls)
+
+    @property
+    def delta(self):
+        return cm.phase(self[1]) - cm.phase(self[0])
+
+    @property
+    def alpha(self):
+        return 1 / 2 * np.arctan(2 * abs(self[0]) * abs(self[1]) * np.cos(self.delta) / (
+                abs(self[0]) ** 2 - abs(self[1]) ** 2))
+
+    @property
+    def a(self):
+        return np.sqrt((abs(self[0]) * np.cos(self.alpha)) ** 2 + (
+                abs(self[1]) * np.sin(self.alpha)) ** 2
+                       + abs(self[0]) * abs(self[1]) * np.cos(self.delta) * np.sin(
+            2 * self.alpha))
+
+    @property
+    def b(self):
+        return np.sqrt((abs(self[0]) * np.sin(self.alpha)) ** 2 + (
+                abs(self[1]) * np.cos(self.alpha)) ** 2
+                       - abs(self[0]) * abs(self[1]) * np.cos(self.delta) * np.sin(
+            2 * self.alpha))
+
+    @property
+    def ellipticity(self):
+        if self.a > self.b:
+            return self.b / self.a
+        else:
+            return self.a / self.b
+
+    @property
+    def intensity(self):
+        return np.absolute(self) ** 2
+
+    def plot_ellipsis(self, fig, ax):
+        phases = np.exp(1j * np.linspace(0, 2 * np.pi, 100))
+        x = (phases * self[0]).real
+        y = (phases * self[1]).real
+        a = self.a
+        b = self.b
+        alpha = self.alpha
+        x_alpha = a * np.array([np.cos(alpha + np.pi), np.cos(alpha)])
+        y_alpha = a * np.array([np.sin(alpha + np.pi), np.sin(alpha)])
+        x_alpha_pi_2 = b * np.array([np.cos(alpha + np.pi / 2 + np.pi), np.cos(alpha + np.pi / 2)])
+        y_alpha_pi_2 = b * np.array([np.sin(alpha + np.pi / 2 + np.pi), np.sin(alpha + np.pi / 2)])
+
+        ax.axis('equal')
+        ax.set(xlabel='$E_x$ / AU', ylabel='$E_y$ / AU')
+        ax.grid()
+        ax.plot(x, y, label='$\\vec{E}(t) = \\operatorname{\\mathbb{R}e}\\left\\{\\vec{J}\\exp\\left(i \\omega t\\right)\\right\\}$')
+        ax.plot(x_alpha, y_alpha, 'r--', label='$a,b$')
+        ax.plot(x_alpha_pi_2, y_alpha_pi_2, 'r--')
+        ax.legend()
+
+
+class JonesMatrix(np.ndarray):
+
+    def __new__(cls, input_array):
+        obj = np.asarray(input_array).view(cls)
+        return obj.view(cls)
+
+    def rotate(self, angle):
+        def rotation_matrix(a):
+            return np.array([[np.cos(a), -np.sin(a)], [np.sin(a), np.cos(a)]])
+
+        return rotation_matrix(-angle) @ self @ rotation_matrix(-angle)
+\end{minted}
+\subsection{Least-Sqare-Fit}
+\begin{minted}[breaklines]{python}
+import numpy as np
+from scipy.optimize import least_squares
+
+from models.JonesFormalism import JonesVector, JonesMatrix
+
+
+class Lambda4OrientationDataSet:
+    def __init__(self, data_path):
+        data = np.genfromtxt(data_path, delimiter=',')
+        self.retarder_angles = np.deg2rad(data[:, 0])
+        self.measured_intensities = data[:, 1]
+        self.retarder = np.exp(-1j * np.pi / 4) * JonesMatrix([[1, 0], [0, 1j]])
+        self.diattenuator = JonesMatrix([[1, 0], [0, 0]])
+
+    def plot_orientation(self, fig, ax):
+        ax.set_ylabel('Power in mW')
+        ax.plot(np.rad2deg(self.retarder_angles), self.measured_intensities, "b--",
+                label="power after polarisation filter")
+        ax.tick_params(axis='y')
+
+    def __intensity_diff(self, parameters):
+        Ex, Ex_j, Ey, Ey_j, dia_offset = parameters
+        jones_vector_model = JonesVector([Ex + 1j * Ex_j, Ey + 1j * Ey_j])
+        model_jones_vectors = self.polarimeter_simulation(jones_vector_model, dia_offset)
+        return self.measured_intensities - self.__get_intensities(model_jones_vectors)
+
+    def fit(self, tol=1e-12):
+        sup_limit = np.array([10, 10, 10, 10, np.pi])
+        inf_limit = np.array([-10, -10, -10, -10, -np.pi])
+        x_0 = (1, 0, 0, 0, 0)
+        result = least_squares(fun=self.__intensity_diff, x0=x_0, bounds=(inf_limit, sup_limit),
+                               ftol=tol, xtol=tol, gtol=tol)
+        Ex, Ex_j, Ey, Ey_j, dia_offset = result.x
+        jones_vector = JonesVector([Ex + 1j * Ex_j, Ey + 1j * Ey_j])
+        return jones_vector, dia_offset
+
+    def polarimeter_simulation(self, jones_vector, dia_offset):
+        jones_vector_results = np.zeros((*self.retarder_angles.shape, *jones_vector.shape), dtype='D')
+        rotated_diattenuator = self.diattenuator.rotate(dia_offset)
+        for idx, angle in enumerate(self.retarder_angles):
+            rotated_retarders = self.retarder.rotate(angle + dia_offset)
+            jones_vector_results[idx] = rotated_diattenuator @ rotated_retarders @ jones_vector
+        return jones_vector_results
+
+
+    def plot_jones_fit(self, jones_vector, dia_offset, fig, ax):
+        ax.plot(np.rad2deg(self.retarder_angles), self.measured_intensities, '+', label="Messdaten")
+        sim_vectors = self.polarimeter_simulation(jones_vector, dia_offset)
+        sim_int = self.__get_intensities(sim_vectors)
+        ax.set(ylabel='$P$ in mW', xlabel='$\\alpha_{\\lambda/4}$ in deg',
+               xticks=[0, 45, 90, 135, 180, 135, 180, 225, 270, 315, 360])
+        ax.plot(np.rad2deg(self.retarder_angles), sim_int, '--', label="Simulation")
+        circ = np.array([45, 135, 225, 315])
+        ax.legend(loc='upper right')
+        for c in circ:
+            ax.axvline(x=c, linestyle='--', color='k', linewidth='0.5')
+
+    def __get_intensities(self, jones_vectors):
+        return np.sum(np.absolute(jones_vectors) ** 2, axis=1)
+
+\end{minted}
+\section{LRM-Datenauswertung}
+\begin{minted}[breaklines]{python}
+import numpy as np
+import cv2 as cv
+import glob
+import os
+import re
+from scipy.optimize import least_squares
+from scipy.signal import savgol_filter
+
+
+class SpinHallDataSet:
+
+    def __init__(self, data_path, center, max_radius, k_0_NA, r_NA, fp_scale, lamb_offset=0):
+        self.center = center
+        self.max_radius = max_radius
+        self.__k_0_NA = k_0_NA
+        self.__r_NA = r_NA
+
+        def get_angle_from_file_name(file_name):
+            return float(re.search("([0-9]*).bmp", file_name).group(1))
+
+        files = sorted(glob.glob(os.path.join(data_path, '*.bmp')),
+                       key=get_angle_from_file_name)
+        self.lambda_4_angles = np.empty(len(files))
+        self.__data_dimensions = cv.imread(files[0]).shape[0:2]
+
+        self.data = np.empty((len(files), *self.__data_dimensions))
+        self.polar_data = np.empty_like(self.data)
+
+        for i, file in enumerate(files):
+            self.data[i] = cv.cvtColor(cv.imread(file), cv.COLOR_BGR2GRAY)
+            self.lambda_4_angles[i] = get_angle_from_file_name(file)
+            self.polar_data[i] = cv.linearPolar(self.data[i], center, max_radius, cv.WARP_FILL_OUTLIERS, cv.INTER_CUBIC)
+
+        self.lambda_4_angles = np.where(self.lambda_4_angles - lamb_offset > 0, self.lambda_4_angles - lamb_offset,
+                                        360 + self.lambda_4_angles - lamb_offset)
+
+        self.radial_values = np.linspace(0, self.max_radius, self.__data_dimensions[1])
+        self.__k_factor = self.__k_0_NA / self.__r_NA
+        self.radial_values_k = np.linspace(0, self.max_radius * self.__k_factor, self.__data_dimensions[1])
+        self.angular_values = np.linspace(0, 2 * np.pi, self.__data_dimensions[0])
+
+    def __get_lambda_4_index(self, lambda_4_angle):
+        idx = (np.abs(self.lambda_4_angles - lambda_4_angle)).argmin()
+        return self.lambda_4_angles[idx], idx
+
+    def __get_angle_masks(self, mid_angle, angle_width, angle_gap):
+        if mid_angle + angle_width < 2 * np.pi:
+            if mid_angle + angle_gap < 2 * np.pi:
+                left_angle_mask = (self.angular_values >= mid_angle + angle_gap) & (
+                        self.angular_values <= mid_angle + angle_width)
+            else:
+                raise Exception('something Wrong: mid_angle + remove_angs > 2 * np.pi:')
+        else:
+            if mid_angle + angle_gap < 2 * np.pi:
+                left_angle_mask = (self.angular_values >= mid_angle + angle_gap) | (
+                        self.angular_values <= mid_angle + angle_width - (2 * np.pi))
+            else:
+                left_angle_mask = (self.angular_values >= mid_angle + angle_gap - 2 * np.pi) & (
+                        self.angular_values <= mid_angle + angle_width - (2 * np.pi))
+
+        if mid_angle - angle_width > 0:
+            if (mid_angle - angle_gap) > 0:
+                right_angle_mask = (self.angular_values <= mid_angle - angle_gap) & (
+                        self.angular_values >= mid_angle - angle_width)
+            else:
+                raise Exception('(mid_angle - remove_angs) < 0')
+        else:
+            if (mid_angle - angle_gap) > 0:
+                right_angle_mask = (self.angular_values <= mid_angle - angle_gap) | (
+                        self.angular_values >= 2 * np.pi + (mid_angle - angle_width))
+            else:
+                right_angle_mask = (self.angular_values <= mid_angle - angle_gap) | (
+                        (self.angular_values >= 2 * np.pi + (mid_angle - angle_width)) & (
+                        self.angular_values <= 2 * np.pi + mid_angle - angle_gap))
+        # cut masks to same size
+        diff = right_angle_mask[right_angle_mask].size - left_angle_mask[left_angle_mask].size
+        if diff < 0:
+            right_angle_mask[right_angle_mask][:abs(diff)] = False
+        elif diff > 0:
+            left_angle_mask[left_angle_mask][:abs(diff)] = False
+        return left_angle_mask, right_angle_mask
+
+    def __get_radial_mask(self, min_rad, max_rad):
+        return (self.radial_values > min_rad) & (self.radial_values < max_rad)
+
+    def __integrate_intensity_for_masks(self, data_idx, left_mask, right_mask, radial_mask):
+        radial_masked_data = self.polar_data[data_idx][:, radial_mask]
+        # print("left:{0}, right:{1} \n".format(len(radial_masked_data[left_mask]), len(radial_masked_data[
+        #                                                                                 right_mask])))
+        left_right = np.sum(radial_masked_data[left_mask | right_mask])
+        left = np.sum(radial_masked_data[left_mask]) / left_right
+        right = np.sum(radial_masked_data[right_mask]) / left_right
+        return left, right
+
+    def __plot_polar_data(self, polar_data, label, clev, fig, ax, zoom=False, cmap='plasma'):
+        X_OFFSET = 0
+
+        def add_scale(x):
+            rect = x.get_position()
+            rect = (rect.xmin - X_OFFSET, rect.ymin + rect.height / 2,  # x, y
+                    rect.width, rect.height / 2)
+            scale_ax = x.figure.add_axes(rect)
+            for loc in ['right', 'top', 'bottom']:
+                scale_ax.spines[loc].set_visible(False)
+            scale_ax.tick_params(bottom=False, labelbottom=False)
+            scale_ax.patch.set_visible(False)
+            scale_ax.spines['left'].set_bounds(*x.get_ylim())
+            scale_ax.set_yticks(x.get_yticks())
+            scale_ax.set_ylim(x.get_rorigin(), x.get_rmax())
+            scale_ax.set_ylabel('$|\\vec{k}_{\\parallel}|$ / $\\mu m^{-1}$')
+
+        swapped_data = np.swapaxes(polar_data, 0, 1)
+        cs = ax.contourf(self.angular_values, self.radial_values_k, swapped_data[:, ::-1], clev, cmap=cmap)
+        cbar = fig.colorbar(cs)
+        cbar.set_label(label, rotation=90)
+        ax.plot(self.angular_values, np.full(len(self.angular_values), self.__k_0_NA), label='$k_0\\mathrm{NA}$',
+                color='r', linestyle='--')
+        if zoom:
+            ax.set_ylim(9.5, self.__k_0_NA)
+            ax.set_rorigin(9)
+        add_scale(ax)
+        ax.set_yticklabels([])
+
+    def __plot_cart_data(self, cart_data, fig, ax, cmap='plasma'):
+        cs = ax.imshow(cart_data, cmap=cmap)
+        fig.colorbar(cs)
+
+    def plot_cart(self, lambda_4_angle, fig, ax):
+        angle, idx = self.__get_lambda_4_index(lambda_4_angle)
+        self.__plot_cart_data(self.data[idx], fig, ax)
+        ax.set_title('Lambda/4 angle= {0}°'.format(angle))
+
+    def plot_cart_diff(self, lambda_4_angle_1, lambda_4_angle_2, fig, ax):
+        angle1, idx1 = self.__get_lambda_4_index(lambda_4_angle_1)
+        angle2, idx2 = self.__get_lambda_4_index(lambda_4_angle_2)
+        diff = (self.data[idx1] - self.data[idx2]) / (self.data[idx1] + self.data[idx2])
+        self.__plot_cart_data(diff, fig, ax, cmap="bwr")
+        ax.set_title('Diff, Lambda/4 angle1: {0} - angle2: {1}'.format(angle1, angle2))
+
+    def plot_polar(self, lambda_4_angle, fig, ax, zoom = False):
+        angle, idx = self.__get_lambda_4_index(lambda_4_angle)
+        max_value = np.max(self.polar_data[idx])
+        clev = np.arange(0, 1.0, .01)
+        label = '$I_k\\left(|\\vec{k_\parallel}|, \phi, \\alpha_{\lambda /4} =' + f'{lambda_4_angle}' + '^\circ\\right) / $AU'
+        self.__plot_polar_data(self.polar_data[idx] / max_value, label, clev, fig, ax, zoom=zoom)
+
+    def plot_polar_diff(self, lambda_4_angle_1, lambda_4_angle_2, fig, ax):
+        angle1, idx1 = self.__get_lambda_4_index(lambda_4_angle_1)
+        angle2, idx2 = self.__get_lambda_4_index(lambda_4_angle_2)
+        diff = (self.polar_data[idx1] - self.polar_data[idx2]) / (self.polar_data[idx1] + self.polar_data[idx2])
+        clev = np.arange(-0.5, 0.5, .01)
+        label = '$D_k\\left(|\\vec{k_\parallel}|, \Phi\\right)$'
+        self.__plot_polar_data(diff, label, clev, fig, ax, zoom=True, cmap="bwr")
+
+
+    def __calc_radial_profile(self, lambda_4_angle):
+        angle, idx = self.__get_lambda_4_index(lambda_4_angle)
+        return np.average(self.polar_data[idx], axis=0)
+
+    def plot_radial_profile(self, lambda_4_angle, fig, ax):
+        radial_profile = self.__calc_radial_profile(lambda_4_angle)
+
+        max_index = np.argmax(radial_profile)
+        xmax = self.radial_values_k[max_index]
+        ax.plot(self.radial_values_k, radial_profile / radial_profile[max_index], color='k', label='$P_k\\left(|\\vec{k}_{\\parallel}|\\right)$')
+        ax.set(xticks=[0, xmax, self.__k_0_NA], xlabel='$|\\vec{k}_{\\parallel}| / \\mathrm{\\mu m}^{-1}$',
+               ylabel='$P_k(|\\vec{k}_{\\parallel}|) /$ AU')
+        for tick in ax.get_xticklabels():
+            tick.set_rotation(45)
+        ax.axvline(x=xmax, linestyle='-.', color='b', linewidth='0.7', label='$k_{\\mathrm{spp}}$')
+        ax.axvline(x=self.__k_0_NA, linestyle='--', color='r', linewidth='0.7', label='$k_0\\mathrm{NA}$')
+        ax.legend()
+        fig.tight_layout()
+
+    def plot_lorenz_fit_radial_profile(self, lambda_4_angle, k_interv, fig, ax):
+        def lorenz_profile(k_x, c1, c2, k_spp_r, k_spp_i):
+            return c1 / ((k_x - k_spp_r) ** 2 + k_spp_i ** 2) + c2
+
+        id_min = (np.abs(self.radial_values_k - k_interv[0])).argmin()
+        id_max = (np.abs(self.radial_values_k - k_interv[1])).argmin()
+        radial_profile = self.__calc_radial_profile(lambda_4_angle)
+
+        def lorenz_cost(parameters):
+            c1, c2, k_spp_r, k_spp_i = parameters
+            radial_profile_lor = lorenz_profile(self.radial_values_k[id_min:id_max], c1, c2, k_spp_r, k_spp_i)
+            return radial_profile[id_min:id_max] - radial_profile_lor
+
+        inf_limit = np.array([0, 0, 0, 0])
+        sup_limit = np.array([10, 20, 15, 10])
+        x_0 = (1, 5, 10, 5)
+        tol = 1e-12
+        result = least_squares(fun=lorenz_cost, x0=x_0, bounds=(inf_limit, sup_limit), ftol=tol, xtol=tol,
+                               gtol=tol)
+        c1, c2, k_spp_r, k_spp_i = result.x
+        print(result.x)
+        rad_max = np.max(radial_profile)
+
+        ax.plot(self.radial_values_k, radial_profile/ rad_max, 'k', label='$P_k\\left(|\\vec{k}_{\\parallel}|\\right)$')
+        ax.plot(self.radial_values_k[id_min:id_max],
+                lorenz_profile(self.radial_values_k[id_min:id_max], c1, c2, k_spp_r, k_spp_i) / rad_max, 'b--', label='Lorentz Fit')
+        ax.set(xticks=[0, k_spp_r, self.__k_0_NA], xlabel='$|\\vec{k}_{\\parallel}| / \\mathrm{\mu m}^{-1}$',
+               ylabel='$P_k(|\\vec{k}_{\\parallel}|) /$ AU', xlim=(9, 13))
+        ax.axvline(x=k_spp_r, linestyle='-.', color='b', linewidth='0.7', label='$k_{\\mathrm{spp}}$')
+        ax.axvline(x=self.__k_0_NA, linestyle='-.', color='r', linewidth='0.7', label='$k_0\\mathrm{NA}$')
+        ax.legend()
+
+
+    def plot_angular_profile(self, lambda_4_angle, min_rad, max_rad, fig, ax):
+        angle, idx = self.__get_lambda_4_index(lambda_4_angle)
+        radial_mask = self.__get_radial_mask(min_rad, max_rad)
+        angular_profile = np.average(self.polar_data[idx][:, radial_mask], axis=1)
+        #kernel_size = 60
+        #kernel = np.ones(kernel_size) / kernel_size
+        #data_convolved = np.convolve(angular_profile, kernel, mode='same')
+        data_smothed = savgol_filter(angular_profile, 201, 5, mode='wrap')
+        ax.plot(self.angular_values, data_smothed, label='$P_k(\\phi, \\alpha_{\lambda/4}='+f'{lambda_4_angle}'+'^\\circ)$')
+        ax.set_yticklabels([])
+
+    def plot_angular_profile_diff(self, lambda_4_angle_1, lambda_4_angle_2, min_rad, max_rad, fig, ax):
+        angle1, idx1 = self.__get_lambda_4_index(lambda_4_angle_1)
+        angle2, idx2 = self.__get_lambda_4_index(lambda_4_angle_2)
+        radial_mask = self.__get_radial_mask(min_rad, max_rad)
+        angular_profile1 = np.average(self.polar_data[idx1][:, radial_mask], axis=1)
+        angular_profile2 = np.average(self.polar_data[idx2][:, radial_mask], axis=1)
+        diff = (angular_profile1 - angular_profile2) / (angular_profile1 + angular_profile2)
+        kernel_size = 40
+        kernel = np.ones(kernel_size) / kernel_size
+        data_convolved = np.convolve(diff, kernel, mode='same')
+        ax.plot(self.angular_values, data_convolved)
+        ax.plot(self.angular_values, np.zeros(self.angular_values.shape), '-k')
+        def add_scale(x):
+            rect = x.get_position()
+            rect = (rect.xmin - 0, rect.ymin + rect.height / 2,  # x, y
+                    rect.width, rect.height / 2)
+            scale_ax = x.figure.add_axes(rect)
+            for loc in ['right', 'top', 'bottom']:
+                scale_ax.spines[loc].set_visible(False)
+            scale_ax.tick_params(bottom=False, labelbottom=False)
+            scale_ax.patch.set_visible(False)
+            scale_ax.spines['left'].set_bounds(*x.get_ylim())
+            scale_ax.set_yticks(x.get_yticks())
+            scale_ax.set_ylim(x.get_rorigin(), x.get_rmax())
+            scale_ax.set_ylabel('$D_k\\left(\\phi\\right)$')
+        ax.set_ylim(-0.3, 0.3)
+        ax.set_rorigin(-1)
+        add_scale(ax)
+        ax.set_yticklabels([])
+
+    def plot_masks(self, mid_angle, angle_width, angle_gap, min_rad, max_rad, fig, ax):
+        left_mask, right_mask = self.__get_angle_masks(mid_angle, angle_width, angle_gap)
+
+        left_angles = sorted(self.angular_values[left_mask])
+        right_angles = sorted(self.angular_values[right_mask])
+
+        ax.plot(right_angles, np.full(len(right_angles), min_rad * self.__k_factor), '-.k', linewidth=1,
+                label='oberes SPP')
+        ax.plot(right_angles, np.full(len(right_angles), max_rad * self.__k_factor), '-.k', linewidth=1)
+
+        ax.plot(left_angles, np.full(len(left_angles), min_rad * self.__k_factor), '-.k', linewidth=1,
+                label='unteres SPP')
+        ax.plot(left_angles, np.full(len(left_angles), max_rad * self.__k_factor), '-.k', linewidth=1)
+
+        ax.plot(np.full(2, np.min(left_angles)), [min_rad * self.__k_factor, max_rad * self.__k_factor], '-.k', linewidth=1)
+        ax.plot(np.full(2, np.max(left_angles)), [min_rad * self.__k_factor, max_rad* self.__k_factor], '-.k', linewidth=1)
+
+        ax.plot(np.full(2, np.min(right_angles)), [min_rad * self.__k_factor, max_rad * self.__k_factor], '-.k',
+                linewidth=1)
+        ax.plot(np.full(2, np.max(right_angles)), [min_rad * self.__k_factor, max_rad * self.__k_factor], '-.k',
+                linewidth=1)
+
+
+    def plot_integrated_intensity(self, mid_angle, angle_width, angle_gap, min_rad, max_rad, fig, ax):
+        left_mask, right_mask = self.__get_angle_masks(mid_angle, angle_width, angle_gap)
+        radial_mask = self.__get_radial_mask(min_rad, max_rad)
+        intensities = np.empty((len(self.polar_data), 2))
+        for idx, pd in enumerate(self.polar_data):
+            intensities[idx] = self.__integrate_intensity_for_masks(idx, left_mask, right_mask, radial_mask)
+        ax.set(xlabel='$\\alpha_{\\lambda/4} / \\mathrm{deg}$',
+               ylabel='$P_{k, \\mathrm{relativ}}$',
+               xticks=[0, 45, 90, 135, 180, 135, 180, 225, 270, 315, 360])
+
+        sort_index = np.argsort(self.lambda_4_angles)
+        ax.plot(self.lambda_4_angles[sort_index], intensities[sort_index, 0], 'g+:', label="$P_{k, \\mathrm{relativ}, \\mathrm{Oben}}(\\alpha_{\\lambda/4})$")
+        ax.plot(self.lambda_4_angles[sort_index], intensities[sort_index, 1], 'r+:', label="$P_{k, \\mathrm{relativ}, \\mathrm{Unten}}(\\alpha_{\\lambda/4})$")
+
+    def plot_polarisation_marks(self, fig, ax):
+        circ = np.array([45, 135, 225, 315])
+        for c in circ:
+            ax.axvline(x=c, linestyle='--', color='k', linewidth='0.5')
+
+    def __get_fp_lambda_4_index(self, lambda_4_angle):
+        idx = (np.abs(self.fp_lambda_4_angles - lambda_4_angle)).argmin()
+        return self.fp_lambda_4_angles[idx], idx
+
+
+\end{minted}
+
+
 	\chapter{Technische Spezifikationen}
 		\section{Technische Zeichnungen}
 		\begin{figure}[H]
